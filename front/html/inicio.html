@@ -22,8 +22,19 @@
 
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" class="min-vh-100 m-0 d-flex flex-column">
-    <div class="container-fluid mb-5">
-        <nav class="navbar navbar-expand-md navbar-light fondo fixed-top fondo">
+    
+    <div class="container-fluid d-block pt-1">
+
+        <div class="row">
+
+            <p class="col-10" id="alerta">Numquam quia amet quae quo exercitationem corrupti accusantium consequuntur, eligendi odit, sint illum ut.</p>
+
+        </div>
+
+    </div>
+
+    <div class="container-fluid d-block mb-5 mt-0 pt-0" id="inicio">
+        <nav class="navbar navbar-expand-md m-0 p-0">
             <div class="container-fluid">
                 <a class="navbar-brand px-0 py-0 mx-0" href="">
                     <img src="../recursos/logo-sin-fondo.png" alt="Logo de la compañía" width="190px"
@@ -31,37 +42,44 @@
                 </a>
                 <button class="navbar-toggler rounded-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#mynavbar">
-                    <i class="bi bi-list-ul"></i>
+                    <i class="bi bi-view-list"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link me-1" href=""><i
-                                    class="bi bi-house-door"></i>¿Quiénes somos?</a>
+                            <a class="nav-link me-1" href="">¿Quiénes somos?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link me-1" href=""><i
-                                    class="bi bi-blockquote-left"></i>Servicios</a>
+                            <a class="nav-link me-1" href="">Servicios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link me-1" href=""><i
-                                    class="bi bi-briefcase"></i>Reclamaciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-1" href=""><i class="bi bi-file-earmark-bar-graph"></i>
-                                </a>
+                            <a class="nav-link me-1" href="">Reclamaciones</a>
                         </li>
                     </ul>
-                    <button class="rounded-2 border-0 p-2" type="button" data-bs-target="">
-                        <i class="bi bi-cart p-2"></i>
-                    </button>
+
+                    <div class="container colapase.show-md navbar-md-collapse collapse">
+
+                        <div class="row collapse-md navbar-md-collapse">
+                        <button class="col-12 rounded-2 border-0 p-2" type="button" data-bs-target="collapse"
+                        data-bs-target="#mynavbar">
+                            <i class="bi bi-cart p-2"></i>
+                        </button>
+                        </div>
+
+                        <div class="row collapse-md navbar-md-collapse">
+                        <button class="col-12 rounded-2 fs-6" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mynavbar">
+                        Identifíquese
+                        </button>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </nav>
     </div>
 
-
-
-
-
+</body>
 </html>
+
