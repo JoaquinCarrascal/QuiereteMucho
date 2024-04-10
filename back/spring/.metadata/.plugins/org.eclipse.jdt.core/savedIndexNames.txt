@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\Users\carrascal.frjoa24_tr\Desktop\repoProg\QuiereteMucho\back\spring\.metadata\.plugins\org.eclipse.jdt.core
-2874506248.index
-1865797976.index
-3586421577.index

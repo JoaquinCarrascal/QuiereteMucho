@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "fuentePpal";
+    src: url('../fuente/fuentePpal.ttf');
+}
+
+*{
+
+   font-family: fuentePpal,sans-serif;
+   font-size: 12pt;
+   font-weight:bold;
+    
+}
+
+.fondo{
+    background-color: rgb(255, 255, 255);
+}
+
+.fondo-claro{
+    background-color: rgba(255, 255, 255, 0.163);
+}
+
+#alerta{
+    font-size: 10pt;
+    font-weight:lighter;
+    font-family: inherit;
+}
