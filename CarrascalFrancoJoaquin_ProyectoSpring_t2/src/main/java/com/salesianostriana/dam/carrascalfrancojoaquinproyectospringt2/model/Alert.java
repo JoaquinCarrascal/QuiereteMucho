@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,15 +12,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "alert")
 public class Alert {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id //id no será autogenerado ya que sólamente tendré 1 alerta guardada
 	private Long id;
 	
 	@SuppressWarnings("unused")
-	private String name,description;
+	private String description;
 	
-	public Alert(String name, String description) {
-		this.name = name;
+	public Alert(String description) {
 		this.description = description;
 	}
 	

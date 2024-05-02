@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor @AllArgsConstructor
 @MappedSuperclass @Data
-public abstract class User {
+public class User {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)

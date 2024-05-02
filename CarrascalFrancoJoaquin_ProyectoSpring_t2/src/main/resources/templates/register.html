@@ -27,7 +27,7 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-	<form action="POST" class="my-auto mx-auto w-75 py-4">
+	<form method="POST" th:action="addClient" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter">Registrate en nuetra web</legend>
 	
@@ -36,13 +36,13 @@
 	                <div class="my-1 col-12 col-md-6">
 	                    <label for="name-field-reg" class="form-label">Nombre<sup class="text-danger">*</sup></label>
 	                    <input type="text" class="form-control p-2" id="name-field-reg" placeholder="Escriba aquí su nombre..."
-	                        name="name-reg">
+	                        name="name-reg" th:field="*{userName}">
 	                </div>
 	
 	                <div class="my-1 col-12 col-md-6">
 	                    <label for="last-name-field-reg" class="form-label">Apellido<sup class="text-danger">*</sup></label>
 	                    <input type="text" class="form-control p-2" id="last-name-field-reg" placeholder="Escriba aquí su primer apellido..."
-	                        name="last-name-reg">
+	                        name="last-name-reg" th:field="*{userLastName}">
 	                </div>
 	            </div>
 	
@@ -51,7 +51,7 @@
 	                <div class="my-1 col-12 col-md-6">
 	                    <label for="pwd-field-reg" class="form-label">Contraseña<sup class="text-danger">*</sup></label>
 	                    <input type="password" class="form-control p-2" id="pwd-field-reg" placeholder="************"
-	                        name="pwd-reg">
+	                        name="pwd-reg" th:field="*{pass}">
 	                </div>
 	
 	                <div class="my-1 col-12 col-md-6">
@@ -67,7 +67,7 @@
 	                <div class="mb-1 col-12">
 	                    <label for="email-field-reg" class="form-label">Email<sup class="text-danger">*</sup></label>
 	                    <input type="email" class="form-control p-2" id="email-field-reg"
-	                        placeholder="correo@email.com" name="email-reg">
+	                        placeholder="correo@email.com" name="email-reg" th:field="*{email}">
 	                </div>
 	    
 	            </div>
@@ -77,13 +77,13 @@
 	                <div class="my-1 col-12 col-md-4">
 	                    <label for="ntelf-field-reg" class="form-label">Número de teléfono<sup class="text-danger">*</sup></label>
 	                    <input type="text" class="form-control p-2" id="ntelf-field-reg" placeholder="111222333"
-	                        name="ntelf-reg">
+	                        name="ntelf-reg" th:field="*{telNumber}">
 	                </div>
 	
 	                <div class="my-1 col-12 col-md-8">
 	                    <label for="dir-field-reg" class="form-label">Dirección</label>
 	                    <input type="text" class="form-control p-2" id="dir-field-reg" placeholder="13 Rue del Percebe"
-	                        name="dir-reg">
+	                        name="dir-reg" th:field="*{adress}">
 	                </div>
 	
 	            </div>
@@ -99,11 +99,7 @@
 	                    Iniciar sesión
 	                </button>
 	            </a>
-	            <button type="submit" class="col-6 btn fondo shadow py-2 rounded-2 mx-0 ">
-	                <a class="text-decoration-none text-secondary" href="" target="_self">
-	                    Crear cuenta
-	                </a>
-	            </button>
+	            <input type="submit" value="Crear cuenta" class="col-6 btn fondo shadow py-2 rounded-2 mx-0 "></input>
 	        </div>
 	
 	    </form>

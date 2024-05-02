@@ -4,3 +4,5 @@ insert into product (id, name, description, avg_duration, base_price , prodt) va
 insert into product (id, name, description, avg_duration, base_price , prodt) values (4, 'Manicura de porcelana', 'Tratamiento hidratante sobre la uña + manicura de polvo de porcelana de la máxima calidad.', 30 ,18 ,'ESTETICA');
 
 ALTER SEQUENCE product_seq RESTART WITH 5;
+
+insert into alert (id, description) values (1, 'Cierra los ojos y piensa en algo bonito... , quiérete como nadie, Quiérete Mucho.')
