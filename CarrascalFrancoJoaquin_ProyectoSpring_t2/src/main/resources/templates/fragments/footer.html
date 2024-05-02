@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	
+	<footer class="text-center text-md-start text-dark mt-auto w-100 d-table" th:fragment="footer">
+	
+	        <!-- Sección Social media -->
+	        <section class="d-flex justify-content-center justify-content-md-around p-2 shadow">
+	            <!-- Left -->
+	            <div class="me-5 d-block text-dark">
+	                <span class="text-dark">Síguenos en nuestras redes sociales :&rpar; &#129331;</span>
+	            </div>
+	            <!-- Left -->
+	
+	            <!-- Right -->
+	            <div class=" d-block">
+	                <a href="" class="text-decoration-none text-dark me-3">
+	                    <i class="bi bi-facebook"></i>
+	                </a>
+	                <a href="" class="text-decoration-none text-dark me-3">
+	                    <i class="bi bi-twitter-x"></i>
+	                </a>
+	
+	                <a href="" class="text-decoration-none text-dark me-3">
+	                    <i class="bi bi-instagram"></i>
+	                </a>
+	            </div>
+	            <!-- Right -->
+	        </section>
+	        <!-- Sección fin Social media -->
+	
+	        <!-- Section: Links  -->
+	        <section class="">
+	            <div class="container text-center text-md-start mt-5">
+	                <!-- Grid row -->
+	                <div class="row mt-3">
+	                    <!-- Grid column -->
+	                    <div class="col-md-4 mx-auto mb-4">
+	                        <!-- Content -->
+	                        <h6 class="text-uppercase fw-bold mb-2 border-bottom border-secondary border-2 text-center">
+	                            Dónde encontrarnos
+	                        </h6>
+	                        <div class="container">
+	
+	                        </div>
+	                        <!-- Button trigger modal -->
+	                        <div class="" data-bs-toggle="modal" data-bs-target="#mapaModal">
+	                            <img class="img-fluid min-vw-75" src="http://placehold.co/648x480" th:src="@{http://placehold.co/648x480}"
+	                                alt="mapa de la localización del negocio.">
+	                        </div>
+	
+	                        <!-- Modal -->
+	                        <div class="modal fade" id="mapaModal" tabindex="-1" aria-labelledby="mapaModalLabel"
+	                            aria-hidden="true">
+	                            <div class="modal-dialog">
+	                                <div class="modal-content">
+	                                    <div class="modal-header">
+	                                        <h5 class="modal-title" id="mapaModalLabel">C/ Carretero 139 A, Coria del Río,
+	                                            Sevilla</h5>
+	                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+	                                            aria-label="Close"></button>
+	                                    </div>
+	                                    <div class="modal-body">
+	                                        <img class="img-fluid" src="http://placehold.co/648x480" th:src="@{http://placehold.co/648x480}"
+	                                            alt="mapa de la localización del negocio.">
+	                                    </div>
+	                                    <div class="modal-footer">
+	                                        <button type="button" class="btn btn-secondary"
+	                                            data-bs-dismiss="modal">Cerrar</button>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- Grid column -->
+	
+	                    <!-- Grid column -->
+	                    <div class="col-md-5  mx-auto mb-4">
+	                        <!-- Links -->
+	                        <h6 class="text-uppercase fw-bold mb-2 border-bottom border-secondary border-2 text-center">
+	                            Trabaja con nosotros
+	                        </h6>
+	                        <h6 class="fw-bold">
+	                            ¡Buscamos trabajador@s para nuestro negocio!
+	                        </h6>
+	                        <p class="fw-lighter">
+	                            Buscamos personal capacitado sin experiencia requerida para ser contratado
+	                            en las temporadas de la Feria de Abril, la Romería del Rocío,
+	                            Navidad e inicio de verano para suplir las Comuniones.
+	                        </p>
+	                    </div>
+	                    <!-- Grid column -->
+	
+	                    <!-- Grid column -->
+	                    <div class="col-md-3 mx-auto mb-2">
+	                        <!-- Links -->
+	                        <h6 class="text-uppercase fw-bold mb-2 border-bottom border-secondary border-2 text-center">
+	                            Contáctanos
+	                        </h6>
+	                        <a href="mailto:quieretemucho@gmail.com" class="text-decoration-none mb-3"
+	                            target="_blank">quiertemucho@gmail.com</a>
+	                        <p class="mb-0 mt-2">
+	                            Teléfono&nbsp;de&nbsp;contacto:
+	                        </p>
+	                        <p>627 65 12 14</p>
+	                        <p>O visita nuestro negocio para dejar el currículum en mano :&rpar;</p>
+	                    </div>
+	                    <!-- Grid column -->
+	                </div>
+	                <!-- Grid row -->
+	            </div>
+	        </section>
+	        <!-- Section: Links  -->
+	
+	        <!-- Copyright -->
+	        <div class="text-center p-md-3 p-2 border-top border-">
+	            © 2020 Derechos reservados:
+	            <a class="text-reset fw-bold" href="../avisolegal/avisolegal.html">Quiérete Mucho.</a>
+	        </div>
+	        <!-- Copyright -->
+	
+	    </footer>
+    
+</body>
+</html>
