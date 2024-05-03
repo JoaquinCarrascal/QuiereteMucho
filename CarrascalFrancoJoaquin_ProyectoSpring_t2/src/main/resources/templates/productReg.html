@@ -112,23 +112,24 @@
 	                </div>
 	            </div>
 	
-	            <div class="row">
+	            <div class="row justify-content-center">
 
-                    <div class="my-1 col-12 col-md-6">
-                        <label for="prodT-field-reg" class="form-label">Tipo de servicio</label>
-	                    <select name="prodT-field-reg" class="form-control p-2">
-                            <option th:each="type : ${T(com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.ProductType).values()}" 
-                                th:value="${type}" th:text="${type}" th:field="*{prodT}"></option>
-                        </select>
+                    <div class="my-1 col-12 col-lg-4">
+						<label for="product-type-field" class="form-label">Tipo de servicio</label>
+						<select class="form-select p-2" name="product-type-field" th:field="*{productType}">
+							<option th:each="productType : ${T(com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.ProductType).values()}"
+							th:value="${productType}" th:text="${productType}">
+							</option>
+						</select>
 	                </div>
 	
-	                <div class="my-1 col-12 col-md-3">
+	                <div class="my-1 col-6 col-lg-3">
 	                    <label for="avg-duration-field-reg" class="form-label">Duración</label>
 	                    <input type="text" class="form-control p-2" id="avg-duration-field-reg" placeholder="Duración promedio del servicio"
 	                        name="avg-duration-reg" th:field="*{avgDuration}">
 	                </div>
 	
-	                <div class="my-1 col-12 col-md-3">
+	                <div class="my-1 col-6 col-lg-3">
 	                    <label for="base-price-field-reg" class="form-label">Precio base</label>
 	                    <input type="text" class="form-control p-2" id="base-price-field-reg" placeholder="Precio base del servicio"
 	                        name="base-price-reg" th:field="*{basePrice}">

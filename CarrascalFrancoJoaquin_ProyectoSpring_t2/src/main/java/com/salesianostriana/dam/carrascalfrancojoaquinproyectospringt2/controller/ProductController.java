@@ -6,10 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Product;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.ProductService;
-
 
 @Controller
 public class ProductController {
@@ -23,9 +23,8 @@ public class ProductController {
 	@GetMapping("/prodForm")
 	public String showFormProducto(Model model) {
 		
-		Product p1 = new Product();
-		model.addAttribute("productRegForm", p1);
-		
+		model.addAttribute("productRegForm", new Product());
+		model.addAttribute("pTypes" , pservice.getTypes());
 		model.addAttribute("alertContext" , as1.showAlert());
 
 		return "productReg";

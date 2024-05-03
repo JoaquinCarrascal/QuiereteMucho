@@ -27,14 +27,15 @@ public class Product {
 	private double avgDuration, basePrice;
 
 	@Enumerated(EnumType.STRING)
-	private ProductType prodT;
+	private ProductType productType;
+	
 
 	public Product(String name, String description, double avgDuration, double basePrice, ProductType prodT) {
 		this.name = name;
 		this.description = description;
 		this.avgDuration = avgDuration;
 		this.basePrice = basePrice;
-		this.prodT = prodT;
+		this.productType = prodT;
 	}
 
 }
