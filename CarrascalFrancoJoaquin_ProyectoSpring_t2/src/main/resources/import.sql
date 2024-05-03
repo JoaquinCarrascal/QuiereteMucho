@@ -7,3 +7,4 @@ ALTER SEQUENCE product_seq RESTART WITH 5;
 
 insert into alert (id, description , name) values (1, 'Cierra los ojos y piensa en algo bonito... , quiérete como nadie, Quiérete Mucho.' , 'Alerta por defecto');
 
+ALTER SEQUENCE alert_seq RESTART WITH 2;
