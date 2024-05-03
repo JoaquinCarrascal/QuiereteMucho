@@ -13,7 +13,7 @@ public class AlertService extends BaseServiceImpl<Alert, Long, AlertRepository>{
 
 	public String showAlert() {
 		
-		Optional<Alert> opt = findById(1L); //id = 1L ya que sólamente hay y habrá 1 alerta guardada
+		Optional<Alert> opt = findById(1L); //TODO gestion alertas
 		
 		if(opt.get() instanceof Alert) {
 			return opt.get().getDescription();

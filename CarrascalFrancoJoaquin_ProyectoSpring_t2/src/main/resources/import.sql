@@ -5,4 +5,4 @@ insert into product (id, name, description, avg_duration, base_price , prodt) va
 
 ALTER SEQUENCE product_seq RESTART WITH 5;
 
-insert into alert (id, description) values (1, 'Cierra los ojos y piensa en algo bonito... , quiérete como nadie, Quiérete Mucho.')
+insert into alert (id, description , name) values (1, 'Cierra los ojos y piensa en algo bonito... , quiérete como nadie, Quiérete Mucho.' , 'Alerta por defecto');
