@@ -25,5 +25,10 @@ public interface AlertRepository extends JpaRepository<Alert , Long>{
 	@Query("UPDATE Alert a SET a.active = TRUE WHERE a.id = :id")
 	void activateAlertQuery(@Param("id") Long id);
 	
+
+	/*@Modifying
+	@Query("UPDATE Alert a SET a.name = :name , a.description = :description WHERE a.id = :id")
+	void editAlertQuery(@Param("id") Long id ,@Param("name") String name , @Param("description") String description);*/
+	
 	
 }

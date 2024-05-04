@@ -11,16 +11,16 @@ import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.P
 public class MainController {
 
 	@Autowired
-	private ProductService ps1;
+	private ProductService prodserv;
 	
 	@Autowired
-	private AlertService as1;
+	private AlertService aserv;
 	
 	@GetMapping({"/","/home"})
 	public String showHome(Model model) {
 		
-		model.addAttribute("productList" , ps1.findAll());
-		model.addAttribute("alertContext" , as1.showAlert());
+		model.addAttribute("productList" , prodserv.findAll());
+		model.addAttribute("alertContext" , aserv.showAlert());
 		
 		return "home";
 	}
