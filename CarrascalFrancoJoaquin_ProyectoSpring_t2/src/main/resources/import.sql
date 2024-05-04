@@ -3,8 +3,8 @@ insert into product (id, name, description, avg_duration, base_price , product_t
 insert into product (id, name, description, avg_duration, base_price , product_type) values (3, 'Manicura francesa', 'Un clásico de la belleza que nunca pasa de moda, además incluye tratamiento de la cutícula.', 25 ,15.5,'ESTETICA');
 insert into product (id, name, description, avg_duration, base_price , product_type) values (4, 'Manicura de porcelana', 'Tratamiento hidratante sobre la uña + manicura de polvo de porcelana de la máxima calidad.', 30 ,18 ,'ESTETICA');
 
-ALTER SEQUENCE product_seq RESTART WITH 5;
+ALTER SEQUENCE product_seq RESTART WITH 54;
 
-insert into alert (id, description , name) values (1, 'Cierra los ojos y piensa en algo bonito... , quiérete como nadie, Quiérete Mucho.' , 'Alerta por defecto');
+insert into alert (id, description , name , active) values (1, 'Cierra los ojos y piensa en algo bonito... , quiérete como nadie, Quiérete Mucho.' , 'Alerta por defecto' , true);
 
-ALTER SEQUENCE alert_seq RESTART WITH 2;
+ALTER SEQUENCE alert_seq RESTART WITH 51;

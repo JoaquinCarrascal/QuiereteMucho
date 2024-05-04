@@ -41,8 +41,7 @@
 					<div class="row align-items-center justify-content-start">
 						<a class="navbar-brand col-5 mt-0" href="/" th:href="@{/}">
 
-							<img src="../static/img/company-logo.png" th:src="@{img/company-logo.png}"
-								alt="Logo compañía" width="200px">
+							<img src="../static/img/company-logo.png" th:src="@{/img/company-logo.png}" alt="Logo compañía" width="200px">
 
 						</a>
 
@@ -114,9 +113,9 @@
 				<td class="col-1" th:text="${alert.id}">ID</td>
 				<td class="col-2" th:text="${alert.name}">Nombre</td>
 				<td class="col-5" th:text="${alert.description}">Descripcion</td>
-				<td class="col-1 text-center"><i class="bi bi-pencil-square"></i></td>
-				<td class="col-1 text-center"><i class="bi bi-trash3"></i></td>
-				<td class="col-1 text-center"><i class="bi bi-arrow-90deg-up"></i></td>
+				<td class="col-1 text-center"><a th:href="@{/editAlert/{id}(id=${alert.id})}"><button class="btn btn-primary p-1"><i class="bi bi-pencil-square"></i></button></a></td>
+				<td class="col-1 text-center"><a th:href="@{/deleteAlert/{id}(id=${alert.id})}"><button class="btn btn-danger p-1"><i class="bi bi-trash3"></i></button></a></td>
+				<td class="col-1 text-center"><a th:href="@{/activateAlert/{id}(id=${alert.id})}"><button class="btn btn-success p-1"><i class="bi bi-arrow-90deg-up"></i></button></a></td>
 			</tr>
 		</tbody>
 	</table>

@@ -41,8 +41,7 @@
                     <div class="row align-items-center justify-content-start">
                         <a class="navbar-brand col-5 mt-0" href="/" th:href="@{/}">
 
-                            <img src="../static/img/company-logo.png" th:src="@{img/company-logo.png}"
-                                alt="Logo compañía" width="200px">
+                            <img src="../static/img/company-logo.png" th:src="@{/img/company-logo.png}" alt="Logo compañía" width="200px">
 
                         </a>
 
@@ -95,9 +94,9 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-    <form method="POST" th:action="addAlert" th:object="${alertBlank}">
+    <form method="POST" th:action="${alertBlank.id != 0} ? @{/editAlert/submit} : @{/addAlert/submit}" th:object="${alertBlank}">
 
-        <legend class="text-center mt-2">Formulario de agregación de alertas</legend>
+        <legend class="text-center mt-2"><span th:text="${legend}"></span></legend>
 
         <div class="container-fluid my-4 py-4">
 
@@ -118,7 +117,7 @@
         </div>
 
         <div class="mt-4 row justify-content-center">
-            <input type="submit" value="Crear alerta" class="col-5 col-md-3 col-lg-2 btn btn-success shadow-lg py-2 rounded-2 mx-0 "></input>
+            <input type="submit" value="Enviar" class="col-5 col-md-3 col-lg-2 btn btn-success shadow-lg py-2 rounded-2 mx-0 "></input>
         </div>
 
     </form>
