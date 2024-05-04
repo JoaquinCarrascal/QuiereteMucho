@@ -47,9 +47,16 @@ public class AlertController {
 	@GetMapping("/deleteAlert/{id}")
 	public String deleteAlert(@PathVariable("id") Long id) {
 		
-		aserv.delete(aserv.findById(id).get());
+		Alert alertDel = aserv.findById(id).get();
 		
-		return "redirect:/alertlist";
+		if(!alertDel.isActive()) {
+			aserv.delete(alertDel);
+			return "redirect:/alertlist";
+		}else {
+		//TODO excepcion de alerta activa
+			return "redirect:/alertlist";
+		}
+		
 	}
 	
 	@GetMapping("/editAlert/{id}")
