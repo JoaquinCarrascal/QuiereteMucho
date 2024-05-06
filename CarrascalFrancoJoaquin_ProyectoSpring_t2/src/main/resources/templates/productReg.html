@@ -96,6 +96,8 @@
 	<form method="POST" th:action="${productRegForm.id != 0} ? @{/editProduct/submit} : @{/addProduct/submit}" th:object="${productRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter">Dar de alta un servicio</legend>
+
+			<input th:if="${productRegForm.id != 0}" type="hidden" th:field="*{id}" name="id" />
 	
 	        <div class="container-fluid">
 	            <div class="row">

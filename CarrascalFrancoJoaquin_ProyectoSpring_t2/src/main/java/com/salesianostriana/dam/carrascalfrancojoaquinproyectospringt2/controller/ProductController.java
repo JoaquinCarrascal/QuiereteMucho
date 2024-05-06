@@ -67,7 +67,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/editProduct/submit")
-	public String submitEditedAlert(@ModelAttribute("alertBlank")Product p) {
+	public String submitEditedProduct(@ModelAttribute("productRegForm") Product p) {
 		
 		pservice.save(p);
 		
