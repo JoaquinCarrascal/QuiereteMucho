@@ -74,7 +74,7 @@
 							<a href="/logform" th:href="@{/logform}"><i class="bi bi-person-circle text-align-center text-dark fs-3"></i></a>
 						</button>
 
-						<button class="rounded-3 border-0 btn mx-1 " type="button">
+						<button class="rounded-3 border-0 btn mx-1" type="button">
 							<i class="bi bi-cart text-align-center text-dark fs-3"></i>
 						</button>
 
@@ -91,12 +91,14 @@
 
 <!--Fin Menú de navegación-->
 
-<body class=" m-0 border-0 min-vh-100 d-flex flex-column">
+<body class="m-0 border-0 min-vh-100 d-flex flex-column">
 
-	<form method="POST" th:action="addClient" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4">
+	<form method="POST" th:action="${clientRegForm.id != null} ? @{/editClient/submit} : @{/addClient/submit}" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter">Registrate en nuetra web</legend>
 	
+			<input th:if="${clientRegForm.id != 0}" type="hidden" th:field="*{id}" name="id" />
+
 	        <div class="container-fluid">
 	            <div class="row">
 	                <div class="my-1 col-12 col-md-6">

@@ -22,6 +22,14 @@ public class ClientUserController {
 	@Autowired
 	private AlertService as1;
 	
+	@GetMapping("/clientList")
+	public String showClientList(Model model) {
+		
+		model.addAttribute("clientList" , cuservice.findAll());
+		
+		return "clientListui";
+	}
+	
 	@GetMapping("/logform")
 	public String showLogForm(Model model) {
 		
@@ -40,7 +48,7 @@ public class ClientUserController {
 		return "register";
 	}
 	
-	@PostMapping("/addClient")
+	@PostMapping("/addClient/submit")
 	public String submit(@ModelAttribute("clientRegForm") ClientUser cu1) {
 		
 		cuservice.save(cu1);
