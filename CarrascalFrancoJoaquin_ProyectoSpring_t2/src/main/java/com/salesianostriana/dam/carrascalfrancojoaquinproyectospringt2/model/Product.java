@@ -38,4 +38,17 @@ public class Product {
 		this.productType = prodT;
 	}
 
+
+	public Product(String descImg, String name, String description, double avgDuration, double basePrice,
+			ProductType productType) {
+		this.descImg = descImg;
+		this.name = name;
+		this.description = description;
+		this.avgDuration = avgDuration;
+		this.basePrice = basePrice;
+		this.productType = productType;
+	}
+	
+	
+
 }
