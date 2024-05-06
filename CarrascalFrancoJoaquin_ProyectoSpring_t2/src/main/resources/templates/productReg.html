@@ -142,9 +142,11 @@
 					<div class="my-1 col-12 col-lg-8">
 
 						<label for="img-desc-field-reg" class="form-label">URL imagen</label>
-	                    <input type="text" class="form-control p-2" id="img-desc-field-reg" placeholder="Ruta de la imagen"
-	                        name="img-desc-reg" th:field="*{descImg}">
-
+						<div class="input-group">
+	                    	<input type="text" class="form-control p-2" id="img-desc-field-reg" placeholder="Ruta de la imagen con su extension de imagen, ej: https://rutaimagen.jpg"
+	                        	name="img-desc-reg" th:field="*{descImg}">
+								<button type="button" class="btn btn-primary input-group-text" data-bs-toggle="popover" title="Consejo:" data-bs-content="Cuando elijas una imagen intenta que tenga relación 1x1 es decir cuadrada.">Tip!</button>	
+						</div>
 					</div>
 
 				</div>
@@ -164,5 +166,11 @@
 <footer th:replace="~{fragments/footer::footer}"></footer>
 
 <!-- Footer -->
+
+<script defer>
+	let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+	let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  		return new bootstrap.Popover(popoverTriggerEl)});
+</script>
 
 </html>
