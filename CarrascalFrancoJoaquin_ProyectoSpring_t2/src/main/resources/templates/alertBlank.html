@@ -100,6 +100,9 @@
 
         <div class="container-fluid my-4 py-4">
 
+            <input th:if="${alertBlank.id != 0}" type="hidden" th:field="*{id}" name="id" />
+
+            <input th:if="${alertBlank.id != 0}" type="hidden" th:field="*{active}" name="activeAlert-input" />
 
             <div class="row">
                 <div class="my-1 col-12 col-md-3">
