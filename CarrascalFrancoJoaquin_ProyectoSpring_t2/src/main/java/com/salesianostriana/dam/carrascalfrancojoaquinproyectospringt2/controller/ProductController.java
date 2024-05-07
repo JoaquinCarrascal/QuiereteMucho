@@ -14,7 +14,7 @@ import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.A
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.ProductService;
 
 @Controller
-@RequestMapping("/admin")//todo casa
+@RequestMapping("/admin")
 public class ProductController {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class ProductController {
 		model.addAttribute("pTypes" , pservice.getTypes());
 		model.addAttribute("alertContext" , aserv.showAlert());
 
-		return "productReg";
+		return "adminTemplates/productReg";
 	}
 	
 	@GetMapping("/prodList")
@@ -39,7 +39,7 @@ public class ProductController {
 		model.addAttribute("productList" , pservice.findAll());
 		model.addAttribute("alertContext" , aserv.showAlert());
 		
-		return "productListui";
+		return "adminTemplates/productListui";
 		
 	}
 	
@@ -48,7 +48,7 @@ public class ProductController {
 		
 		pservice.save(p1);
 		
-		return "redirect:/prodForm";
+		return "redirect:/admin/prodForm";
 		
 	}
 	
@@ -57,7 +57,7 @@ public class ProductController {
 		
 		pservice.delete(pservice.findById(id).get());
 		
-		return "redirect:/prodList";
+		return "redirect:/admin/prodList";
 	}
 	
 	@GetMapping("/editProduct/{id}")
@@ -65,7 +65,7 @@ public class ProductController {
 		
 		model.addAttribute("productRegForm" , pservice.findById(id).get());
 		
-		return "productReg";
+		return "adminTemplates/productReg";
 		
 	}
 	
@@ -74,7 +74,7 @@ public class ProductController {
 		
 		pservice.save(p);
 		
-		return "redirect:/prodList";
+		return "redirect:/admin/prodList";
 		
 	}
 	

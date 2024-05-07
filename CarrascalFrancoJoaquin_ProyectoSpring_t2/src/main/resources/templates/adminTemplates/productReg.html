@@ -16,7 +16,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
 </head>
 
 <!--Menú de navegación-->
@@ -41,7 +40,7 @@
 					<div class="row align-items-center justify-content-start">
 						<a class="navbar-brand col-5 mt-0" href="/" th:href="@{/}">
 
-							<img src="../static/img/company-logo.png" th:src="@{img/company-logo.png}" alt="Logo compañía" width="200px">
+							<img src="../../static/img/company-logo.png" th:src="@{/img/company-logo.png}" alt="Logo compañía" width="200px">
 						
 						</a>
 
@@ -93,7 +92,7 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-	<form method="POST" th:action="${productRegForm.id != 0} ? @{/editProduct/submit} : @{/addProduct/submit}" th:object="${productRegForm}" class="my-auto mx-auto w-75 py-4">
+	<form method="POST" th:action="${productRegForm.id != 0} ? @{/admin/editProduct/submit} : @{/admin/addProduct/submit}" th:object="${productRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter">Dar de alta un servicio</legend>
 
@@ -169,10 +168,14 @@
 
 <!-- Footer -->
 
+<!--Script para cargar el popover de información del formulario de agregar producto-->
+
 <script defer>
 	let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
 	let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  		return new bootstrap.Popover(popoverTriggerEl)});
+		  return new bootstrap.Popover(popoverTriggerEl)});
 </script>
+
+<!--Script para cargar el popover de información del formulario de agregar producto-->
 
 </html>
