@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Product;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.ProductService;
 
 @Controller
+@RequestMapping("/admin")//todo casa
 public class ProductController {
 
 	@Autowired

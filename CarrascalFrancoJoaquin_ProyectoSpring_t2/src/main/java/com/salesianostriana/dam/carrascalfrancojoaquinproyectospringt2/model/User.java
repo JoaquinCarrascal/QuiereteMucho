@@ -18,7 +18,7 @@ public class User {
 	private Long id;
 	
 	@SuppressWarnings("unused")
-	private String userName , userLastName, email , telNumber , pass , adress;
+	private String userName , userLastName, email , telNumber , pass , address;
 
 	public User(Long id,String userName , String userLastName, String email, String telNumber, String pass) {
 		this.id = id;

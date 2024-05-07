@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Alert;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 
 @Controller
+@RequestMapping("/admin")
 public class AlertController {
 
 	@Autowired
@@ -22,7 +24,7 @@ public class AlertController {
 		
 		model.addAttribute("alertList" , aserv.findAll());
 		
-		return "alertListui";
+		return "adminTemplates/alertListui";
 	}
 	
 	@GetMapping("/alertForm")
@@ -31,7 +33,7 @@ public class AlertController {
 		model.addAttribute("legend", "Formulario de agregación");
 		model.addAttribute("alertBlank" , new Alert());
 		
-		return "alertBlank";
+		return "adminTemplates/alertBlank";
 		
 	}
 	
@@ -40,7 +42,7 @@ public class AlertController {
 		
 		aserv.save(a1);
 		
-		return "redirect:/alertlist";
+		return "redirect:/admin/alertlist";
 		
 	}
 	
@@ -51,10 +53,10 @@ public class AlertController {
 		
 		if(!alertDel.isActive()) {
 			aserv.delete(alertDel);
-			return "redirect:/alertlist";
+			return "redirect:/admin/alertlist";
 		}else {
 		//TODO excepcion de alerta activa
-			return "redirect:/alertlist";
+			return "redirect:/admin/alertlist";
 		}
 		
 	}
@@ -65,7 +67,7 @@ public class AlertController {
 		model.addAttribute("legend", "Formulario de edición");
 		model.addAttribute("alertBlank" , aserv.findById(id).get());
 		
-		return "alertBlank";
+		return "adminTemplates/alertBlank";
 		
 	}
 	
@@ -74,7 +76,7 @@ public class AlertController {
 		
 		aserv.save(a1);
 		
-		return "redirect:/alertlist";
+		return "redirect:/admin/alertlist";
 		
 	}
 	
@@ -83,7 +85,7 @@ public class AlertController {
 		
 		aserv.activateNewAlert(id);
 		
-		return "redirect:/alertlist";
+		return "redirect:/admin/alertlist";
 		
 	}
 	

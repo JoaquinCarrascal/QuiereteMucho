@@ -2,18 +2,19 @@ package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.controll
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AdminUserService;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminUserController {
 
 	@Autowired
 	private AdminUserService aduservice;
 	
-	@GetMapping("/admin")
+	@GetMapping("/")
 	public String showAdminProfile() {
 		
 		return "adminTemplates/adminProfile";
