@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -30,6 +31,8 @@
 
                 <p class="text-center" id="alerta">&#128133; <span th:text="${alertContext}">Quiérete mucho</span> &#128135;</p>
 
+				<p class="text-center">Qué alegría verte de nuevo <span sec:authentication="name">Usuario</span></p>
+				
             </div>
 
         </div>
@@ -75,6 +78,10 @@
                         </button>
 
                         <button class="rounded-3 border-0 btn mx-1 " type="button">
+                            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="bi bi-person-dash text-align-center text-dark fs-3"></i></a>
+                        </button>
+
+                        <button class="rounded-3 border-0 btn mx-1 " type="button">
                             <i class="bi bi-cart text-align-center text-dark fs-3"></i>
                         </button>
 
@@ -92,6 +99,8 @@
 <!--Fin Menú de navegación-->
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
+
+    <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
 
     <!--Carousel-->
 
