@@ -98,6 +98,8 @@
 	        <legend class="text-center mb-3 fw-lighter" th:text="${legend}"></legend>
 	
 			<input th:if="${clientRegForm.id != 0}" type="hidden" th:field="*{id}" name="id" />
+			
+			<input th:if="${clientRegForm.id != 0}" type="hidden" th:field="*{admin}" name="isAdmin" />
 
 	        <div class="container-fluid">
 	            <div class="row">

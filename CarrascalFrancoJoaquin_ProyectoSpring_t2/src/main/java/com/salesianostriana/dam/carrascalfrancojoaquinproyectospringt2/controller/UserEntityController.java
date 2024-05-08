@@ -1,6 +1,5 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,16 +8,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.ClientUser;
+import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
-import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.ClientUserService;
-
+import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.UserEntityService;
 
 @Controller
-public class ClientUserController {
+public class UserEntityController {
 
 	@Autowired
-	private ClientUserService cuservice;
+	private UserEntityService ueservice;
 	
 	@Autowired
 	private AlertService as1;
@@ -26,7 +24,7 @@ public class ClientUserController {
 	@GetMapping("/clientList")
 	public String showClientList(Model model) {
 		
-		model.addAttribute("clientList" , cuservice.findAll());
+		model.addAttribute("clientList" , ueservice.findAll());
 		
 		return "clientListui";
 	}
@@ -42,8 +40,8 @@ public class ClientUserController {
 	@GetMapping("/regform")
 	public String showRegForm(Model model) {
 		
-		ClientUser cu1 = new ClientUser();
-		model.addAttribute("clientRegForm" , cu1);
+		UserEntity ue = new UserEntity();
+		model.addAttribute("clientRegForm" , ue);
 		model.addAttribute("alertContext" , as1.showAlert());
 		model.addAttribute("legend" , "Formulario de creación de cuenta");
 		
@@ -51,9 +49,9 @@ public class ClientUserController {
 	}
 	
 	@PostMapping("/addClient/submit")
-	public String submit(@ModelAttribute("clientRegForm") ClientUser cu1) {
+	public String submit(@ModelAttribute("clientRegForm") UserEntity ue) {
 		
-		cuservice.save(cu1);
+		ueservice.save(ue);
 		
 		return "redirect:/home";
 		
@@ -63,16 +61,16 @@ public class ClientUserController {
 	public String showEditForm(Model model , @PathVariable("id") Long id) {
 		
 		model.addAttribute("legend" , "Formulario de edición");
-		model.addAttribute("clientRegForm" , cuservice.findById(id).get());
+		model.addAttribute("clientRegForm" , ueservice.findById(id).get());
 		model.addAttribute("alertContext" , as1.showAlert());
 		
 		return "register";
 	}
 	
 	@PostMapping("/editClient/submit")
-	public String submitEditedForm(@ModelAttribute("clientRegForm") ClientUser c) {
+	public String submitEditedForm(@ModelAttribute("clientRegForm") UserEntity ue) {
 		
-		cuservice.save(c);
+		ueservice.save(ue);
 		
 		return "redirect:/clientList";
 	}

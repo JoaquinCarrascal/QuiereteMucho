@@ -29,7 +29,18 @@ public class ReportController {
 	@PostMapping("/addReport/submit")
 	public String submitReport(@ModelAttribute("reportBlank") Report r) {
 		
-		return "/home";
+		repservice.save(r);
+		
+		return "redirect:/home";
+		
+	}
+	
+	@GetMapping("/admin/reportList")
+	public String showReportList(Model model) {
+		
+		model.addAttribute("reportList" , repservice.findAll());//TODO solo los que tienen el reply != null
+		
+		return "adminTemplates/reportListui";
 		
 	}
 	

@@ -34,8 +34,8 @@ public class Appointment {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="fk_appointment_client_user"))
-	private ClientUser client;
+	@JoinColumn(foreignKey = @ForeignKey(name="fk_appointment_client"))
+	private UserEntity client;
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude

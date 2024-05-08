@@ -93,31 +93,53 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-<form action="">
 
-    <form method="POST" th:action="@{/addReport/submit}" th:object="${reportBlank}">
+
+    <form method="POST" th:action="${reportBlank.id != 0} ? @{/admin/replyReport/submit} : @{/addReport/submit}" th:object="${reportBlank}">
 
         <legend class="text-center mt-2"><span th:text="${legend}"></span></legend>
 
         <div class="container-fluid my-4 py-4">
 
-            <input th:if="${alertBlank.id != 0}" type="hidden" th:field="*{id}" name="id" />
+			<input th:if="${reportBlank.id != 0}" type="hidden" th:field="*{id}" name="id" />
 
-            <input th:if="${alertBlank.id != 0}" type="hidden" th:field="*{active}" name="activeAlert-input" />
-
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="my-1 col-12 col-md-3">
-                    <label for="name-field-alert" class="form-label">Nombre</label>
-                    <input type="text" class="form-control p-2" id="name-field-alert" placeholder="Nombre de la alerta"
-                        name="name-alert" th:field="*{name}">
+                    <label for="report-title" class="form-label">Título</label>
+                    <input type="text" class="form-control p-2" id="report-title" placeholder="Título descriptivo de la reclamación"
+                        name="report-title" th:field="*{title}">
                 </div>
 
-                <div class="my-1 col-12 col-md-9">
-                    <label for="description-field-alert" class="form-label">Descripción</label>
-                    <input type="text" class="form-control p-2" id="description-field-alert" placeholder="Cuerpo de la alerta"
-                        name="description-alert" th:field="*{description}">
+				<div class="my-1 col-12 col-md-3">
+                    <label for="report-date" class="form-label">Fecha de la reclamación</label>
+                    <input type="date" class="form-control p-2" id="report-date" 
+                    name="report-date" th:field="*{reportDate}">
                 </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="my-1 col-12 col-md-9">
+                    <label for="report-description" class="form-label">Descripción</label>
+                    <input type="text" class="form-control p-2" id="report-description" placeholder="Cuerpo de la reclamación"
+                        name="report-description" th:field="*{description}">
+                </div>
+            </div>
+
+			
+
+				
+            <input th:if="${reportBlank.id != 0}" type="text" class="form-control p-2" id="report-client" 
+            	name="report-client" th:field="*{client}">
+                
+
+				
+            <input th:if="${reportBlank.id != 0}" type="hidden"type="text" class="form-control p-2" id="report-reply" 
+                    name="report-reply" th:field="*{reply}">
+                
+
+			
+
+			<!--TODO usar el cliente logueado para la alerta como un campo oculto-->
+
         </div>
 
         <div class="mt-4 row justify-content-center">
@@ -126,7 +148,7 @@
 
     </form>
 
-</form>
+
 
 </body>
 

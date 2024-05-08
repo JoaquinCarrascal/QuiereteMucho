@@ -7,17 +7,22 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 	
-	@Bean
+	private final UserDetailsService userDetailsService;
+	private final PasswordEncoder passwordEncoder;
+	
+	/*@Bean
     InMemoryUserDetailsManager userDetailsService() {
         UserDetails user = User.builder()
         		.username("admin")
@@ -25,7 +30,7 @@ public class SecurityConfig {
         		.roles("ADMIN")
             .build();
         return new InMemoryUserDetailsManager(user);
-    }
+    }*/
 	
 	@Bean 
 	DaoAuthenticationProvider daoAuthenticationProvider() {
