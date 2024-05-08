@@ -18,15 +18,15 @@ public class User {
 	private Long id;
 	
 	@SuppressWarnings("unused")
-	private String userName , userLastName, email , telNumber , pass , address;
+	private String username , userLastName, email , telNumber , password , address;
 
 	public User(Long id,String userName , String userLastName, String email, String telNumber, String pass) {
 		this.id = id;
-		this.userName = userName;
+		this.username = userName;
 		this.userLastName = userLastName;
 		this.email = email;
 		this.telNumber = telNumber;
-		this.pass = pass;
+		this.password = pass;
 	}
 	
 	

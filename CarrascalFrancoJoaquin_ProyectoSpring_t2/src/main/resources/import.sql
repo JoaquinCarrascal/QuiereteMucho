@@ -9,14 +9,13 @@ insert into alert (id, description , name , active) values (1, 'Cierra los ojos 
 
 ALTER SEQUENCE alert_seq RESTART WITH 51;
 
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (1, 'Mireille', 'Munning', 'mmunning0@barnesandnoble.com', '6451632768', 'Mireille6', '22 Lakewood Gardens Terrace', 912);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (2, 'Hube', 'Fedder', 'hfedder1@princeton.edu', '3565879596', 'Hube3', null, 875);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (3, 'Lucienne', 'Ormerod', 'lormerod2@amazonaws.com', '4582462801', 'Lucienne4', '658 Menomonie Plaza', 1015);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (4, 'Joshuah', 'Stretton', 'jstretton3@so-net.ne.jp', '2057056583', 'Joshuah2', '3 Fulton Trail', 830);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (5, 'Liv', 'Alster', 'lalster4@domainmarket.com', '5213905064', 'Liv5', '8 Mesta Hill', 250);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (6, 'Evanne', 'Fitzer', 'efitzer5@google.fr', '6205820463', 'Evanne6', null, 10);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (7, 'Jennie', 'Hasling', 'jhasling6@google.ru', '3527545888', 'Jennie3', '99 Tennyson Way', 1174);
-insert into clientuser (id, user_name, user_last_name, email, tel_number, pass, address, points) values (8, 'Missy', 'Kynson', 'mkynson7@buzzfeed.com', '6322671456', 'Missy6', null, 459);
-
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (1, 'Mireille', 'Munning', 'mmunning0@barnesandnoble.com', '6451632768', 'Mireille6', '22 Lakewood Gardens Terrace', 912);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (2, 'Hube', 'Fedder', 'hfedder1@princeton.edu', '3565879596', 'Hube3', null, 875);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (3, 'Lucienne', 'Ormerod', 'lormerod2@amazonaws.com', '4582462801', 'Lucienne4', '658 Menomonie Plaza', 1015);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (4, 'Joshuah', 'Stretton', 'jstretton3@so-net.ne.jp', '2057056583', 'Joshuah2', '3 Fulton Trail', 830);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (5, 'Liv', 'Alster', 'lalster4@domainmarket.com', '5213905064', 'Liv5', '8 Mesta Hill', 250);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (6, 'Evanne', 'Fitzer', 'efitzer5@google.fr', '6205820463', 'Evanne6', null, 10);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (7, 'Jennie', 'Hasling', 'jhasling6@google.ru', '3527545888', 'Jennie3', '99 Tennyson Way', 1174);
+insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (8, 'Missy', 'Kynson', 'mkynson7@buzzfeed.com', '6322671456', 'Missy6', null, 459);
 
 ALTER SEQUENCE clientuser_seq RESTART WITH 58;
