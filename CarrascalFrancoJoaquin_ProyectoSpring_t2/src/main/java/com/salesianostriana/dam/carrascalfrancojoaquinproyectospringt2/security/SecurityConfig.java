@@ -51,7 +51,7 @@ public class SecurityConfig {
 		
 		http.authorizeHttpRequests(
 				(authz) -> authz
-				.requestMatchers("/css/**", "/js/**").permitAll()
+				.requestMatchers("/css/**", "/js/**" , "/img/**" , "/fonts/**").permitAll()
 				.anyRequest().authenticated())
 			.formLogin((loginz) -> loginz
 					.loginPage("/login").permitAll());
