@@ -16,8 +16,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor @AllArgsConstructor
-@Data @Entity @Table(name="userentity")
+@NoArgsConstructor 
+@AllArgsConstructor
+@Data 
+@Entity 
+@Table(name="userentity")
 @Builder @SuppressWarnings("serial")
 public class UserEntity implements UserDetails{
 
@@ -28,19 +31,11 @@ public class UserEntity implements UserDetails{
 	private int points;
 	
 	@SuppressWarnings("unused")
-	private String username , userLastName, email , telNumber , password , address;
+	private String username , userLastName, name , email , telNumber , password , address;
 	
 	private boolean admin;
 
-	public UserEntity(String username, String userLastName, String email, String telNumber, String password,
-			String address) {
-		this.username = username;
-		this.userLastName = userLastName;
-		this.email = email;
-		this.telNumber = telNumber;
-		this.password = password;
-		this.address = address;
-	}
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,6 +66,20 @@ public class UserEntity implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public UserEntity(int points, String username, String userLastName, String name, String email, String telNumber,
+			String password, String address, boolean admin) {
+		super();
+		this.points = points;
+		this.username = username;
+		this.userLastName = userLastName;
+		this.name = name;
+		this.email = email;
+		this.telNumber = telNumber;
+		this.password = password;
+		this.address = address;
+		this.admin = admin;
 	}
 
 	

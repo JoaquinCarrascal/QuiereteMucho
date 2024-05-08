@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -35,34 +34,47 @@ public class SecurityConfig {
 	@Bean 
 	DaoAuthenticationProvider daoAuthenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setUserDetailsService(userDetailsService());
-		provider.setPasswordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());//aqui se le pasa el encoder
-		return provider;																		//en este caso se delega
+		provider.setUserDetailsService(userDetailsService);
+		provider.setPasswordEncoder(passwordEncoder);//aqui se le pasa el encoder
+		return provider;						
 	}
 	
-	@Bean
-	AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-
-	AuthenticationManagerBuilder authBuilder =
-		http.getSharedObject(AuthenticationManagerBuilder.class);
-
-		return authBuilder
+	 @Bean
+	 AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+			
+			AuthenticationManagerBuilder authBuilder =
+					http.getSharedObject(AuthenticationManagerBuilder.class);
+			
+			return authBuilder
 				.authenticationProvider(daoAuthenticationProvider())
 				.build();
-	}
+			
+		}
 	
 	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		
-		http.authorizeHttpRequests(
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    	http.authorizeHttpRequests(
 				(authz) -> authz
-				.requestMatchers("/css/**", "/js/**" , "/img/**" , "/fonts/**").permitAll()
-				.anyRequest().authenticated())
+						.requestMatchers("/css/**", "/js/**", "/h2-console/**" , "/img/**" , "/fonts/**" , "/home" , "/" 
+										, "/login", "/regform" , "/addClient/submit").permitAll()
+						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.anyRequest().authenticated())
 			.formLogin((loginz) -> loginz
-					.loginPage("/login").permitAll());
-
-		return http.build();
+					.loginPage("/login")
+					.defaultSuccessUrl("/home")
+					.permitAll())
+			.logout((logoutz) -> logoutz
+					.logoutUrl("/logout")
+					.logoutSuccessUrl("/home")
+					.permitAll());
 		
+		// Añadimos esto para poder seguir accediendo a la consola de H2
+		// con Spring Security habilitado.
+    	http.csrf(csrfz -> csrfz.disable());
+    	http.headers(headersz -> headersz
+    			.frameOptions(frameOptionsz -> frameOptionsz.disable()));
+		
+		return http.build();
 	}
 	
 	

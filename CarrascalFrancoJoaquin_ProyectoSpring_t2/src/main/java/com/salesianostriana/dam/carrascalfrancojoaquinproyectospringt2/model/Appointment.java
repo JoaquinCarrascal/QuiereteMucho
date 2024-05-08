@@ -1,9 +1,9 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -50,7 +50,9 @@ public class Appointment {
 	
 	private double fullPrice;
 	private boolean paid;
-	private Date appointmentDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate appointmentDate;
 	
 	// MÉTODOS HELPER
 	

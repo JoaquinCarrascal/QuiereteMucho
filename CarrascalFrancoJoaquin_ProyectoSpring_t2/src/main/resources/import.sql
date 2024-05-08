@@ -9,13 +9,13 @@ insert into alert (id, description , name , active) values (1, 'Cierra los ojos 
 
 ALTER SEQUENCE alert_seq RESTART WITH 51;
 
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (1, 'Mireille', 'Munning', 'mmunning0@barnesandnoble.com', '6451632768', 'Mireille6', '22 Lakewood Gardens Terrace', 912);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (2, 'Hube', 'Fedder', 'hfedder1@princeton.edu', '3565879596', 'Hube3', null, 875);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (3, 'Lucienne', 'Ormerod', 'lormerod2@amazonaws.com', '4582462801', 'Lucienne4', '658 Menomonie Plaza', 1015);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (4, 'Joshuah', 'Stretton', 'jstretton3@so-net.ne.jp', '2057056583', 'Joshuah2', '3 Fulton Trail', 830);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (5, 'Liv', 'Alster', 'lalster4@domainmarket.com', '5213905064', 'Liv5', '8 Mesta Hill', 250);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (6, 'Evanne', 'Fitzer', 'efitzer5@google.fr', '6205820463', 'Evanne6', null, 10);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (7, 'Jennie', 'Hasling', 'jhasling6@google.ru', '3527545888', 'Jennie3', '99 Tennyson Way', 1174);
-insert into clientuser (id, username, user_last_name, email, tel_number, password, address, points) values (8, 'Missy', 'Kynson', 'mkynson7@buzzfeed.com', '6322671456', 'Missy6', null, 459);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (1, 'mireillemun6' , 'Mireille', 'Munning', 'mmunning0@barnesandnoble.com', '6451632768', '{bcrypt}$2y$10$XnBqx0XYEzMlyywp3ziP.ehlKIkdzgbrQTg71zLcebzGsnRQxO5g.', '22 Lakewood Gardens Terrace', 912 , false);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (2, 'hubefed3' , 'Hube', 'Fedder', 'hfedder1@princeton.edu', '3565879596', '{bcrypt}$2y$10$x2Apt2Mq7CGNy8wFR9ew9ulAsMzKVgLRfkHwhmyIKL7.U6o5Mc8bO', null, 875 , false);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (3, 'lucienneorm4' , 'Lucienne', 'Ormerod', 'lormerod2@amazonaws.com', '4582462801', '{bcrypt}$2y$10$o94PvR8KzkaUB1LpUAvsgOEGLlSZhKTtTDZVlrPnAiFamCkW8ng6S', '658 Menomonie Plaza', 1015 , false);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (4, 'joshuahstr2' , 'Joshuah', 'Stretton', 'jstretton3@so-net.ne.jp', '2057056583', '{bcrypt}$2y$10$qR.QhRSF.0krqhAaVeUyNeQCPC.RJAWGV48EaF2iCRJnGjjE3/Kiq', '3 Fulton Trail', 830 , false);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (5, 'livals5' , 'Liv', 'Alster', 'lalster4@domainmarket.com', '5213905064', '{bcrypt}$2y$10$I4vNZiNWEj3Gsd4dGkQDYeBBm4oI3bkXAhqDcQmFkwVLhWb3Aembe', '8 Mesta Hill', 250 , false);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (6, 'admin' , 'Joaquín', 'Carrascal', 'j.carrascalfranco@gmail.com', '6213905062', '{bcrypt}$2y$10$j47xaZhCvw3XJiroC3w.COnN3Pw54Xpt2sQxkua1d3XFnsp/LrDIS', 'C/ Huelva 22', 250 , true);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (7, 'user' , 'Pepe', 'Botika', 'arribaExtremoduro@gmail.com', '2213905062', '{bcrypt}$2y$10$cscpMQySZO.n6rfX49tpRORdl6qCsi4UqmPfAYVd3GcjyBfGp4Ifq', 'C/ Alcalá Meco 1', 290 , false);
 
-ALTER SEQUENCE clientuser_seq RESTART WITH 58;
+
+ALTER SEQUENCE userentity_seq RESTART WITH 57;
