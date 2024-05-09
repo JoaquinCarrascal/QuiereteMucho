@@ -76,7 +76,14 @@ public class ReportController {
 		
 	}
 	
+	@GetMapping("/admin/deleteReport/{id}")
+	public String deleteReport(@PathVariable("id") Long id) {
 	
+		repservice.deleteById(id);
+		
+		return "redirect:/admin/reportList";
+		
+	}
 	
 	
 	
