@@ -66,9 +66,9 @@
                                 <a href="/admin/" th:href="@{/admin/}"><i class="bi bi-person-fill-gear text-align-center text-warning fs-3"></i></a>
                             </button>
     
-                            <button class="rounded-3 border-0 btn mx-1" type="button" sec:authorize="hasRole('ROLE_USER')">
+                            <!--<button class="rounded-3 border-0 btn mx-1" type="button" sec:authorize="hasRole('ROLE_USER')">
                                 <a href="/user/" th:href="@{/user/}"><i class="bi bi-person-check-fill text-align-center text-primary fs-3"></i></a>
-                            </button>
+                            </button>-->
     
                             <button class="rounded-3 border-0 btn mx-1 " type="button" sec:authorize="isAuthenticated()">
                                 <a href="javascript:document.getElementById('logoutForm').submit()"><i class="bi bi-person-dash text-align-center text-danger fs-3"></i></a>
