@@ -22,6 +22,7 @@ public class AlertController {
 	@GetMapping("/alertlist")
 	public String showAlertList(Model model){
 		
+		model.addAttribute("alertContext" , aserv.showAlert());
 		model.addAttribute("alertList" , aserv.findAll());
 		
 		return "adminTemplates/alertListui";
@@ -30,6 +31,7 @@ public class AlertController {
 	@GetMapping("/alertForm")
 	public String showAlertForm(Model model) {
 		
+		model.addAttribute("alertContext" , aserv.showAlert());
 		model.addAttribute("legend", "Formulario de agregación");
 		model.addAttribute("alertBlank" , new Alert());
 		
@@ -64,6 +66,7 @@ public class AlertController {
 	@GetMapping("/editAlert/{id}")
 	public String editAlert(@PathVariable("id") Long id , Model model) {
 		
+		model.addAttribute("alertContext" , aserv.showAlert());
 		model.addAttribute("legend", "Formulario de edición");
 		model.addAttribute("alertBlank" , aserv.findById(id).get());
 		
