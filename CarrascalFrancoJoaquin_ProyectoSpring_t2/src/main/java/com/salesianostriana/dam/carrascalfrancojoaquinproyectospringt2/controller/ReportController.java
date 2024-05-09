@@ -50,7 +50,7 @@ public class ReportController {
 	public String showReportList(Model model) {
 		
 		model.addAttribute("alertContext" , aserv.showAlert());
-		model.addAttribute("reportList" , repservice.findAll());//TODO solo los que tienen el reply != null
+		model.addAttribute("reportList" , repservice.findAll());
 		
 		return "adminTemplates/reportListui";
 		

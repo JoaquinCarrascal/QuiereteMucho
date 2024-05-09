@@ -57,7 +57,6 @@ public class AlertController {
 			aserv.delete(alertDel);
 			return "redirect:/admin/alertlist";
 		}else {
-		//TODO excepcion de alerta activa
 			return "redirect:/admin/alertlist";
 		}
 		
