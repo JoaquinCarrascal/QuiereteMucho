@@ -7,7 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Report {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	
 	private String title , description , reply;
@@ -36,12 +35,12 @@ public class Report {
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_report_client_user"))
 	private UserEntity client;
 
-	public Report(String title, String description, LocalDate reportDate/*, UserEntity client*/) {
+	public Report(String title, String description, LocalDate reportDate, UserEntity client) {
 		
 		this.title = title;
 		this.description = description;
 		this.reportDate = reportDate;
-		//this.client = client;
+		this.client = client;
 		
 	}
 	

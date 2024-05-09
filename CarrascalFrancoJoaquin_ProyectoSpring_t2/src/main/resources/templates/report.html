@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -21,73 +22,7 @@
 
 <!--Menú de navegación-->
 
-<header th:fragment="header">
-	<div class="container-fluid my-2">
-
-		<div class="container-fluid pt-1">
-
-			<div class="mx-auto">
-
-				<p class="text-center" id="alerta">&#128133; <span th:text="${alertContext}">Quiérete mucho</span> &#128135;</p>
-
-			</div>
-
-		</div>
-
-		<nav class="navbar navbar-expand-md navbar-light shadow w-100 rounded-2 mt-0 pt-0 pb-0 ">
-			<div class="container-fluid">
-
-				<div class="container-md">
-					<div class="row align-items-center justify-content-start">
-						<a class="navbar-brand col-5 mt-0" href="/" th:href="@{/}">
-
-							<img src="../static/img/company-logo.png" th:src="@{/img/company-logo.png}" alt="Logo compañía" width="200px">
-						
-						</a>
-
-						<button class="navbar-toggler rounded-2 border-0 shadow-none col-2 me-0 ms-auto " type="button"
-							data-bs-toggle="collapse" data-bs-target="#mynavbar">
-							<i class="bi bi-view-list text-align-center"></i>
-						</button>
-					</div>
-				</div>
-
-				<div class="collapse navbar-collapse mx-auto" id="mynavbar">
-
-					<ul class="navbar-nav me-0 ms-auto text-center">
-						<li class="nav-item">
-							<a class="nav-link" href="">¿Quiénes&nbsp;somos?</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/#products" th:href="@{/#products}">
-								Servicios
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="">Reclamaciones</a>
-						</li>
-					</ul>
-
-					<form class="d-flex flex-row justify-content-around align-items-center">
-
-						<button class="rounded-3 border-0 btn mx-1" type="button">
-							<a href="/logform" th:href="@{/logform}"><i class="bi bi-person-circle text-align-center text-dark fs-3"></i></a>
-						</button>
-
-						<button class="rounded-3 border-0 btn mx-1 " type="button">
-							<i class="bi bi-cart text-align-center text-dark fs-3"></i>
-						</button>
-
-					</form>
-
-				</div>
-
-			</div>
-
-		</nav>
-
-	</div>
-</header>
+<header th:replace="~{fragments/header::header}"></header>
 
 <!--Fin Menú de navegación-->
 
@@ -95,58 +30,57 @@
 
 
 
-    <form method="POST" th:action="${reportBlank.id != 0} ? @{/admin/replyReport/submit} : @{/addReport/submit}" th:object="${reportBlank}">
+    <form method="POST" th:action="${reportBlank.id != null} ? @{/admin/replyReport/submit} : @{/addReport/submit}" th:object="${reportBlank}">
 
         <legend class="text-center mt-2"><span th:text="${legend}"></span></legend>
 
         <div class="container-fluid my-4 py-4">
 
-			<input th:if="${reportBlank.id != 0}" type="hidden" th:field="*{id}" name="id" />
+			<input th:if="${reportBlank.id != null}" type="hidden" th:field="*{id}" name="id"></input>
+
+            <p th:text="${reportBlank.id}"></p>
 
             <div class="row justify-content-center">
                 <div class="my-1 col-12 col-md-3">
                     <label for="report-title" class="form-label">Título</label>
                     <input type="text" class="form-control p-2" id="report-title" placeholder="Título descriptivo de la reclamación"
-                        name="report-title" th:field="*{title}">
+                        name="report-title" th:field="*{title}"></input>
                 </div>
 
 				<div class="my-1 col-12 col-md-3">
                     <label for="report-date" class="form-label">Fecha de la reclamación</label>
                     <input type="date" class="form-control p-2" id="report-date" 
-                    name="report-date" th:field="*{reportDate}">
+                    name="report-date" th:field="*{reportDate}" th:value="*{reportDate}"></input>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="my-1 col-12 col-md-9">
                     <label for="report-description" class="form-label">Descripción</label>
                     <input type="text" class="form-control p-2" id="report-description" placeholder="Cuerpo de la reclamación"
-                        name="report-description" th:field="*{description}">
+                        name="report-description" th:field="*{description}"></input>
                 </div>
             </div>
 
-			
-
-				
-            <input th:if="${reportBlank.id != 0}" type="text" class="form-control p-2" id="report-client" 
-            	name="report-client" th:field="*{client}">
-                
-
-				
-            <input th:if="${reportBlank.id != 0}" type="hidden"type="text" class="form-control p-2" id="report-reply" 
-                    name="report-reply" th:field="*{reply}">
-                
-
-			
-
-			<!--TODO usar el cliente logueado para la alerta como un campo oculto-->
+			<div class="row justify-content-center" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="my-1 col-12 col-md-9">
+                    <label for="report-reply" class="form-label">Respuesta</label>
+                    <input  type="text" class="form-control p-2" id="report-reply" name="report-reply" th:field="*{reply}"></input>
+                </div>
+            </div>
 
         </div>
+
+        <input th:if="${reportBlank.id != null}" type="hidden" name="client" th:field="*{client}"></input>
 
         <div class="mt-4 row justify-content-center">
             <input type="submit" value="Enviar" class="col-5 col-md-3 col-lg-2 btn btn-success shadow-lg py-2 rounded-2 mx-0 "></input>
         </div>
 
+		
+
     </form>
+
+	
 
 
 

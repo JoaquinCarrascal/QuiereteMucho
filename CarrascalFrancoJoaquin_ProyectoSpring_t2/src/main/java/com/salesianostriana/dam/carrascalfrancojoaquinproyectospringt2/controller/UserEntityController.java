@@ -41,7 +41,7 @@ public class UserEntityController {
 		return "register";
 	}
 	
-	@PostMapping("/addClient/submit")
+	@PostMapping("/addClient/submit")//todo no permitir username duplicado
 	public String submit(@ModelAttribute("clientRegForm") UserEntity ue) {
 		
 		ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
