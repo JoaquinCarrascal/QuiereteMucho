@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Alert;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Report;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
@@ -51,6 +49,7 @@ public class ReportController {
 	@GetMapping("/admin/reportList")
 	public String showReportList(Model model) {
 		
+		model.addAttribute("alertContext" , aserv.showAlert());
 		model.addAttribute("reportList" , repservice.findAll());//TODO solo los que tienen el reply != null
 		
 		return "adminTemplates/reportListui";
@@ -76,6 +75,8 @@ public class ReportController {
 		return "redirect:/admin/reportList";
 		
 	}
+	
+	
 	
 	
 	
