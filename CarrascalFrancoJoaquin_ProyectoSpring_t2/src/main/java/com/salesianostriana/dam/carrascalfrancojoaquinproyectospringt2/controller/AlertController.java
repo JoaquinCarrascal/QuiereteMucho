@@ -83,7 +83,7 @@ public class AlertController {
 		
 	}
 	
-	@GetMapping("/activateAlert/{id}")
+	@GetMapping("/activateAlert/{id}")//revisado en el servicio
 	public String activateAlert(@PathVariable("id") Long id) {
 		
 		aserv.activateNewAlert(id);
