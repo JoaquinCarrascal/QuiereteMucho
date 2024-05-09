@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -29,39 +30,41 @@
 
 
 
-    <form method="POST" th:action="${reportBlank.id != 0} ? @{/admin/replyReport/submit} : @{/addReport/submit}" th:object="${reportBlank}">
+    <form method="POST" th:action="${reportBlank.id != null} ? @{/admin/replyReport/submit} : @{/addReport/submit}" th:object="${reportBlank}">
 
         <legend class="text-center mt-2"><span th:text="${legend}"></span></legend>
 
         <div class="container-fluid my-4 py-4">
 
-			<input th:if="${reportBlank.id != 0}" type="hidden" th:field="*{id}" name="id" />
+			<input th:if="${reportBlank.id != null}" type="hidden" th:field="*{id}" name="id"></input>
+
+            <p th:text="${reportBlank.id}"></p>
 
             <div class="row justify-content-center">
                 <div class="my-1 col-12 col-md-3">
                     <label for="report-title" class="form-label">Título</label>
                     <input type="text" class="form-control p-2" id="report-title" placeholder="Título descriptivo de la reclamación"
-                        name="report-title" th:field="*{title}">
+                        name="report-title" th:field="*{title}"></input>
                 </div>
 
 				<div class="my-1 col-12 col-md-3">
                     <label for="report-date" class="form-label">Fecha de la reclamación</label>
                     <input type="date" class="form-control p-2" id="report-date" 
-                    name="report-date" th:field="*{reportDate}">
+                    name="report-date" th:field="*{reportDate}" th:value="*{reportDate}"></input>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="my-1 col-12 col-md-9">
                     <label for="report-description" class="form-label">Descripción</label>
                     <input type="text" class="form-control p-2" id="report-description" placeholder="Cuerpo de la reclamación"
-                        name="report-description" th:field="*{description}">
+                        name="report-description" th:field="*{description}"></input>
                 </div>
             </div>
 
 			<div class="row justify-content-center" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="my-1 col-12 col-md-9">
-                    <label for="report-reply" class="form-label">Descripción</label>
-                    <input  type="text" class="form-control p-2" id="report-reply" name="report-reply" th:field="*{reply}">
+                    <label for="report-reply" class="form-label">Respuesta</label>
+                    <input  type="text" class="form-control p-2" id="report-reply" name="report-reply" th:field="*{reply}"></input>
                 </div>
             </div>
 
@@ -69,11 +72,13 @@
 
         </div>
 
+        <input th:if="${reportBlank.id != null}" type="hidden" name="client" th:field="*{client}"></input>
+
         <div class="mt-4 row justify-content-center">
             <input type="submit" value="Enviar" class="col-5 col-md-3 col-lg-2 btn btn-success shadow-lg py-2 rounded-2 mx-0 "></input>
         </div>
 
-		<input th:if="${reportBlank.id != 0}" type="text" name="client" th:field="*{client}" disabled>
+		
 
     </form>
 
