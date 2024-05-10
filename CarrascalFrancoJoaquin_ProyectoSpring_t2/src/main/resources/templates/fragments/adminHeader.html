@@ -51,7 +51,7 @@
                                     Servicios
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
                                 <a class="nav-link" href="/reportForm" th:href="@{/reportForm}">Reclamaciones</a>
                             </li>
                         </ul>
