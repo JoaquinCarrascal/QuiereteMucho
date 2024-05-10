@@ -50,7 +50,7 @@ public class ReportController {
 	public String showReportList(Model model) {
 		
 		model.addAttribute("alertContext" , aserv.showAlert());
-		model.addAttribute("reportList" , repservice.findAll());
+		model.addAttribute("reportList" , repservice.findNonRepliedReportList());
 		
 		return "adminTemplates/reportListui";
 		
