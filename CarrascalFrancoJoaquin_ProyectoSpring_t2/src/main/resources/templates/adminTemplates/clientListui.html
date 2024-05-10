@@ -27,7 +27,7 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-	<a href="/admin/regform" th:href="@{/admin/regform}" class="d-block mx-auto mt-3"><button
+	<a href="/regform" th:href="@{/regform}" class="d-block mx-auto mt-3"><button
 			class="btn btn-success m-2">Agregar cliente</button></a>
 
 	<table class="table container-fluid">
@@ -37,11 +37,12 @@
 		<thead>
 			<tr class="row justify-content-center">
 				<th class="col-1 text-center">ID</th>
+				<th class="col-2 text-center">Nombre de usuario</th>
 				<th class="col-1 text-center">Nombre</th>
-				<th class="col-2 text-center">Apellidos</th>
-				<th class="col-3 text-center">Email</th>
+				<th class="col-1 text-center">Apellidos</th>
+				<th class="col-2 text-center">Email</th>
 				<th class="col-1 text-center">Número tlf</th>
-				<th class="col-1 text-center">Contraseña</th>
+				<th class="col-1 text-center">Dirección</th>
 				<th class="col-1 text-center">Editar</th>
 				<th class="col-1 text-center">Borrar</th>
 			</tr>
@@ -49,11 +50,12 @@
 		<tbody>
 			<tr class="row justify-content-center" th:each="client : ${clientList}">
 				<td class="col-1 text-center" th:text="${client.id}">ID</td>
-				<td class="col-1 text-center" th:text="${client.userName}">Nombre</td>
-				<td class="col-2 text-center" th:text="${client.userLastName}">Apellidos</td>
-				<th class="col-3 text-center" th:text="${client.email}">Email</th>
+				<td class="col-2 text-center" th:text="${client.username}">Nombre de usuario</td>
+				<td class="col-1 text-center" th:text="${client.name}">Nombre</td>
+				<td class="col-1 text-center" th:text="${client.userLastName}">Apellidos</td>
+				<th class="col-2 text-center" th:text="${client.email}">Email</th>
 				<th class="col-1 text-center" th:text="${client.telNumber}">Número tlf</th>
-				<th class="col-1 text-center" th:text="${client.pass}">Contraseña</th>
+				<th class="col-1 text-center" th:text="${client.address}">Dirección</th>
 				<td class="col-1 text-center"><a th:href="@{/admin/editClient/{id}(id=${client.id})}"><button class="btn btn-primary p-1"><i class="bi bi-pencil-square"></i></button></a></td>
 				<td class="col-1 text-center"><a th:href="@{/admin/deleteClient/{id}(id=${client.id})}"><button class="btn btn-danger p-1"><i class="bi bi-trash3"></i></button></a></td>
 			</tr>

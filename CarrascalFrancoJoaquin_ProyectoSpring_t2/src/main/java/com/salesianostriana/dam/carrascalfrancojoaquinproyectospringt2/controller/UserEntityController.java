@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.UserEntityService;
@@ -22,12 +21,12 @@ public class UserEntityController {
 	@Autowired
 	private AlertService as1;
 	
-	@GetMapping("/clientList")
+	@GetMapping("/admin/clientList")
 	public String showClientList(Model model) {
 		
 		model.addAttribute("clientList" , ueservice.findAll());
 		
-		return "clientListui";
+		return "adminTemplates/clientListui";
 	}
 	
 	@GetMapping("/regform")
@@ -65,7 +64,7 @@ public class UserEntityController {
 		
 	}
 	
-	@GetMapping("/editClient/{id}")
+	@GetMapping("/editClient/{id}")//TODO edit client
 	public String showEditForm(Model model , @PathVariable("id") Long id) {
 		
 		model.addAttribute("legend" , "Formulario de edición");
@@ -81,6 +80,14 @@ public class UserEntityController {
 		ueservice.save(ue);
 		
 		return "redirect:/clientList";
+	}
+	
+	@GetMapping("/admin/deleteClient/{id}")
+	public String deleteClient(@PathVariable("id") Long id) {
+		
+				ueservice.deleteById(id);
+		
+				return "redirect:/admin/clientList";
 	}
 	
 }
