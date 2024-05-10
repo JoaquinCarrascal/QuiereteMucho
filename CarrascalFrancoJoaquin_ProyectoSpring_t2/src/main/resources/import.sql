@@ -24,3 +24,5 @@ insert into report (report_date , client_id , id , description , reply , title) 
 insert into report (report_date , client_id , id , description , reply , title) values ('2024-03-01' , 1 , 2 , 'La máquina de café suelta aguachirri , a ver si la vamos arreglando...' , null , 'Máquina de café asquerosa');
 insert into report (report_date , client_id , id , description , reply , title) values ('2024-04-23' , 5 , 3 , 'He tenido que estar esperando de pie porque no había ni un asiento libre, esto se tiene que preveer hombre.' , null , 'Estancia desagradable');
 insert into report (report_date , client_id , id , description , reply , title) values ('2024-01-11' , 3 , 4 , 'El local de al lado estaba montando una fiesta y se escuchaba todo, que incómodo' , null , 'Ruidos desagradables');
+
+ALTER SEQUENCE report_seq RESTART WITH 54;
