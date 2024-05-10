@@ -19,3 +19,8 @@ insert into userentity (id, username , name, user_last_name, email, tel_number, 
 
 
 ALTER SEQUENCE userentity_seq RESTART WITH 57;
+
+insert into report (report_date , client_id , id , description , reply , title) values ('2024-05-06' , 2 , 1 , 'La cisterna del baño no funciona, y pasé mucha verguenza' , null , 'Cisterna del baño');
+insert into report (report_date , client_id , id , description , reply , title) values ('2024-03-01' , 1 , 2 , 'La máquina de café suelta aguachirri , a ver si la vamos arreglando...' , null , 'Máquina de café asquerosa');
+insert into report (report_date , client_id , id , description , reply , title) values ('2024-04-23' , 5 , 3 , 'He tenido que estar esperando de pie porque no había ni un asiento libre, esto se tiene que preveer hombre.' , null , 'Estancia desagradable');
+insert into report (report_date , client_id , id , description , reply , title) values ('2024-01-11' , 3 , 4 , 'El local de al lado estaba montando una fiesta y se escuchaba todo, que incómodo' , null , 'Ruidos desagradables');
