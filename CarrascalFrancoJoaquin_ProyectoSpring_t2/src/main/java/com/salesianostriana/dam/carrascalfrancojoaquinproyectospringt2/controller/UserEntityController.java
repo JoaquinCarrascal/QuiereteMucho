@@ -33,8 +33,7 @@ public class UserEntityController {
 	@GetMapping("/regform")
 	public String showRegForm(Model model) {
 		
-		UserEntity ue = new UserEntity();
-		model.addAttribute("clientRegForm" , ue);
+		model.addAttribute("clientRegForm" , new UserEntity());
 		model.addAttribute("alertContext" , as1.showAlert());
 		model.addAttribute("legend" , "Formulario de creación de cuenta");
 		
@@ -42,13 +41,27 @@ public class UserEntityController {
 	}
 	
 	@PostMapping("/addClient/submit")//todo no permitir username duplicado
-	public String submit(@ModelAttribute("clientRegForm") UserEntity ue) {
+	public String submit(@ModelAttribute("clientRegForm") UserEntity ue , Model model) /*throws UsernameUnavailableException */{
 		
-		ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
+		if(!ueservice.checkUsernameAvailability(ue.getUsername())) {
 		
-		ueservice.save(ue);
+			ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
 		
-		return "redirect:/home";
+			ueservice.save(ue);
+		
+			return "redirect:/home";
+		
+		}
+		else {
+			
+			model.addAttribute("NonAvailableUserName" , true);
+			model.addAttribute("clientRegForm" , new UserEntity());
+			model.addAttribute("alertContext" , as1.showAlert());
+			model.addAttribute("legend" , "Formulario de creación de cuenta");
+			
+			return "register";
+			
+		}
 		
 	}
 	
