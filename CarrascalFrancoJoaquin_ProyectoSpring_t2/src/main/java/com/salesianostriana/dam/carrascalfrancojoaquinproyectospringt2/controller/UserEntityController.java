@@ -44,8 +44,6 @@ public class UserEntityController {
 	@PostMapping("/addClient/submit")//todo no permitir username duplicado
 	public String submit(@ModelAttribute("clientRegForm") UserEntity ue , Model model) /* throws UnavailableUserNameException */{
 		
-	
-		
 			if(!ueservice.checkUsernameAvailability(ue.getUsername())) {
 		
 				ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
