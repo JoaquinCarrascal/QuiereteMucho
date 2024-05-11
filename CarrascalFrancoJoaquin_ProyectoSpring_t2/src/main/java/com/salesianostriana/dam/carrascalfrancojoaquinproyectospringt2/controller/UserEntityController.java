@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.UserEntityService;
@@ -40,27 +42,32 @@ public class UserEntityController {
 	}
 	
 	@PostMapping("/addClient/submit")//todo no permitir username duplicado
-	public String submit(@ModelAttribute("clientRegForm") UserEntity ue , Model model) /*throws UsernameUnavailableException */{
+	public String submit(@ModelAttribute("clientRegForm") UserEntity ue , Model model) /* throws UnavailableUserNameException */{
 		
-		if(!ueservice.checkUsernameAvailability(ue.getUsername())) {
+	
 		
-			ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
+			if(!ueservice.checkUsernameAvailability(ue.getUsername())) {
 		
-			ueservice.save(ue);
+				ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
 		
-			return "redirect:/home";
+				ueservice.save(ue);
 		
-		}
-		else {
+				return "redirect:/home";
+		
+			}
+			else {
+				
+				return "redirect:/regform/?error=true";
+				
+				/*throw new UnavailableUserNameException();*/
+				
+			}
+		
+		/*catch(UnavailableUserNameException uune) {
 			
-			model.addAttribute("NonAvailableUserName" , true);
-			model.addAttribute("clientRegForm" , new UserEntity());
-			model.addAttribute("alertContext" , as1.showAlert());
-			model.addAttribute("legend" , "Formulario de creación de cuenta");
+			return "redirect:/regform/?error=true";
 			
-			return "register";
-			
-		}
+		}*/
 		
 	}
 	
@@ -85,9 +92,9 @@ public class UserEntityController {
 	@GetMapping("/admin/deleteClient/{id}")
 	public String deleteClient(@PathVariable("id") Long id) {
 		
-				ueservice.deleteById(id);
+		ueservice.deleteById(id);
 		
-				return "redirect:/admin/clientList";
+		return "redirect:/admin/clientList";
 	}
 	
 }
