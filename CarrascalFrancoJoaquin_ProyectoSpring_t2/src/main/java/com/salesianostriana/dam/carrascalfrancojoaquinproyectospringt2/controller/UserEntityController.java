@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.UserEntityService;
@@ -26,6 +24,7 @@ public class UserEntityController {
 	@GetMapping("/admin/clientList")
 	public String showClientList(Model model) {
 		
+		model.addAttribute("alertContext" , as1.showAlert());
 		model.addAttribute("clientList" , ueservice.findAll());
 		
 		return "adminTemplates/clientListui";

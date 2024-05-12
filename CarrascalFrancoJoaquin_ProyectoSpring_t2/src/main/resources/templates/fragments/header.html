@@ -67,7 +67,7 @@
 							</button>
 	
 							<button class="rounded-3 border-0 btn mx-1" type="button" sec:authorize="hasRole('ROLE_USER')">
-								<a href="/user/" th:href="@{/user/}"><i class="bi bi-person-check-fill text-align-center text-primary fs-3"></i></a>
+								<a href="/userMenu" th:href="@{/userMenu}"><i class="bi bi-person-check-fill text-align-center text-primary fs-3"></i></a>
 							</button>
 	
 							<button class="rounded-3 border-0 btn mx-1 " type="button" sec:authorize="isAuthenticated()">

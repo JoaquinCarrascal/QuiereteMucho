@@ -58,6 +58,7 @@ public class SecurityConfig {
 						.requestMatchers("/css/**", "/js/**", "/h2-console/**" , "/img/**" , "/fonts/**" 
 								, "/home" , "/" , "/login", "/regform/**" , "/addClient/submit" , "/error" ).permitAll()
 						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/userMenu/**").hasRole("USER")
 						.anyRequest().authenticated())
 			.formLogin((loginz) -> loginz
 					.loginPage("/login")
