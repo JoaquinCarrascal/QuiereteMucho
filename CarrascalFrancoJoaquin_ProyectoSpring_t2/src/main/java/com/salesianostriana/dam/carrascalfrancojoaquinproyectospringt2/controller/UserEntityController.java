@@ -40,7 +40,7 @@ public class UserEntityController {
 		return "register";
 	}
 	
-	@PostMapping("/addClient/submit")//todo no permitir username duplicado
+	@PostMapping("/addClient/submit")//TODO no permitir username duplicado
 	public String submit(@ModelAttribute("clientRegForm") UserEntity ue , Model model) /* throws UnavailableUserNameException */{
 		
 			if(!ueservice.checkUsernameAvailability(ue.getUsername())) {

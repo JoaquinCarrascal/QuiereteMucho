@@ -17,6 +17,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!--Libreria 1 de JS-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!--Libreria 2 de JS-->
 
 </head>
 
@@ -44,13 +48,13 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="http://placehold.co/1114x557" th:src="@{http://placehold.co/1114x557}" alt="" class="d-block w-100">
+                <img src="../static/img/carousel-1.png" th:src="@{/img/carousel-1.png}" alt="" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img src="http://placehold.co/1114x557" th:src="@{http://placehold.co/1114x557}" alt="" class="d-block w-100">
+                <img src="../static/img/carousel-2.png" th:src="@{/img/carousel-2.png}" alt="" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img src="http://placehold.co/1114x557" th:src="@{http://placehold.co/1114x557}" alt="" class="d-block w-100">
+                <img src="../static/img/carousel-3.png" th:src="@{/img/carousel-3.png}" alt="" class="d-block w-100">
             </div>
         </div>
 
@@ -71,8 +75,8 @@
 		
         <div class="row d-flex mx-auto">
 			
-			<div th:each="product : ${productList}" class="card d-flex mx-auto border-0 rounded-2 m-3 col-lg-3 col-12 col-md-6 shadow"
-			                style="width: 18rem;">
+			<div th:each="product : ${productList}" class="mx-1 card d-flex mx-auto border-0 rounded-2 m-3 col-lg-3 col-12 col-md-6 shadow"
+			                style="width: 18rem;" data-aos="flip-left" data-aos-once="false">
 							<!-- <img class="card-img-top mt-3 rounded-3" src="http://placehold.co/500x500" th:src="${product.descImg}" alt="Card image cap"> -->
 							<img class="card-img-top mt-3 rounded-3" th:src="${not (#strings.isEmpty(product.descImg))} ? ${product.descImg} : 'http://placehold.co/500x500'" alt="Card image cap" />
 			                    
@@ -92,12 +96,12 @@
         </div>
     </div>
 
-
-
-
-
-
 </body>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 <!--Footer-->
 
