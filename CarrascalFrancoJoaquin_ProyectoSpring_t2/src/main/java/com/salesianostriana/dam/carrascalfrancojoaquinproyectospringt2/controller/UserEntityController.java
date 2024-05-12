@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,40 +92,6 @@ public class UserEntityController {
 		ueservice.deleteById(id);
 		
 		return "redirect:/admin/clientList";
-	}
-	
-	@GetMapping("/userMenu")
-	public String showUserMenu(Model model , @AuthenticationPrincipal UserEntity userentity) {
-		
-		model.addAttribute("alertContext" , as1.showAlert());
-		model.addAttribute("selfProfileForm" , userentity);
-		
-		return "clientProfile";
-		
-	}
-	
-	@GetMapping("/userMenu/editSelf")
-	public String showEditSelf() {
-		
-		return "redirect:/userMenu";
-		
-	}
-	
-	@PostMapping("/userMenu/editSelf/submit")
-	public String submitEditedSelf(@ModelAttribute("selfProfileForm") UserEntity ue , @AuthenticationPrincipal UserEntity userentity) {
-		
-		if(!ueservice.checkUsernameAvailability(ue.getUsername())) { //que no esté registrado aún
-			
-			ueservice.save(ue);
-			
-		}else if(ue.getUsername().equals(userentity.getUsername())) { //que sea su anterior nombre
-			
-			ueservice.save(ue);
-			
-		}
-		
-		return "redirect:/userMenu";
-		
 	}
 	
 }

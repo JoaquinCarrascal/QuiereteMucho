@@ -34,7 +34,7 @@
 			<h5 class="mt-1 p-2 border-3 border border-primary rounded-pill text-center"><i class="bi bi-arrow-down-right-square"></i> Menú de <span sec:authentication="principal.name">Usuario</span> <i class="bi bi-arrow-up-left-square"></i></h5>
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/userMenu/editSelf}"><i class="bi bi-box-arrow-in-up"></i> Editar usuario <i class="bi bi-box-arrow-in-down"></i></a></li>
-				<!--<li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{}"><i class="bi bi-chat-right-dots"></i> Gestión de reclamaciones <i class="bi bi-chat-left-dots"></i></a></li>-->
+				<li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/userMenu/myReports}"><i class="bi bi-chat-right-dots"></i> Mis reclamaciones <i class="bi bi-chat-left-dots"></i></a></li>
 				<!--<li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{}"><i class="bi bi-people"></i> Gestión de usuarios <i class="bi bi-people-fill"></i></a></li>-->
 			</ul>
 
@@ -60,7 +60,9 @@
                 </div>
             </div>
 
-            <form method="POST" th:action="@{/userMenu/editSelf/submit}" th:object="${selfProfileForm}" class="my-auto mx-auto w-75 py-4">
+        <div class="container-fluid">
+
+            <form method="POST" th:action="@{/userMenu/editSelf/submit}" th:object="${selfProfileForm}" class="my-auto mx-auto w-75 py-4 justify-content-center">
 	
                 <legend class="text-center mb-3 fw-lighter" th:text="${legend}"></legend>
         
@@ -127,11 +129,18 @@
         
                 <p class="text-danger fw-bold mx-1 px-1 pt-2">El asterisco rojo (*) significa = Campo obligatorio</p>
         
-                <div class="mt-4 row justify-content-center">
-                    <input type="submit" value="Editar usuario" class="col-6 btn fondo shadow py-2 rounded-2 mx-0 "></input>
+                <div class="mt-4 row">
+                    <a class="text-decoration-none col-6" href="/userMenu/changePass" th:href="@{/userMenu/changePass}" target="_self">
+                        <button type="button" class="btn fondo shadow py-2 rounded-2 mx-0 text-secondary w-100 text-dark">
+                            Cambiar contraseña
+                        </button>
+                    </a>
+                    <input type="submit" value="Editar cuenta" class="col-6 btn fondo shadow py-2 rounded-2 mx-0 text-dark"></input>
                 </div>
-        
+
             </form>
+
+        </div>
             
 		</article>
 	</div>
