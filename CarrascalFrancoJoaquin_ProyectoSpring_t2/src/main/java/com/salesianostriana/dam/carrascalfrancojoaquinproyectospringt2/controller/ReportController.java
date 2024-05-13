@@ -36,11 +36,9 @@ public class ReportController {
 	}
 	
 	@PostMapping("/addReport/submit")
-	public String submitReport(@ModelAttribute("reportBlank") Report r , @AuthenticationPrincipal UserEntity userentity) {
+	public String submitReport(@ModelAttribute("reportBlank") Report reportForm , @AuthenticationPrincipal UserEntity loggedUser) {
 		
-		r.setClient(userentity);
-		
-		repservice.save(r);
+		repservice.processAddingReport( reportForm , loggedUser);
 		
 		return "redirect:/home";
 		

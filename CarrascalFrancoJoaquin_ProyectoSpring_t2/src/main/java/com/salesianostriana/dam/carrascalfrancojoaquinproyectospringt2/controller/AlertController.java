@@ -19,7 +19,7 @@ public class AlertController {
 	@Autowired
 	private AlertService aserv;
 	
-	@GetMapping("/alertlist")
+	@GetMapping("/alertlist/")
 	public String showAlertList(Model model){
 		
 		model.addAttribute("alertContext" , aserv.showAlert());
@@ -44,20 +44,17 @@ public class AlertController {
 		
 		aserv.save(a1);
 		
-		return "redirect:/admin/alertlist";
+		return "redirect:/admin/alertlist/";
 		
 	}
 	
 	@GetMapping("/deleteAlert/{id}")
 	public String deleteAlert(@PathVariable("id") Long id) {
 		
-		Alert alertDel = aserv.findById(id).get();
-		
-		if(!alertDel.isActive()) {
-			aserv.delete(alertDel);
-			return "redirect:/admin/alertlist";
+		if(aserv.processDeletingAlert(id)) {
+			return "redirect:/admin/alertlist/?error=true";
 		}else {
-			return "redirect:/admin/alertlist";
+			return "redirect:/admin/alertlist/";
 		}
 		
 	}
@@ -78,7 +75,7 @@ public class AlertController {
 		
 		aserv.save(a1);
 		
-		return "redirect:/admin/alertlist";
+		return "redirect:/admin/alertlist/";
 		
 	}
 	
@@ -87,7 +84,7 @@ public class AlertController {
 		
 		aserv.activateNewAlert(id);
 		
-		return "redirect:/admin/alertlist";
+		return "redirect:/admin/alertlist/";
 		
 	}
 	

@@ -2,7 +2,6 @@ package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.controll
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,21 +46,9 @@ public class userController {
 	}
 	
 	@PostMapping("/editSelf/submit")
-	public String submitEditedSelf(@ModelAttribute("selfProfileForm") UserEntity ue , @AuthenticationPrincipal UserEntity userentity) {
+	public String submitEditedSelf(@ModelAttribute("selfProfileForm") UserEntity userForm , @AuthenticationPrincipal UserEntity loggedUser) {
 		
-		if(!ueservice.checkUsernameAvailability(ue.getUsername())) { //que no esté registrado aún
-			
-			ueservice.save(ue);
-			
-			ueservice.securityContextHolderUpdate(ue);
-			
-		}else if(ue.getUsername().equals(userentity.getUsername())) { //que sea su anterior nombre
-			
-			ueservice.save(ue);
-			
-			ueservice.securityContextHolderUpdate(ue);
-			
-		}
+		ueservice.processEditingSelfForm(userForm , loggedUser);
 		
 		return "redirect:/userMenu";
 		
@@ -80,9 +67,7 @@ public class userController {
 	@PostMapping("/changePass/submit")
 	public String editPassSubmit(@AuthenticationPrincipal UserEntity loggedUser , @ModelAttribute("passForm") UserEntity formUser) {
 		
-		String newPass = "{bcrypt}" + new BCryptPasswordEncoder().encode(formUser.getPassword());
-		
-		ueservice.changeSelfPass(loggedUser.getId(), newPass);
+		ueservice.processEditingSelfPass(loggedUser, formUser);
 				
 		return "redirect:/logout";
 		
@@ -99,12 +84,9 @@ public class userController {
 	}
 	
 	@GetMapping("/myReports/delete/{id}")
-	public String deleteSelfReports(@AuthenticationPrincipal UserEntity userentity , Model model , @PathVariable("id") Long id) {
+	public String deleteSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id) {
 		
-		//comprobante de propiedad de la reclamacion
-		if(repserv.erasableReport(id, userentity.getId())) {
-			repserv.deleteById(id);
-		}
+		repserv.processDeletingSelfReports( loggedUser, id);
 		
 		return "redirect:/userMenu/myReports";
 		

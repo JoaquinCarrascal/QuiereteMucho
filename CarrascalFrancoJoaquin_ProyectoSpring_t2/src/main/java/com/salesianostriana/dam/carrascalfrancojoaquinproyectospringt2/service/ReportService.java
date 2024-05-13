@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Report;
+import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.repository.ReportRepository;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.base.BaseServiceImpl;
 
@@ -33,6 +34,22 @@ public class ReportService extends BaseServiceImpl<Report , Long , ReportReposit
 	public boolean erasableReport(Long reportId , Long clientId) { 
 		
 		return (reprepo.findById(reportId).get().getClient().getId() == clientId) ? true : false;
+		
+	}
+	
+	public void processDeletingSelfReports( UserEntity loggedUser,  Long id) {
+		
+		if(erasableReport(id, loggedUser.getId())) {
+			deleteById(id);
+		}
+		
+	}
+	
+	public void processAddingReport(Report reportForm , UserEntity loggedUser) {
+		
+		reportForm.setClient(loggedUser);
+		
+		save(reportForm);
 		
 	}
 	

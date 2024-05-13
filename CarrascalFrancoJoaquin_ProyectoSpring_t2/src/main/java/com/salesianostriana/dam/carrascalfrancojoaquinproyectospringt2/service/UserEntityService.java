@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,9 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 
 	@Autowired
 	private UserEntityRepository userrepo;
+	
+	@Autowired
+	private ReportService repserv;
 	
 	public UserEntity findByAuthName(String name) {
 		
@@ -40,7 +44,71 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 		
 	}
 	
-	public void securityContextHolderUpdate(UserEntity ue) {
+	public void processEditingSelfPass(UserEntity loggedUser , UserEntity formUser) {
+
+		String newPass = "{bcrypt}" + new BCryptPasswordEncoder().encode(formUser.getPassword());
+		
+		changeSelfPass(loggedUser.getId(), newPass);
+		
+	}
+	
+	//Comprueba que al editar tu propio usuario no uses de nombre de usuario uno existente
+	//a no ser que sea el tuyo propio.
+	public void processEditingSelfForm(UserEntity userForm , UserEntity loggedUser) {
+		
+		if(!checkUsernameAvailability(userForm.getUsername())) { //que no esté registrado aún
+			
+			save(userForm);
+			
+			refreshSecurityContext(userForm);
+			
+		}else if(userForm.getUsername().equals(loggedUser.getUsername())) { //que sea su anterior nombre
+			
+			save(userForm);
+			
+			refreshSecurityContext(userForm);
+			
+		}
+		
+	}
+	
+	public boolean processAddingNewClient(UserEntity userForm) {
+		
+		//Si NO lo encuentra le setea su contraseña cifrada y lo guarda en bbdd
+		//además devuelve true para hacer la comprobacion en el formulario
+		if(!checkUsernameAvailability(userForm.getUsername())) {
+			
+			userForm.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(userForm.getPassword()));
+	
+			save(userForm);
+			
+			return true;
+			
+		}else {
+			
+			return false;
+			
+		}
+		
+	}
+	
+	public boolean processClientDeletingByAdmin(Long id) {
+		
+		if(repserv.findReportsByUserId(id).isEmpty()) {
+			
+			deleteById(id);
+			
+			return true;
+			
+		}else {
+			
+			return false;
+			
+		}
+		
+	}
+	
+	private void refreshSecurityContext(UserEntity ue) {
 	
 		Authentication auth = new UsernamePasswordAuthenticationToken(ue, null, ue.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);

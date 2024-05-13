@@ -36,6 +36,18 @@ public class AlertService extends BaseServiceImpl<Alert, Long, AlertRepository>{
 		
 	}
 	
+	public boolean processDeletingAlert(Long id) {
+		//si esta activa no la borra y devuelve true, 
+		//si no esta activa la borra y devuelve false
+		if(findById(id).get().isActive()) {
+			return true;
+		}else {
+			delete(findById(id).get());
+			return false;
+		} 
+		
+	}
+	
 	@Transactional
 	public Alert findActiveAlert() {
 		

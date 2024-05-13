@@ -3,6 +3,7 @@ package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Product;

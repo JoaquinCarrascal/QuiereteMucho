@@ -28,6 +28,15 @@
 
 <body class="m-0 border-0 min-vh-100 d-flex flex-column">
 
+	<div class="container" th:if="${param.error}">
+		<div class="row justify-content-center">
+			<div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert">
+				¡Vaya! Parece que el nombre de usuario está siendo utilizado.
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</div>
+	</div>
+
 	<form method="POST" th:action="${clientRegForm.id != null} ? @{/editClient/submit} : @{/addClient/submit}" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter" th:text="${legend}"></legend>
@@ -37,13 +46,6 @@
 			<input th:if="${clientRegForm.id != 0}" type="hidden" th:field="*{admin}" name="isAdmin" />
 
 	        <div class="container-fluid">
-
-			<div class="row justify-content-center" th:if="${param.error}">
-					<div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert">
-						¡Vaya! Parece que el nombre de usuario está siendo utilizado.
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-					</div>
-			</div>
 
 				<div class="row justify-content-center">
 

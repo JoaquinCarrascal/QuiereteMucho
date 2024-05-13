@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,7 @@ public class UserEntityController {
 	@Autowired
 	private AlertService as1;
 	
-	@GetMapping("/admin/clientList")
+	@GetMapping("/admin/clientList/")
 	public String showClientList(Model model) {
 		
 		model.addAttribute("alertContext" , as1.showAlert());
@@ -30,7 +29,7 @@ public class UserEntityController {
 		return "adminTemplates/clientListui";
 	}
 	
-	@GetMapping("/regform")
+	@GetMapping("/regform/")
 	public String showRegForm(Model model) {
 		
 		model.addAttribute("clientRegForm" , new UserEntity());
@@ -41,13 +40,9 @@ public class UserEntityController {
 	}
 	
 	@PostMapping("/addClient/submit")//TODO no permitir username duplicado
-	public String submit(@ModelAttribute("clientRegForm") UserEntity ue , Model model) /* throws UnavailableUserNameException */{
+	public String submit(@ModelAttribute("clientRegForm") UserEntity userForm , Model model) /* throws UnavailableUserNameException */{
 		
-			if(!ueservice.checkUsernameAvailability(ue.getUsername())) {
-		
-				ue.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(ue.getPassword()));
-		
-				ueservice.save(ue);
+			if(ueservice.processAddingNewClient(userForm)) {
 		
 				return "redirect:/home";
 		
@@ -68,6 +63,7 @@ public class UserEntityController {
 		
 	}
 	
+	//ADMIN OPTIONS
 	@GetMapping("/editClient/{id}")//TODO edit client
 	public String showEditForm(Model model , @PathVariable("id") Long id) {
 		
@@ -78,20 +74,29 @@ public class UserEntityController {
 		return "register";
 	}
 	
-	@PostMapping("/editClient/submit")
+	//TODO edit client
+	@PostMapping("/editClient/submit") //ADMIN OPTIONS 
 	public String submitEditedForm(@ModelAttribute("clientRegForm") UserEntity ue) {
 		
 		ueservice.save(ue);
 		
-		return "redirect:/clientList";
+		return "redirect:/admin/clientList/";
 	}
 	
 	@GetMapping("/admin/deleteClient/{id}")
 	public String deleteClient(@PathVariable("id") Long id) {
 		
-		ueservice.deleteById(id);
+		if(ueservice.processClientDeletingByAdmin(id)) {
 		
-		return "redirect:/admin/clientList";
+			return "redirect:/admin/clientList/";
+			
+		}else {
+			
+			return "redirect:/admin/clientList/?error=true"; 
+			
+		} 
+		
+		
 	}
 	
 }
