@@ -84,7 +84,7 @@ public class userController {
 		
 		ueservice.changeSelfPass(loggedUser.getId(), newPass);
 				
-		return "redirect:/userMenu";
+		return "redirect:/logout";
 		
 	}
 	
