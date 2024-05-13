@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,5 +17,8 @@ public interface UserEntityRepository extends JpaRepository<UserEntity , Long>{
 	@Modifying
 	@Query("UPDATE UserEntity u SET u.password = :newPass WHERE u.id = :id")
 	void changeSelfPass(@Param("id") Long id , @Param("newPass") String newPass);
+	
+	@Query("SELECT u FROM UserEntity u WHERE u.id != :id")
+	List<UserEntity> findAllExceptCurrentUser(@Param("id") Long id);
 	
 }

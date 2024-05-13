@@ -13,6 +13,7 @@ import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Pro
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.ProductService;
 
+//Controlador para la gestion de los productos por parte del administrador
 @Controller
 @RequestMapping("/admin")
 public class ProductController {
@@ -24,7 +25,7 @@ public class ProductController {
 	private AlertService aserv;
 	
 	@GetMapping("/prodForm")
-	public String showFormProducto(Model model) {
+	public String showFormProduct(Model model) {
 		
 		model.addAttribute("productRegForm", new Product());
 		model.addAttribute("pTypes" , pservice.getTypes());
@@ -52,10 +53,11 @@ public class ProductController {
 		
 	}
 	
+	//TODO restricción para no poder borrar uno que se encuentre en una linea de venta
 	@GetMapping("/deleteProduct/{id}")
 	public String deleteProduct(@PathVariable("id") Long id) {
 		
-		pservice.delete(pservice.findById(id).get());
+		pservice.deleteById(id);
 		
 		return "redirect:/admin/prodList";
 	}

@@ -23,7 +23,7 @@ public class Product {
 
 	private String descImg;
 
-	private String name, description;
+	private String name, description , alterText;
 	private double avgDuration, basePrice;
 
 	@Enumerated(EnumType.STRING)

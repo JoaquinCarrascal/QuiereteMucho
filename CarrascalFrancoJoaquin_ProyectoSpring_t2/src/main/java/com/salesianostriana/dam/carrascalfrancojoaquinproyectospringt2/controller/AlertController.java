@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Alert;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
 
+//Controlador de gestión de alertas por parte de los administradores
 @Controller
 @RequestMapping("/admin")
 public class AlertController {
@@ -19,6 +20,7 @@ public class AlertController {
 	@Autowired
 	private AlertService aserv;
 	
+	//Éste método sirve para listar las alertas en el menú admin
 	@GetMapping("/alertlist/")
 	public String showAlertList(Model model){
 		
@@ -28,6 +30,7 @@ public class AlertController {
 		return "adminTemplates/alertListui";
 	}
 	
+	//Éste método devuelve un formulario para que un admin pueda crear una alerta nueva
 	@GetMapping("/alertForm")
 	public String showAlertForm(Model model) {
 		
@@ -48,6 +51,10 @@ public class AlertController {
 		
 	}
 	
+	//Éste método se interpone en el borrado de una alerta 
+	//invocando un método del AlertService que prohíbe
+	//su borrado si está siendo usada en la página
+	//éste procesamiento se efectúa en el AlertService
 	@GetMapping("/deleteAlert/{id}")
 	public String deleteAlert(@PathVariable("id") Long id) {
 		
@@ -79,7 +86,11 @@ public class AlertController {
 		
 	}
 	
-	@GetMapping("/activateAlert/{id}")//revisado en el servicio
+	//Éste método recibe por parámetros la id de una alerta e invoca un método del AlertService
+	//que primero desactiva la actual y posteriormente activa la deseada
+	//éste procesamiento se da en el AlertService y se apoya de 2 consultas
+	//en el AlertRepository
+	@GetMapping("/activateAlert/{id}")
 	public String activateAlert(@PathVariable("id") Long id) {
 		
 		aserv.activateNewAlert(id);

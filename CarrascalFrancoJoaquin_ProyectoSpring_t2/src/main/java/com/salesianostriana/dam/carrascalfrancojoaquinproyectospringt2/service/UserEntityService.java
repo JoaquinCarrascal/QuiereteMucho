@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -7,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.repository.UserEntityRepository;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.base.BaseServiceImpl;
@@ -27,6 +28,12 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 		
 	}
 	
+	public List<UserEntity> findAllExceptCurrentUser(Long id){
+		
+		return userrepo.findAllExceptCurrentUser(id);
+		
+	} 
+	
 	//este método devuelve true si encuentra el usuario en la lista
 	public boolean checkUsernameAvailability(String requestedUsername) {
 
@@ -44,6 +51,7 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 		
 	}
 	
+	@Transactional
 	public void processEditingSelfPass(UserEntity loggedUser , UserEntity formUser) {
 
 		String newPass = "{bcrypt}" + new BCryptPasswordEncoder().encode(formUser.getPassword());
@@ -54,7 +62,7 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 	
 	//Comprueba que al editar tu propio usuario no uses de nombre de usuario uno existente
 	//a no ser que sea el tuyo propio.
-	public void processEditingSelfForm(UserEntity userForm , UserEntity loggedUser) {
+	public boolean processEditingSelfForm(UserEntity userForm , UserEntity loggedUser) {
 		
 		if(!checkUsernameAvailability(userForm.getUsername())) { //que no esté registrado aún
 			
@@ -62,13 +70,19 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 			
 			refreshSecurityContext(userForm);
 			
+			return true;
+			
 		}else if(userForm.getUsername().equals(loggedUser.getUsername())) { //que sea su anterior nombre
 			
 			save(userForm);
 			
 			refreshSecurityContext(userForm);
 			
+			return true;
+			
 		}
+		
+		return false;
 		
 	}
 	

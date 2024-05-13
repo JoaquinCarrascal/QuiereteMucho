@@ -35,6 +35,9 @@ public class ReportController {
 		
 	}
 	
+	//Éste método invoca un método de la clase ReportService
+	//dicho método setea el usuario logueado como propietario de la reclamación
+	//y la guarda en bbdd
 	@PostMapping("/addReport/submit")
 	public String submitReport(@ModelAttribute("reportBlank") Report reportForm , @AuthenticationPrincipal UserEntity loggedUser) {
 		
@@ -44,6 +47,8 @@ public class ReportController {
 		
 	}
 	
+	//Éste método invoca un método que lanza una consulta a la bbdd
+	//que devuelve las reclamaciones que aún no han sido contestadas
 	@GetMapping("/admin/reportList")
 	public String showReportList(Model model) {
 		
@@ -54,6 +59,8 @@ public class ReportController {
 		
 	}
 	
+	//Éste método carga un formulario de reclamación con los datos de una reclamación
+	//y le permite al administrador contestarla para poner en conocimiento al cliente
 	@GetMapping("/admin/replyReport/{id}")
 	public String showReportRepliable(@PathVariable("id") Long id , Model model) {
 		

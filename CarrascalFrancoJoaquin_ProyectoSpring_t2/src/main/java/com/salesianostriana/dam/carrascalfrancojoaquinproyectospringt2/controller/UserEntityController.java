@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +22,10 @@ public class UserEntityController {
 	private AlertService as1;
 	
 	@GetMapping("/admin/clientList/")
-	public String showClientList(Model model) {
+	public String showClientList(Model model , @AuthenticationPrincipal UserEntity loggedUser) {
 		
 		model.addAttribute("alertContext" , as1.showAlert());
-		model.addAttribute("clientList" , ueservice.findAll());
+		model.addAttribute("clientList" , ueservice.findAllExceptCurrentUser(loggedUser.getId()));
 		
 		return "adminTemplates/clientListui";
 	}
@@ -39,7 +40,13 @@ public class UserEntityController {
 		return "register";
 	}
 	
-	@PostMapping("/addClient/submit")//TODO no permitir username duplicado
+	//Éste método invoca un método de procesamiento localizado en la clase UserEntityService
+	//que comprueba que el usuario deseado no se encuentre ya registrado en la bbdd (en cuyo caso
+	//lanza un error que se traduce en una alerta de BS5 en la vista de usuario) y posteriormente
+	//si el usuario está disponible, encripta la contraseña , lo guarda en bbdd y devuelve un boolean
+	//si dicho boolean es true, redirecciona al usuario a la página principal, si es false
+	//lo traduce en una alerta de BS5 encima del formulario de registro
+	@PostMapping("/addClient/submit")
 	public String submit(@ModelAttribute("clientRegForm") UserEntity userForm , Model model) /* throws UnavailableUserNameException */{
 		
 			if(ueservice.processAddingNewClient(userForm)) {
@@ -83,6 +90,9 @@ public class UserEntityController {
 		return "redirect:/admin/clientList/";
 	}
 	
+	//Éste método invoca otro método de la clase UserEntityService, que evalúa si el cliente
+	//tiene alguna reclamación asociada , si no la tiene lo elimina sin problema, si la tiene
+	//lanza un error que se traduce en una alerta de BS5
 	@GetMapping("/admin/deleteClient/{id}")
 	public String deleteClient(@PathVariable("id") Long id) {
 		

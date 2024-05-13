@@ -75,13 +75,23 @@
 
 				<div class="row justify-content-center">
 
-					<div class="my-1 col-12 col-lg-8">
+					<div class="my-1 col-12 col-lg-6">
 
 						<label for="img-desc-field-reg" class="form-label">URL imagen</label>
 						<div class="input-group">
 	                    	<input type="text" class="form-control p-2" id="img-desc-field-reg" placeholder="Ruta de la imagen con su extension de imagen, ej: https://rutaimagen.jpg"
 	                        	name="img-desc-reg" th:field="*{descImg}">
-								<button type="button" class="btn btn-primary input-group-text" data-bs-toggle="popover" title="Consejo:" data-bs-content="Cuando elijas una imagen intenta que tenga relación 1x1 es decir cuadrada.">Tip!</button>	
+								<button type="button" class="btn btn-primary input-group-text" data-bs-toggle="popover" title="Consejo:" data-bs-content="Cuando elijas una imagen intenta que tenga relación 1x1 es decir cuadrada."><i class="bi bi-info-circle"></i></button>	
+						</div>
+					</div>
+
+					<div class="my-1 col-12 col-lg-6">
+
+						<label for="alterText-field" class="form-label">Texto alternativo de la imagen</label>
+						<div class="input-group">
+	                    	<input type="text" class="form-control p-2" id="alterText-field" placeholder="Texto alternativo de la imagen que añadas"
+	                        	name="alterText-field" th:field="*{alterText}">
+								<button type="button" class="btn btn-primary input-group-text" data-bs-toggle="popover" title="Aclaración" data-bs-content="El texto alternativo es un texto adicional que describe brevemente de qué trata la fotografía"><i class="bi bi-info-circle"></i></button>	
 						</div>
 					</div>
 

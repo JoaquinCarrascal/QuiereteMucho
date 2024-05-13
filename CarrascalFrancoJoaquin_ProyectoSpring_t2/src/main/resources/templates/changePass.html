@@ -62,7 +62,7 @@
 
             <div class="container">
                 <div class="row justify-content-center mt-4">
-                    <div class="alert alert-info alert-dismissible fade show col-12 col-md-8" role="alert">
+                    <div class="alert alert-info alert-dismissible fade show col-12 col-md-8 text-center" role="alert">
                         <i class="bi bi-info-circle"></i> Como medida de seguridad, se cerrará sesión al efectuar un cambio de contraseña. <i class="bi bi-info-circle"></i> 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -95,13 +95,17 @@
 
                 </div>
 
-                <div class="mt-4 row">
-                    <a class="text-decoration-none col-6" href="/userMenu/editSelf" th:href="@{/userMenu/editSelf}" target="_self">
-                        <button type="button" class="btn fondo shadow py-2 rounded-2 mx-0 text-secondary w-100 text-dark">
-                            Editar usuario
-                        </button>
-                    </a>
-                    <input type="submit" value="Cambiar contraseña" class="col-6 btn fondo shadow py-2 rounded-2 mx-0 text-dark"></input>
+                <div class="container">
+
+                    <div class="mt-4 row justify-content-center">
+                        <a class="text-decoration-none col-6 col-lg-4" href="/userMenu/editSelf" th:href="@{/userMenu/editSelf}" target="_self">
+                            <button type="button" class="btn fondo shadow py-2 rounded-2 mx-0 text-secondary w-100 text-dark">
+                                Editar usuario
+                            </button>
+                        </a>
+                        <input type="submit" value="Cambiar contraseña" class="col-6 col-lg-4 btn fondo shadow py-2 rounded-2 mx-0 text-dark"></input>
+                    </div>
+
                 </div>
 
             </form>
