@@ -48,7 +48,7 @@
 		</div>
 	</div>
 
-	<form method="POST" th:action="${clientRegForm.id != null} ? @{/admin/editClient/submit} : @{/addClient/submit}" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4" id="regForm" name="regForm">
+	<form method="POST" th:action="${clientRegForm.id != null} ? @{/admin/editClient/submit} : @{/addClient/submit}" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4" autocomplete="on" enctype="multipart/form-data" id="regForm" name="regForm">
 	
 	        <legend class="text-center mb-3 fw-lighter" th:text="${legend}"></legend>
 	

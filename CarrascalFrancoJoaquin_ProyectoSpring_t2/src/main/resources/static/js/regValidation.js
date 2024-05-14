@@ -52,7 +52,7 @@ function passValidation() {
 
     }
 
-    return (password === password2 && isBetween(password.length, 2, 12) && containsNumber(password)) ? true : false;
+    return password === password2 && password.length < 12 && containsNumber(password) ? true : false;
 
 }
 
@@ -60,7 +60,7 @@ function numTelfValidation() {
 
     let numTelf = document.getElementById("ntelf-field-reg");
 
-    return (isBetween(numTelf, 9, 12)) ? true : false;
+    return numTelf.length = 9 ? true : false;
 
 }
 
@@ -94,7 +94,7 @@ if(validation) {
 
 }else{
 
-    alert('No se puede enviar el formulario');
+    alert.classList.remove('d-none');
 
 }
 
