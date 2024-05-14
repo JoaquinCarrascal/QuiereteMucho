@@ -71,18 +71,19 @@ public class UserEntityController {
 	}
 	
 	//ADMIN OPTIONS
-	@GetMapping("/editClient/{id}")//TODO edit client
+	@GetMapping("/admin/editClient/{id}")
 	public String showEditForm(Model model , @PathVariable("id") Long id) {
 		
 		model.addAttribute("legend" , "Formulario de edición");
+		model.addAttribute("adminEditing" , true);
+		model.addAttribute("visibility" , "hidden");
 		model.addAttribute("clientRegForm" , ueservice.findById(id).get());
 		model.addAttribute("alertContext" , as1.showAlert());
 		
 		return "register";
 	}
 	
-	//TODO edit client
-	@PostMapping("/editClient/submit") //ADMIN OPTIONS 
+	@PostMapping("/admin/editClient/submit") //ADMIN OPTIONS 
 	public String submitEditedForm(@ModelAttribute("clientRegForm") UserEntity ue) {
 		
 		ueservice.save(ue);
