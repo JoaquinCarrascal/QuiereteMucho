@@ -39,7 +39,7 @@
 		</div>
 	</div>
 
-	<form method="POST" th:action="${clientRegForm.id != null} ? @{/editClient/submit} : @{/addClient/submit}" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4">
+	<form method="POST" th:action="${clientRegForm.id != null} ? @{/admin/editClient/submit} : @{/addClient/submit}" th:object="${clientRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter" th:text="${legend}"></legend>
 	
@@ -52,9 +52,9 @@
 				<div class="row justify-content-center">
 
 					<div class="my-1 col-12 col-md-6">
-	                    <label for="username" class="form-label">Nombre de usuario<sup class="text-danger">*</sup></label>
-	                    <input type="text" class="form-control p-2" id="username" placeholder="Escriba aquí el nombre de su usuario..."
-	                        name="username" th:field="*{username}" required>
+	                    <label for="username" class="form-label" th:unless="${adminEditing}" >Nombre de usuario<sup class="text-danger">*</sup></label>
+	                    <input  type="text" class="form-control p-2" id="username" placeholder="Escriba aquí el nombre de su usuario..."
+	                        name="username" th:field="*{username}" required th:type="${visibility}">
 	                </div>
 
 				</div>
@@ -77,15 +77,15 @@
 	            <div class="row">
 	
 	                <div class="my-1 col-12 col-md-6">
-	                    <label for="password" class="form-label">Contraseña<sup class="text-danger">*</sup></label>
+	                    <label for="password" class="form-label" th:unless="${adminEditing}">Contraseña<sup class="text-danger">*</sup></label>
 	                    <input type="password" class="form-control p-2" id="password" placeholder="************"
-	                        name="password" th:field="*{password}" required>
+	                        name="password" th:field="*{password}" required th:type="${visibility}">
 	                </div>
 	
 	                <div class="my-1 col-12 col-md-6">
-	                    <label for="password2" class="form-label">Repetir contraseña<sup class="text-danger">*</sup></label>
+	                    <label for="password2" class="form-label" th:unless="${adminEditing}">Repetir contraseña<sup class="text-danger">*</sup></label>
 	                    <input type="password" class="form-control p-2" id="password2" placeholder="************"
-	                        name="password2">
+	                        name="password2" th:type="${visibility}">
 	                </div>
 	
 	            </div>
@@ -121,7 +121,7 @@
 	
 	        <p class="text-danger fw-bold mx-1 px-1 pt-2">El asterisco rojo (*) significa = Campo obligatorio</p>
 	
-	        <div class="mt-4 row">
+	        <div class="mt-4 row" th:unless="${adminEditing}">
 	            <a class="text-decoration-none col-6" href="/login" th:href="@{/login}" target="_self">
 	                <button type="button" class="btn fondo shadow py-2 rounded-2 mx-0 text-secondary fw-bolder w-100">
 	                    Iniciar sesión
@@ -129,6 +129,11 @@
 	            </a>
 	            <input type="submit" value="Crear cuenta" class="col-6 btn fondo shadow py-2 rounded-2 mx-0 "></input>
 	        </div>
+			<div class="mt-4 row justify-content-center" th:if="${adminEditing}">
+
+				<input type="submit" value="Editar cuenta" class="col-5 col-xl-3 btn fondo shadow py-2 rounded-2 mx-0 text-center"></input>
+
+			</div>
 	
 	    </form>
 
