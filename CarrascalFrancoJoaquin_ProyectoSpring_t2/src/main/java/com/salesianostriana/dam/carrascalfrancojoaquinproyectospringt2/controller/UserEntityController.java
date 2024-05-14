@@ -71,7 +71,7 @@ public class UserEntityController {
 	}
 	
 	//ADMIN OPTIONS
-	@GetMapping("/admin/editClient/{id}")//TODO edit client
+	@GetMapping("/admin/editClient/{id}")
 	public String showEditForm(Model model , @PathVariable("id") Long id) {
 		
 		model.addAttribute("legend" , "Formulario de edición");
@@ -83,7 +83,6 @@ public class UserEntityController {
 		return "register";
 	}
 	
-	//TODO edit client
 	@PostMapping("/admin/editClient/submit") //ADMIN OPTIONS 
 	public String submitEditedForm(@ModelAttribute("clientRegForm") UserEntity ue) {
 		
