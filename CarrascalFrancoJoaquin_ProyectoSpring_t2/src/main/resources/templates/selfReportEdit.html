@@ -52,40 +52,48 @@
 
             </div>
 
-            <div class="container" th:if="${param.error}">
-                <div class="row justify-content-center mt-4">
-                    <div class="alert alert-danger alert-dismissible fade show col-12 col-md-8" role="alert">
-                        ¡Vaya! Parece que estas intentando editar una reclamacion de la cual no eres propietario.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
+            <form method="POST" th:action="@{/userMenu/myReports/EditSelfReport/submit}" th:object="${reportEdit}">
 
-            <table class="table container-fluid table-striped">
-		
-                <legend class="text-center mt-2">Mis reclamaciones</legend>
+                <legend class="text-center mt-2"><span th:text="${legend}"></span></legend>
+        
+                <div class="container-fluid my-4 py-4">
+        
+                    <input th:if="${reportEdit.id != null}" type="hidden" th:field="*{id}" name="id"></input>
+        
+                    <div class="row justify-content-center">
+                        <div class="my-1 col-12 col-xl-3 col-md-6">
+                            <label for="report-title" class="form-label">Título</label>
+                            <input type="text" class="form-control p-2" id="report-title" placeholder="Título descriptivo de la reclamación"
+                                name="report-title" th:field="*{title}"></input>
+                        </div>
+        
+                        <div class="my-1 col-12 col-xl-3 col-md-6">
+                            <label for="report-date" class="form-label">Fecha de la reclamación</label>
+                            <input type="date" class="form-control p-2" id="report-date" 
+                            name="report-date" th:field="*{reportDate}" th:value="*{reportDate}"></input>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="my-1 col-12 col-md-10">
+                            <label for="report-description" class="form-label">Descripción</label>
+                            <input type="text" class="form-control p-2" id="report-description" placeholder="Cuerpo de la reclamación"
+                                name="report-description" th:field="*{description}"></input>
+                        </div>
+                    </div>
+        
+                </div>
+        
+                <input th:if="${reportEdit.id != null}" type="hidden" name="client" th:field="*{reply}"></input>
+
+                <input th:if="${reportEdit.id != null}" type="hidden" name="client" th:field="*{client}"></input>
+        
+                <div class="mt-4 row justify-content-center">
+                    <input type="submit" value="Enviar" class="col-5 col-md-3 col-lg-2 btn btn-success shadow-lg py-2 rounded-2 mx-0 "></input>
+                </div>
+        
                 
-                <thead>
-                    <tr class="row justify-content-center">
-                        <th class="col-2 text-center">Título</th>
-                        <th class="col-3 text-center">Descripción</th>
-                        <th class="col-2 text-center">Fecha</th>
-                        <th class="col-3 text-center">Respuesta</th>
-                        <th class="col-1 text-center">Editar</th>
-                        <th class="col-1 text-center">Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="row justify-content-center" th:each="report : ${reportSelfList}">
-                        <td class="col-2 text-center" th:text="${report.title}">Título</td>
-                        <td class="col-3 text-center" th:text="${report.description}">Descripción</td>
-                        <td class="col-2 text-center" th:text="${#temporals.format(report.reportDate)}">Fecha</td>
-                        <td class="col-3 text-center" th:text="${report.reply}">Respuesta</td>
-                        <td class="col-1 text-center"><a th:href="@{/userMenu/myReports/EditSelfReport/{id}(id=${report.id})}"><button class="btn btn-primary p-1"><i class="bi bi-pencil-square"></i></button></a></td>
-                        <td class="col-1 text-center"><a th:href="@{/userMenu/myReports/delete/{id}(id=${report.id})}"><button class="btn btn-danger p-1"><i class="bi bi-trash3"></i></button></a></td>
-                    </tr>
-                </tbody>
-            </table>
+        
+            </form>
             
 		</article>
 	</div>
