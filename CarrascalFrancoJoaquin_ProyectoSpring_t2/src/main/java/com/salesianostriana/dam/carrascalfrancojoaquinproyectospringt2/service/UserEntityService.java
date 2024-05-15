@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.repository.UserEntityRepository;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.base.BaseServiceImpl;
@@ -21,6 +22,9 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 	
 	@Autowired
 	private ReportService repserv;
+	
+	@Autowired
+	private PasswordEncoder passEncoder;
 	
 	public UserEntity findByAuthName(String name) {
 		
@@ -54,7 +58,9 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 	@Transactional
 	public void processEditingSelfPass(UserEntity loggedUser , UserEntity formUser) {
 
-		String newPass = "{bcrypt}" + new BCryptPasswordEncoder().encode(formUser.getPassword());
+		//String newPass = "{bcrypt}" + new BCryptPasswordEncoder().encode(formUser.getPassword());
+		
+		String newPass = passEncoder.encode(formUser.getPassword());
 		
 		changeSelfPass(loggedUser.getId(), newPass);
 		
@@ -92,8 +98,10 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 		//además devuelve true para hacer la comprobacion en el formulario
 		if(!checkUsernameAvailability(userForm.getUsername())) {
 			
-			userForm.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(userForm.getPassword()));
-	
+			//userForm.setPassword("{bcrypt}" + new BCryptPasswordEncoder().encode(userForm.getPassword()));
+			
+			userForm.setPassword(passEncoder.encode(userForm.getPassword()));
+			
 			save(userForm);
 			
 			return true;
