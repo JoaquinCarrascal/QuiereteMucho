@@ -63,7 +63,7 @@
                 </thead>
                 <tbody>
                     <tr class="row justify-content-center" th:each="appointment : ${appointmentSelfList}">
-                        <td class="col-2 text-center" th:text="${'Pedido: #'+{id}(id=${appointment.id})}">Título</td>
+                        <td class="col-2 text-center">Pedido: #<span th:text="${appointment.id}"></span></td>
                         <td class="col-2 text-center" th:text="${#temporals.format(appointment.appointmentDate)}">Fecha</td>
                         <td class="col-2 text-center" th:text="${(appointment.paid) ? 'Pagado' : 'No pagado'}">Pagado</td>
                         <td class="col-2 text-center" th:text="${#numbers.formatDecimal(appointment.fullPrice,0,2)}">Precio</td>
