@@ -35,4 +35,18 @@ public class AppointmentLine {
 	private Product product;
 	
 	
+	
+	public void increaseQuantity() {
+		this.quantity += 1;
+	}
+
+
+
+	public AppointmentLine( Appointment appointment, int quantity, double subTotal, Product product) {
+		this.appointment = appointment;
+		this.quantity = quantity;
+		this.subTotal = subTotal;
+		this.product = product;
+	}
+	
 }

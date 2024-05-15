@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <aside class="col-12 col-md-4 col-xxl-2 shadow" th:fragment="clientMenuAside">
+
+        <h5 class="mt-1 p-2 border-3 border border-primary rounded-pill text-center"><i class="bi bi-arrow-down-right-square"></i> Menú de <span sec:authentication="principal.name">Usuario</span> <i class="bi bi-arrow-up-left-square"></i></h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/userMenu/editSelf}"><i class="bi bi-box-arrow-in-up"></i> Editar usuario <i class="bi bi-box-arrow-in-down"></i></a></li>
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/userMenu/myReports/}"><i class="bi bi-chat-right-dots"></i> Mis reclamaciones <i class="bi bi-chat-left-dots"></i></a></li>
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/userMenu/myAppointments/}"><i class="bi bi-bookmarks"></i> Mis citas <i class="bi bi-bookmarks"></i></a></li>
+        </ul>
+
+    </aside>
+    
+</body>
+</html>

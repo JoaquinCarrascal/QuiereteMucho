@@ -6,14 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Report;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.AlertService;
-import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.ReportService;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.UserEntityService;
 
 @Controller
@@ -26,9 +22,6 @@ public class userController {
 	@Autowired
 	private AlertService as1;
 	
-	@Autowired
-	private ReportService repserv;
-
 	@GetMapping({"/",""})
 	public String showUserMenu(Model model , @AuthenticationPrincipal UserEntity userentity) {
 		
@@ -89,53 +82,6 @@ public class userController {
 		ueservice.processEditingSelfPass(loggedUser, formUser);
 				
 		return "redirect:/logout";
-		
-	}
-	
-	@GetMapping("/myReports/")
-	public String showSelfReportList(@AuthenticationPrincipal UserEntity userentity , Model model) {
-		
-		model.addAttribute("alertContext" , as1.showAlert());
-		model.addAttribute("reportSelfList" , repserv.findReportsByUserId(userentity.getId()));
-		
-		return "myReports";
-		
-	}
-	
-	@GetMapping("/myReports/delete/{id}")
-	public String deleteSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id) {
-		
-		repserv.processDeletingSelfReports( loggedUser, id);
-		
-		return "redirect:/userMenu/myReports/";
-		
-	}
-	
-	//redirecciona a otro doc html de edicion de reporte porque está maquetado con el menu del usuario también.
-	@GetMapping("/myReports/EditSelfReport/{id}")
-	public String editSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id , Model model) {
-		
-		if(repserv.isReportOwner(loggedUser, id)) {
-			
-			model.addAttribute("alertContext" , as1.showAlert());
-			model.addAttribute("reportEdit" , repserv.findById(id).get());
-			
-			return "selfReportEdit";
-			
-		}else {
-			
-			return "redirect:/userMenu/myReports/?error=true";
-			
-		}
-		
-	}
-	
-	@PostMapping("/myReports/EditSelfReport/submit")
-	public String submitEditedSelfReport(@ModelAttribute("reportEdit") Report r1) {
-		
-		repserv.save(r1);
-		
-		return "redirect:/userMenu/myReports/";
 		
 	}
 	

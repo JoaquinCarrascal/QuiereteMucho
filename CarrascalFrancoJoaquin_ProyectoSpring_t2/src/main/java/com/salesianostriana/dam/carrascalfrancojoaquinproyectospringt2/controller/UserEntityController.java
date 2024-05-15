@@ -35,6 +35,8 @@ public class UserEntityController {
 		
 		model.addAttribute("clientRegForm" , new UserEntity());
 		model.addAttribute("alertContext" , as1.showAlert());
+		model.addAttribute("adminEditing" , false);
+		model.addAttribute("pass" , "password");
 		model.addAttribute("legend" , "Formulario de creación de cuenta");
 		
 		return "register";
@@ -77,6 +79,7 @@ public class UserEntityController {
 		model.addAttribute("legend" , "Formulario de edición");
 		model.addAttribute("adminEditing" , true);
 		model.addAttribute("visibility" , "hidden");
+		model.addAttribute("pass" , "password");
 		model.addAttribute("clientRegForm" , ueservice.findById(id).get());
 		model.addAttribute("alertContext" , as1.showAlert());
 		

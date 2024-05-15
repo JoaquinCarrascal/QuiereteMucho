@@ -90,5 +90,52 @@ public class ReportController {
 		
 	}
 	
+	@GetMapping("/userMenu/myReports/")
+	public String showSelfReportList(@AuthenticationPrincipal UserEntity userentity , Model model) {
+		
+		model.addAttribute("alertContext" , aserv.showAlert());
+		model.addAttribute("reportSelfList" , repservice.findReportsByUserId(userentity.getId()));
+		
+		return "myReports";
+		
+	}
+	
+	@GetMapping("/userMenu/myReports/delete/{id}")
+	public String deleteSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id) {
+		
+		repservice.processDeletingSelfReports( loggedUser, id);
+		
+		return "redirect:/userMenu/myReports/";
+		
+	}
+	
+	//redirecciona a otro doc html de edicion de reporte porque está maquetado con el menu del usuario también.
+	@GetMapping("/userMenu/myReports/EditSelfReport/{id}")
+	public String editSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id , Model model) {
+		
+		if(repservice.isReportOwner(loggedUser, id)) {
+			
+			model.addAttribute("alertContext" , aserv.showAlert());
+			model.addAttribute("reportEdit" , repservice.findById(id).get());
+			
+			return "selfReportEdit";
+			
+		}else {
+			
+			return "redirect:/userMenu/myReports/?error=true";
+			
+		}
+		
+	}
+	
+	@PostMapping("/userMenu/myReports/EditSelfReport/submit")
+	public String submitEditedSelfReport(@ModelAttribute("reportEdit") Report r1) {
+		
+		repservice.save(r1);
+		
+		return "redirect:/userMenu/myReports/";
+		
+	}
+	
 	
 }
