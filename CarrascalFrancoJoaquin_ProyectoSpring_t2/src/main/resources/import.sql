@@ -47,3 +47,43 @@ insert into report (report_date , client_id , id , description , reply , title) 
 insert into report (report_date , client_id , id , description , reply , title) values ('2019-5-05' , 1 , 9 , 'Dedicado para todas las mujeres bellas de la vida, dedicaos a otra cosa porque para peinar no valéis.' , null , 'Migración al grado de panadería');
 
 ALTER SEQUENCE report_seq RESTART WITH 1000;
+
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-03-02' , 0 , true , 1 , 1);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-01-02' , 0 , true , 4 , 2);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2023-04-23' , 0 , true , 7 , 3);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2023-12-29' , 0 , true , 1 , 4);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2023-07-14' , 0 , true , 3 , 5);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-02-14' , 0 , true , 2 , 6);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-08-12' , 0 , false , 11 , 7);
+
+ALTER SEQUENCE appointment_seq RESTART WITH 1000;
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 1 , 1 , 1);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 1 , 2 , 10);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 2 , 3 , 10);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 2 , 4 , 8);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (3 , 0 , 2 , 5 , 11);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 3 , 6 , 2);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 3 , 7 , 4);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 3 , 8 , 7);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 3 , 9 , 11);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 4 , 10 , 3);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 4 , 11 , 4);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 4 , 12 , 6);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 5 , 13 , 2);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 5 , 14 , 3);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 6 , 15 , 6);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 7 , 16 , 7);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 7 , 17 , 8);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 7 , 18 , 3);
+
+ALTER SEQUENCE appointmentline_seq RESTART WITH 1000;
+
+UPDATE appointmentline al SET al.sub_total = {SELECT p.base_price*al.quantity FROM product p WHERE p.id=al.product_id };
+UPDATE appointment a SET a.full_price = {SELECT SUM(al.sub_total) FROM appointmentline al WHERE al.appointment_id=a.id};

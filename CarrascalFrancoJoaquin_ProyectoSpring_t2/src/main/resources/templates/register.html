@@ -90,7 +90,7 @@
 						<div class="input-group">
 							<input type="password" class="form-control p-2" id="password" placeholder="************"
 							name="password" th:field="*{password}" required th:type="${visibility}">
-							<div class="input-group-text"><i class="bi bi-eye"></i></div>
+							<div class="input-group-text" th:unless="${adminEditing}"><i class="bi bi-eye"></i></div>
 						</div>
 	                </div>
 	
@@ -99,7 +99,7 @@
 						<div class="input-group">
 	                    	<input type="password" class="form-control p-2" id="password2" placeholder="************"
 	                        name="password2" th:type="${visibility}">
-							<div class="input-group-text"><i class="bi bi-eye"></i></div>
+							<div class="input-group-text" th:unless="${adminEditing}"><i class="bi bi-eye"></i></div>
 						</div>
 	                </div>
 	
