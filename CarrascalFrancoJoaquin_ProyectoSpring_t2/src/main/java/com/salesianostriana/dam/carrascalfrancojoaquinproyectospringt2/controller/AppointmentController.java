@@ -50,9 +50,21 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/loggedUser/showCart/increase/{id}")
-	public String increaseApLineFromCart() {
+	public String increaseApLineFromCart(@AuthenticationPrincipal UserEntity loggedUser ,  @PathVariable("id") Long productId) {
 		
+		Appointment appoint = appointServ.checkAppointment(loggedUser);
 		
+		appointServ.increaseExistingProductQuantity(appoint , productId);
+		
+		return "redirect:/loggedUser/showCart";
+	}
+	
+	@GetMapping("/loggedUser/showCart/decrease/{id}")
+	public String decreaseApLineFromCart(@AuthenticationPrincipal UserEntity loggedUser ,  @PathVariable("id") Long productId) {
+		
+		Appointment appoint = appointServ.checkAppointment(loggedUser);
+		
+		appointServ.decreaseExistingProductQuantity(appoint , productId);
 		
 		return "redirect:/loggedUser/showCart";
 	}

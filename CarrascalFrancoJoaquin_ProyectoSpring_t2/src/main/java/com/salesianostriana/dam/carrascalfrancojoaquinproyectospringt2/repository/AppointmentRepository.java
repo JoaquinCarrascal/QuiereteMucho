@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Appointment;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
 
@@ -16,5 +18,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment , Long>
 	
 	@Query("SELECT a FROM Appointment a WHERE a.client = :client AND paid = false")
 	Optional<Appointment> checkActiveAppointmentByUserId(@Param("client") UserEntity client);
+	
+	/*@Modifying
+	@Query("DELETE al FROM appointmentline al WHERE al.id = :id")
+	void hardDeleteAppointmentLine(@Param("id") Long id);*/
 	
 }

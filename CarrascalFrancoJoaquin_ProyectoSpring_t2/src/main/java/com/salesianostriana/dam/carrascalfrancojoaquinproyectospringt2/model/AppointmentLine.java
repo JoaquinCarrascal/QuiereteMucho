@@ -39,6 +39,10 @@ public class AppointmentLine {
 	public void increaseQuantity() {
 		this.quantity += 1;
 	}
+	
+	public void decreaseQuantity() {
+		this.quantity -= 1;
+	}
 
 
 
