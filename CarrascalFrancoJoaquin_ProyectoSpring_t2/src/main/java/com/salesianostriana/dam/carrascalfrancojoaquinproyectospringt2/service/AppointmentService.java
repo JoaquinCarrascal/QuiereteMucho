@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Appointment;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.AppointmentLine;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
@@ -43,19 +42,69 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 	}
 	
+
+	public boolean hardDeleteAppointmentLine(Appointment appoint , Long idApLine) {
+		
+		List<AppointmentLine> ApLineList = appoint.getAppointmentLList();
+		
+		Optional<AppointmentLine> apLine = appointmentRepo.findApLineById(appoint.getId() , idApLine);
+		
+		if(apLine.isPresent()) {
+		
+			ApLineList.remove(apLine.get());
+		
+			updateAppointmentTotalPrice(appoint);
+			
+			appointmentRepo.save(appoint);
+			
+			return true;
+		}
+		else {
+			
+			return false;
+			
+		}
+		
+	}
+	
 	public void increaseExistingProductQuantity(Appointment appoint , Long idProduct) {
 		
 		appoint.getAppointmentLList()
 				.stream()
 				.filter(x -> x.getProduct().getId() == idProduct)
 				.findFirst()
-				.get().increaseQuantity();
+				.get()
+				.increaseQuantity();
 		
 		updateAppointmentTotalPrice(appoint);
 		
 		appointmentRepo.save(appoint);
 		
 	}
+	
+	public void decreaseExistingProductQuantity(Appointment appoint , Long idProduct) {
+		
+		AppointmentLine apLine = appoint.getAppointmentLList()
+				.stream()
+				.filter(x -> x.getProduct().getId() == idProduct)
+				.findFirst()
+				.get();
+				
+		if(apLine.getQuantity()<=1) {
+			
+			appoint.getAppointmentLList().remove(apLine);
+			
+		}else {
+			
+			apLine.decreaseQuantity();
+			
+		}
+		
+		updateAppointmentTotalPrice(appoint);
+		
+		appointmentRepo.save(appoint);
+		
+	} 
 	
 	public void addApLineWithProductToAppoint(Appointment appoint , Long idProduct) {
 		

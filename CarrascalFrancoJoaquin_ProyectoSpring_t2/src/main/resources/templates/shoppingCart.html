@@ -62,14 +62,28 @@
                         <th class="col-3 text-center">Nombre servicio</th>
                         <th class="col-3 text-center">Cantidad</th>
                         <th class="col-2 text-center">Subtotal</th>
+                        <td class="col-1 text-center mt-0"></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="row justify-content-center" th:each="apLine : ${appointmentLineSelfList}">
                         <td class="col-2 text-center mt-0"><img class="rounded-circle w-25 mt-0" th:src="${not (#strings.isEmpty(apLine.product.descImg))} ? ${apLine.product.descImg} : 'http://placehold.co/100x100'" th:alt="${apLine.product.alterText}" /></td>
                         <td class="col-3 text-center mt-0" th:text="${apLine.product.name}">Nombre</td>
-                        <td class="col-3 text-center mt-0"><button type="button" class="btn border p-1 py-0 shadow"><i class="bi bi-dash"></i></button> <span th:text="${apLine.quantity}">1</span> <button type="button" class="btn border p-1 py-0 shadow"><i class="bi bi-plus"></i></button></td>
+                        <td class="col-3 text-center mt-0">
+                            <a class="text-decoration-none" th:href="@{/loggedUser/showCart/decrease/{id}(id=${apLine.product.id})}">
+                                <button type="button" class="btn btn-danger border p-1 py-0 shadow">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                            </a> 
+                            <span th:text="${apLine.quantity}">1</span>
+                            <a th:href="@{/loggedUser/showCart/increase/{id}(id=${apLine.product.id})}">
+                                <button type="button" class="btn btn-success border p-1 py-0 shadow">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </a>
+                        </td>
                         <td class="col-2 text-center mt-0"><span th:text="${#numbers.formatDecimal(apLine.subTotal,0,2)}"></span>€</td>
+                        <td class="col-1 text-center mt-0"><a th:href="@{/loggedUser/showCart/hardDeleteApLine/{id}(id=${apLine.id})}"><button class="btn btn-danger border p-1 py-0 shadow"><i class="bi bi-backspace"></i></button></a></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -78,16 +92,32 @@
                         <td class="col-4 text-center mt-0"></td>
                         <td class="col-2 text-center mt-0">Total:</td>
                         <td class="col-2 text-center mt-0"><span th:text="${appointFullPrice}"></span>€</td>
+                        <td class="col-1 text-center mt-0"></td>
                     </tr>
                 </tfoot>
             </table>
 
-            <div class="row justify-content-center my-2">
+            <div class="row justify-content-center my-2" th:if="${ableToShow}">
 
-                <button class="col-4 col-lg-2 col-xl-1 btn btn-success">Pagar</button>
+                <a th:href="@{/}" class="col-4 col-lg-2 col-xl-1">
+
+                    <button class="btn btn-success">Pagar</button>
+                
+                </a>
         
             </div>
-    
+
+            
+            <div class="row justify-content-center my-2" th:unless="${ableToShow}">
+
+                <a th:href="@{/#products}" class="col-4 col-lg-2 col-xl-1">
+
+                    <button class="btn btn-success">Agregar servicios</button>
+
+                </a>
+
+            </div>
+            
     </div>
 
 </body>
