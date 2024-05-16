@@ -42,9 +42,30 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 	}
 	
-	/*public void hardDeleteAppointmentLine() {
+
+	public boolean hardDeleteAppointmentLine(Appointment appoint , Long idApLine) {
 		
-	}*/
+		List<AppointmentLine> ApLineList = appoint.getAppointmentLList();
+		
+		Optional<AppointmentLine> apLine = appointmentRepo.findApLineById(appoint.getId() , idApLine);
+		
+		if(apLine.isPresent()) {
+		
+			ApLineList.remove(apLine.get());
+		
+			updateAppointmentTotalPrice(appoint);
+			
+			appointmentRepo.save(appoint);
+			
+			return true;
+		}
+		else {
+			
+			return false;
+			
+		}
+		
+	}
 	
 	public void increaseExistingProductQuantity(Appointment appoint , Long idProduct) {
 		

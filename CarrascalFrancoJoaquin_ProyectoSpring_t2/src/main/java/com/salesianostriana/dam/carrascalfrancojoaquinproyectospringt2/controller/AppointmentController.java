@@ -34,7 +34,7 @@ public class AppointmentController {
 		
 	}
 	
-	@GetMapping("/loggedUser/showCart")
+	@GetMapping("/loggedUser/showCart/")
 	public String showSelfShoppingCart(Model model , @AuthenticationPrincipal UserEntity loggedUser) {
 		
 		Appointment appoint = appointServ.checkAppointment(loggedUser);
@@ -56,7 +56,7 @@ public class AppointmentController {
 		
 		appointServ.increaseExistingProductQuantity(appoint , productId);
 		
-		return "redirect:/loggedUser/showCart";
+		return "redirect:/loggedUser/showCart/";
 	}
 	
 	@GetMapping("/loggedUser/showCart/decrease/{id}")
@@ -66,7 +66,24 @@ public class AppointmentController {
 		
 		appointServ.decreaseExistingProductQuantity(appoint , productId);
 		
-		return "redirect:/loggedUser/showCart";
+		return "redirect:/loggedUser/showCart/";
+	}
+	
+	@GetMapping("/loggedUser/showCart/hardDeleteApLine/{id}")
+	public String hardDeleteApLine(@AuthenticationPrincipal UserEntity loggedUser ,  @PathVariable("id") Long apLineId) {
+		
+		Appointment appoint = appointServ.checkAppointment(loggedUser);
+		
+		if(appointServ.hardDeleteAppointmentLine(appoint, apLineId)) {
+			
+			return "redirect:/loggedUser/showCart/";
+		
+		}else {
+			
+			return "redirect:/loggedUser/showCart/?error=true";
+			
+		}
+		
 	}
 	
 	@GetMapping("/loggedUser/myAppointments/add/{id}")
