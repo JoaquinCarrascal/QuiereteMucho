@@ -34,7 +34,30 @@ public class AppointmentController {
 		
 	}
 	
-	@GetMapping("/userMenu/myAppointments/add/{id}")
+	@GetMapping("/loggedUser/showCart")
+	public String showSelfShoppingCart(Model model , @AuthenticationPrincipal UserEntity loggedUser) {
+		
+		Appointment appoint = appointServ.checkAppointment(loggedUser);
+		
+		model.addAttribute("alertContext" , aserv.showAlert());
+		model.addAttribute("ableToShow" , appointServ.apLinePresent(appoint));
+		model.addAttribute("idAppointment" , appoint.getId());
+		model.addAttribute("appointFullPrice" , appoint.getFullPrice());
+		model.addAttribute("appointmentLineSelfList" , appointServ.apLinesOnSelfAppoint(appoint));
+		
+		return "shoppingCart";
+		
+	}
+	
+	@GetMapping("/loggedUser/showCart/increase/{id}")
+	public String increaseApLineFromCart() {
+		
+		
+		
+		return "redirect:/loggedUser/showCart";
+	}
+	
+	@GetMapping("/loggedUser/myAppointments/add/{id}")
 	public String addProductToAppointment(@AuthenticationPrincipal UserEntity loggedUser , Model model , @PathVariable("id") Long productId) {
 		
 		Appointment appoint = appointServ.checkAppointment(loggedUser);
