@@ -5,7 +5,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Appointment;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.UserEntity;
@@ -43,6 +45,7 @@ public class AppointmentController {
 		model.addAttribute("ableToShow" , appointServ.apLinePresent(appoint));
 		model.addAttribute("idAppointment" , appoint.getId());
 		model.addAttribute("appointFullPrice" , appoint.getFullPrice());
+		model.addAttribute("appoint" , appoint);
 		model.addAttribute("appointmentLineSelfList" , appointServ.apLinesOnSelfAppoint(appoint));
 		
 		return "shoppingCart";
@@ -80,7 +83,7 @@ public class AppointmentController {
 		
 		}else {
 			
-			return "redirect:/loggedUser/showCart/?error=true";
+			return "redirect:/loggedUser/showCart/?errorHardDelete=true";
 			
 		}
 		
@@ -102,6 +105,21 @@ public class AppointmentController {
 		}
 		
 		return "redirect:/home";
+		
+	}
+	
+	@PostMapping("/loggedUser/showCart/submitCart")
+	public String submitCart(@AuthenticationPrincipal UserEntity loggedUser , @ModelAttribute("appoint") Appointment appoint) {
+		
+		if(appointServ.processCart(loggedUser, appoint.getAppointmentDate())) {
+			
+			return "redirect:/home";
+			
+		}else {
+			
+			return "redirect:/loggedUser/showCart/?backToTheFuture=true";
+			
+		}
 		
 	}
 	

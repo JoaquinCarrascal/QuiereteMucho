@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 		Optional<Appointment> appointment = appointmentRepo.checkActiveAppointmentByUserId(loggedUser);
 		
-		return (appointment.isPresent()) ? appointment.get() : Appointment.builder().client(loggedUser).paid(false).build();
+		return (appointment.isPresent()) ? appointment.get() : Appointment.builder().client(loggedUser).paid(false).appointmentDate(LocalDate.now()).build();
 		
 	}
 	
@@ -124,6 +125,30 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 				.forEach(x -> x.setSubTotal(x.getProduct().getBasePrice() * x.getQuantity()));
 		
 		appoint.setFullPrice(ApLineList.stream().mapToDouble(AppointmentLine::getSubTotal).sum());
+		
+	}
+	
+	public boolean processCart(UserEntity loggedUser , LocalDate date) {
+		
+		Appointment appoint = checkAppointment(loggedUser);
+		
+		if(date.isAfter(LocalDate.now().minusDays(1))) {
+			
+			appoint.setAppointmentDate(date);
+			
+			appoint.setPaid(true);
+			
+			//updateAppointmentTotalPrice(appoint);
+			
+			appointmentRepo.save(appoint);
+			
+			return true;
+			
+		}else {
+			
+			return false;
+			
+		}
 		
 	}
 	
