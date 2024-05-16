@@ -78,4 +78,16 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 	}
 	
+	public boolean apLinePresent(Appointment appoint) {
+		
+		return (appoint.getAppointmentLList().isEmpty()) ? false : true;
+		
+	}
+	
+	public List<AppointmentLine> apLinesOnSelfAppoint(Appointment appoint){
+		
+		return appoint.getAppointmentLList();
+		
+	}
+	
 }
