@@ -55,6 +55,10 @@ insert into appointment (appointment_date, full_price, paid, client_id, id) valu
 insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2023-07-14' , 0 , true , 3 , 5);
 insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-02-14' , 0 , true , 2 , 6);
 insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-08-12' , 0 , false , 11 , 7);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-09-03' , 0 , false , 2 , 8);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-06-02' , 0 , false , 7 , 9);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-08-10' , 0 , false , 8 , 10);
+insert into appointment (appointment_date, full_price, paid, client_id, id) values ('2024-12-12' , 0 , false , 5 , 11);
 
 ALTER SEQUENCE appointment_seq RESTART WITH 1000;
 
@@ -82,6 +86,18 @@ insert into appointmentline (quantity, sub_total, appointment_id, id, product_id
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 7 , 16 , 7);
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 7 , 17 , 8);
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 7 , 18 , 3);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (3 , 0 , 8 , 19 , 8);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 8 , 20 , 2);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 8 , 21 , 7);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 8 , 22 , 10);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 9 , 23 , 1);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 9 , 24 , 4);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 10 , 25 , 8);
+
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (3 , 0 , 11 , 26 , 1);
 
 ALTER SEQUENCE appointmentline_seq RESTART WITH 1000;
 
