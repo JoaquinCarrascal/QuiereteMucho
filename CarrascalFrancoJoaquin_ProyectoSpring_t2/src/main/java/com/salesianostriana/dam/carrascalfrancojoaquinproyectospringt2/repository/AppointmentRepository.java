@@ -36,4 +36,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment , Long>
 	@Query("SELECT al FROM AppointmentLine al WHERE al.appointment.id = :appointId")
 	List<AppointmentLine> findAllApLineByAppointId(@Param("appointId") Long id);
 	
+	@Query("SELECT SUM(a.fullPrice) FROM Appointment a WHERE a.appointmentDate >= :todaysDate")
+	Double estimatedEarningsFromDay(@Param("todaysDate") LocalDate date);
+	
 }
