@@ -71,7 +71,7 @@
 		</article>
 		<aside class="col-12 col-md-3 col-xl-2 shadow">
 
-			<h5 class="mt-1 p-2 border-3 border border-warning rounded-pill text-center"><i class="bi bi-arrow-down-right-square"></i> Estadísticas del negocio <i class="bi bi-arrow-up-left-square"></i></h5>
+			<h5 class="mt-1 p-2 border-3 border border-warning rounded-pill text-center shadow"><i class="bi bi-arrow-down-right-square"></i> Estadísticas del negocio <i class="bi bi-arrow-up-left-square"></i></h5>
 			
             <ul class="list-group list-group-flush mt-5">
 
@@ -81,13 +81,18 @@
                 </li>
                 
                 <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
-                    <p>Ganancias futuras aproximadas:</p>
-                    <p class="fs-4"><span class="text-success fs-4" th:text="${estimatedEarnings}"></span>€</p>
+                    <p>Ganancias en peluquería:</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${hairdresser}"></span>€</p>
                 </li>
 
                 <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
-                    <p>Ganancias futuras aproximadas:</p>
-                    <p class="fs-4"><span class="text-success fs-4" th:text="${estimatedEarnings}"></span>€</p>
+                    <p>Ganancias en estética:</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${aesthetics}"></span>€</p>
+                </li>
+
+                <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
+                    <p>Ganancias del año actual:</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${thisYearEarnings}"></span>€</p>
                 </li>
 
             </ul>

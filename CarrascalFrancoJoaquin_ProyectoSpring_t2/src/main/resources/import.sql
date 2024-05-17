@@ -22,7 +22,7 @@ insert into alert (id, description , name , active) values (6, 'Ya está aquí e
 ALTER SEQUENCE alert_seq RESTART WITH 1000;
 
 insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (1, 'rayheredia' , 'Ray', 'Heredia', 'ketama@barnesandnoble.com', '6451632768', '{bcrypt}$2y$10$UcBr0Mml/YB.nOHbmIbG0eezeL1OVRltzDpvKsFVEw98UCwXnT0Iu', '22 Lakewood Gardens Terrace', 912 , false);
-insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (2, 'jeros' , 'Jeros', 'Pa que mas', 'eldeenmedio@princeton.edu', '3565879596', '{bcrypt}$2y$10$lG.zZ6pMU1An8W2XTFwXGeV5FEUnzF29PpbkrIW3Z/iInhc4cKLXi', null, 875 , false);
+insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (2, 'jeros' , 'Jeros', 'De Los Chichos', 'eldeenmedio@princeton.edu', '3565879596', '{bcrypt}$2y$10$lG.zZ6pMU1An8W2XTFwXGeV5FEUnzF29PpbkrIW3Z/iInhc4cKLXi', null, 875 , false);
 insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (3, 'manologarcia' , 'Manolo', 'García', 'manolog@amazonaws.com', '4582462801', '{bcrypt}$2y$10$TGI02KN6jZrEA7OfRZ3aKupOiU0FgbTwfREmeB.dLU4nMexxBT7te', '658 Menomonie Plaza', 1015 , false);
 insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (4, 'jesusdlrosa' , 'Jesús', 'De La Rosa', 'sedeunlugar@so-net.ne.jp', '2057056583', '{bcrypt}$2y$10$QrdEXk/8zqVE74NpySbReOWaBk1JhxPNHVcgg9J.E7XW59ln.JQ2W', '3 Fulton Trail', 830 , false);
 insert into userentity (id, username , name, user_last_name, email, tel_number, password, address, points , admin) values (5, 'jsabina' , 'Joaquín', 'Sabina', 'jsabina@domainmarket.com', '5213905064', '{bcrypt}$2y$10$/qp5uHtzj7TJl8U9AyT6ZulSOEP3qcabhxszGROq.Oj1aRYwRgi9.', '8 Mesta Hill', 250 , false);
@@ -65,7 +65,7 @@ ALTER SEQUENCE appointment_seq RESTART WITH 1000;
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 1 , 1 , 1);
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 1 , 2 , 10);
 
-insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 2 , 3 , 10);
+insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (2 , 0 , 2 , 3 , 10);
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (1 , 0 , 2 , 4 , 8);
 insert into appointmentline (quantity, sub_total, appointment_id, id, product_id) values (3 , 0 , 2 , 5 , 11);
 
