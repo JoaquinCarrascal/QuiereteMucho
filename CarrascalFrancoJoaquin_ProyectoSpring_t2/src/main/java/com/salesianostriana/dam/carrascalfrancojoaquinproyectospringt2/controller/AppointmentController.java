@@ -123,5 +123,30 @@ public class AppointmentController {
 		
 	}
 	
+	@GetMapping("/admin/appointmentDetails/{id}")
+	public String appointmentDetails(Model model, @PathVariable("id") Long appointId) {
+		
+		model.addAttribute("alertContext" , aserv.showAlert());
+		model.addAttribute("idAppointment" , appointId);
+		model.addAttribute("apLineDetails" , appointServ.findAllApLineByAppointId(appointId));
+		model.addAttribute("appointFullPrice" , appointServ.findById(appointId).get().getFullPrice());
+		
+		return "adminTemplates/appointmentDetails";
+		
+	}
+	
+	@GetMapping("/admin/appointmentList/")
+	public String listAllAppointments(Model model) {
+		
+		model.addAttribute("AppointmentList" , appointServ.findAll());
+		model.addAttribute("alertContext" , aserv.showAlert());
+		
+		return "adminTemplates/appointmentList";
+		
+	}
+	
+	
+	
+	
 	
 }

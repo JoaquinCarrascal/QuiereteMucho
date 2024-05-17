@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <aside class="col-12 col-md-3 col-xl-2 shadow" th:fragment="adminMenuAside">
+
+        <h5 class="mt-1 p-2 border-3 border border-warning rounded-pill text-center"><i class="bi bi-arrow-down-right-square"></i> <a href="/admin/" th:href="@{/admin/}" class="text-decoration-none">Menú de <span sec:authentication="principal.name">Usuario</span></a> <i class="bi bi-arrow-up-left-square"></i></h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item text-center fw-bold"><i class="bi bi-exclamation-diamond"></i> <a class="text-decoration-none text-black" th:href="@{/admin/alertlist/}">Gestión de alertas</a> <i class="bi bi-exclamation-diamond"></i></li>
+            <!-- <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" href="/prodForm" th:href="@{/prodForm}"><i class="bi bi-box-arrow-in-up"></i> Dar de alta un servicio <i class="bi bi-box-arrow-in-up"></i></a></li> -->
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/admin/prodList}"><i class="bi bi-box-arrow-in-up"></i> Gestión de servicios <i class="bi bi-box-arrow-in-down"></i></a></li>
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/admin/reportList}"><i class="bi bi-chat-right-dots"></i> Gestión de reclamaciones <i class="bi bi-chat-left-dots"></i></a></li>
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" th:href="@{/admin/clientList/}"><i class="bi bi-people"></i> Gestión de usuarios <i class="bi bi-people-fill"></i></a></li>
+            <li class="list-group-item text-center fw-bold"> <a class="text-decoration-none text-black" href="/admin/appointmentList/" th:href="@{/admin/appointmentList/}"><i class="bi bi-bookmarks"></i> Listado de citas <i class="bi bi-bookmarks"></i></a></li>
+        </ul>
+        
+    </aside>
+    
+</body>
+</html>

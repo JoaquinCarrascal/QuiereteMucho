@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quiérete Mucho | Detalles de pedido</title>
+    <meta name="description" content="Detalles de un pedido en la sección de administración de la web de Quiérete Mucho.">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="../static/css/background.css" th:href="@{/css/background.css}">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<!--Menú de navegación-->
+
+<header th:replace="~{fragments/adminHeader::header}"></header>
+
+<!--Fin Menú de navegación-->
+
+<body class=" m-0 border-0 min-vh-100 d-flex flex-column">
+
+	
+    <table class="table container-fluid table-striped table-hover">
+    
+        <legend class="text-center mt-2">Referencia de pedido: #<span th:text="${idAppointment}">x</span></legend>
+        
+        <thead>
+            <tr class="row justify-content-center">
+                <th class="col-2 text-center">Foto</th>
+                <th class="col-3 text-center">Nombre servicio</th>
+                <th class="col-3 text-center">Cantidad</th>
+                <th class="col-2 text-center">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row justify-content-center" th:each="apLine : ${apLineDetails}">
+                <td class="col-2 text-center mt-0"><img class="rounded-circle w-25 mt-0" th:src="${not (#strings.isEmpty(apLine.product.descImg))} ? ${apLine.product.descImg} : 'http://placehold.co/100x100'" th:alt="${apLine.product.alterText}" /></td>
+                <td class="col-3 text-center mt-0" th:text="${apLine.product.name}">Nombre</td>
+                <td class="col-3 text-center mt-0"><span th:text="${apLine.quantity}">1</span></td>
+                <td class="col-2 text-center mt-0"><span th:text="${#numbers.formatDecimal(apLine.subTotal,0,2)}"></span>€</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="row justify-content-center">
+                <td class="col-1 text-center mt-0"></td>
+                <td class="col-5 text-center mt-0"></td>
+                <td class="col-2 text-center mt-0">Total:</td>
+                <td class="col-2 text-center mt-0"><span th:text="${appointFullPrice}"></span>€</td>
+            </tr>
+        </tfoot>
+    </table>
+
+	
+    <div class="container-fluid row justify-content-center my-2">
+
+        <a href="/admin/" th:href="@{/admin/}" class="col-3 col-md-2 col-lg-1"><button class="btn btn-danger" type="button">Atrás</button></a>
+
+    </div>
+
+</body>
+
+<!--Footer-->
+
+<footer th:replace="~{fragments/footer::footer}"></footer>
+
+<!-- Footer -->
+
+</html>
