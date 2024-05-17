@@ -31,92 +31,126 @@
 
     <div class="container-fluid my-2">
 
-            <div class="container-fluid">
+        <div class="container-fluid">
 
-                <div class="row justify-content-center mt-5">
+            <div class="row justify-content-center mt-5">
 
-                    <img class="col-10 col-md-6 col-xxl-4" src="../static/img/company-logo.png" th:src="@{/img/company-logo.png}" alt="Logo compañía" width="220px">
-
-                </div>
+                <img class="col-10 col-md-6 col-xxl-4" src="../static/img/company-logo.png" th:src="@{/img/company-logo.png}" alt="Logo compañía" width="220px">
 
             </div>
 
-            <!--nombre Pedido:#appointmentClientId , fecha , precio , pagado , -->
+        </div>
+
+        <!--nombre Pedido:#appointmentClientId , fecha , precio , pagado , -->
+        
+        <div class="container" th:unless="${ableToShow}">
+            <div class="row justify-content-center mt-4">
+                <div class="alert alert-warning alert-dismissible fade show col-12 col-md-8 text-center" role="alert">
+                    <i class="bi bi-info-circle"></i> Nada por aquí, nada por allá, parece que su cesta está vacía. <i class="bi bi-info-circle"></i> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" th:if="${param.errorHardDelete}">
+            <div class="row justify-content-center">
+                <div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert">
+                    No puedes borrar datos en una cita que no sea tuya.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <div class="container" th:if="${param.backToTheFuture}">
+            <div class="row justify-content-center">
+                <div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert">
+                    No puedes reservar para antes del día de hoy, <span class="text-danger">a no ser que tengas un condensador de fluzo para el Dr. Emmet...</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table container-fluid table-striped table-hover" th:if="${ableToShow}">
+    
+            <legend class="text-center mt-2">Referencia de pedido: #<span th:text="${idAppointment}">x</span></legend>
             
-            <div class="container" th:unless="${ableToShow}">
-                <div class="row justify-content-center mt-4">
-                    <div class="alert alert-warning alert-dismissible fade show col-12 col-md-8 text-center" role="alert">
-                        <i class="bi bi-info-circle"></i> Nada por aquí, nada por allá, parece que su cesta está vacía. <i class="bi bi-info-circle"></i> 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <thead>
+                <tr class="row justify-content-center">
+                    <th class="col-2 text-center">Foto</th>
+                    <th class="col-3 text-center">Nombre servicio</th>
+                    <th class="col-3 text-center">Cantidad</th>
+                    <th class="col-2 text-center">Subtotal</th>
+                    <td class="col-1 text-center mt-0"></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row justify-content-center" th:each="apLine : ${appointmentLineSelfList}">
+                    <td class="col-2 text-center mt-0"><img class="rounded-circle w-25 mt-0" th:src="${not (#strings.isEmpty(apLine.product.descImg))} ? ${apLine.product.descImg} : 'http://placehold.co/100x100'" th:alt="${apLine.product.alterText}" /></td>
+                    <td class="col-3 text-center mt-0" th:text="${apLine.product.name}">Nombre</td>
+                    <td class="col-3 text-center mt-0">
+                        <a class="text-decoration-none" th:href="@{/loggedUser/showCart/decrease/{id}(id=${apLine.product.id})}">
+                            <button type="button" class="btn btn-danger border p-1 py-0 shadow">
+                                <i class="bi bi-dash"></i>
+                            </button>
+                        </a> 
+                        <span th:text="${apLine.quantity}">1</span>
+                        <a th:href="@{/loggedUser/showCart/increase/{id}(id=${apLine.product.id})}">
+                            <button type="button" class="btn btn-success border p-1 py-0 shadow">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td class="col-2 text-center mt-0"><span th:text="${#numbers.formatDecimal(apLine.subTotal,0,2)}"></span>€</td>
+                    <td class="col-1 text-center mt-0"><a th:href="@{/loggedUser/showCart/hardDeleteApLine/{id}(id=${apLine.id})}"><button class="btn btn-danger border p-1 py-0 shadow"><i class="bi bi-backspace"></i></button></a></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="row justify-content-center">
+                    <td class="col-1 text-center mt-0"></td>
+                    <td class="col-5 text-center mt-0"></td>
+                    <td class="col-2 text-center mt-0">Total:</td>
+                    <td class="col-2 text-center mt-0"><span th:text="${appointFullPrice}"></span>€</td>
+                    <td class="col-1 text-center mt-0"></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="row justify-content-center my-2" th:if="${ableToShow}">
+
+            <form th:object="${appoint}" th:action="@{/loggedUser/showCart/submitCart}" method="POST" class="container">
+
+                <div class="row justify-content-center my-3">
+                    <div class="input-group-text col-5 col-lg-2">Fecha de la cita</div>
+                    <div class="col-5 col-lg-2">
+                        <input class="form-control" id="date-field" th:field="*{appointmentDate}" type="date" required>
                     </div>
                 </div>
-            </div>
 
-            <table class="table container-fluid table-striped table-hover" th:if="${ableToShow}">
-        
-                <legend class="text-center mt-2">Referencia de pedido: #<span th:text="${idAppointment}">x</span></legend>
-                
-                <thead>
-                    <tr class="row justify-content-center">
-                        <th class="col-2 text-center">Foto</th>
-                        <th class="col-3 text-center">Nombre servicio</th>
-                        <th class="col-3 text-center">Cantidad</th>
-                        <th class="col-2 text-center">Subtotal</th>
-                        <td class="col-1 text-center mt-0"></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="row justify-content-center" th:each="apLine : ${appointmentLineSelfList}">
-                        <td class="col-2 text-center mt-0"><img class="rounded-circle w-25 mt-0" th:src="${not (#strings.isEmpty(apLine.product.descImg))} ? ${apLine.product.descImg} : 'http://placehold.co/100x100'" th:alt="${apLine.product.alterText}" /></td>
-                        <td class="col-3 text-center mt-0" th:text="${apLine.product.name}">Nombre</td>
-                        <td class="col-3 text-center mt-0">
-                            <a class="text-decoration-none" th:href="@{/loggedUser/showCart/decrease/{id}(id=${apLine.product.id})}">
-                                <button type="button" class="btn btn-danger border p-1 py-0 shadow">
-                                    <i class="bi bi-dash"></i>
-                                </button>
-                            </a> 
-                            <span th:text="${apLine.quantity}">1</span>
-                            <a th:href="@{/loggedUser/showCart/increase/{id}(id=${apLine.product.id})}">
-                                <button type="button" class="btn btn-success border p-1 py-0 shadow">
-                                    <i class="bi bi-plus"></i>
-                                </button>
-                            </a>
-                        </td>
-                        <td class="col-2 text-center mt-0"><span th:text="${#numbers.formatDecimal(apLine.subTotal,0,2)}"></span>€</td>
-                        <td class="col-1 text-center mt-0"><a th:href="@{/loggedUser/showCart/hardDeleteApLine/{id}(id=${apLine.id})}"><button class="btn btn-danger border p-1 py-0 shadow"><i class="bi bi-backspace"></i></button></a></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr class="row justify-content-center">
-                        <td class="col-2 text-center mt-0"></td>
-                        <td class="col-4 text-center mt-0"></td>
-                        <td class="col-2 text-center mt-0">Total:</td>
-                        <td class="col-2 text-center mt-0"><span th:text="${appointFullPrice}"></span>€</td>
-                        <td class="col-1 text-center mt-0"></td>
-                    </tr>
-                </tfoot>
-            </table>
+                <!-- <input th:if="${appoint.id != 0}" type="hidden" th:field="*{id}"/>
+                <input th:if="${appoint.id != 0}" type="hidden" th:field="*{client}"/>
+                <input th:if="${appoint.id != 0}" type="hidden" th:field="*{appointmentLList}"/>
+                <input th:if="${appoint.id != 0}" type="hidden" th:field="*{fullPrice}"/>
+                <input th:if="${appoint.id != 0}" type="hidden" th:field="*{paid}"/> -->
 
-            <div class="row justify-content-center my-2" th:if="${ableToShow}">
+                <div class="row justify-content-center">
 
-                <a th:href="@{/}" class="col-4 col-lg-2 col-xl-1">
+                    <input class="btn btn-success col-3 col-md-2 col-lg-1" type="submit" value="Pagar"></input>
 
-                    <button class="btn btn-success">Pagar</button>
-                
-                </a>
-        
-            </div>
+                </div>
+
+            </form>
+
+        </div>
 
             
-            <div class="row justify-content-center my-2" th:unless="${ableToShow}">
+        <div class="row justify-content-center my-2" th:unless="${ableToShow}">
 
-                <a th:href="@{/#products}" class="col-4 col-lg-2 col-xl-1">
+            <a th:href="@{/#products}" class="col-4 col-lg-2 col-xl-1">
 
-                    <button class="btn btn-success">Agregar servicios</button>
+                <button class="btn btn-success">Agregar servicios</button>
 
-                </a>
+            </a>
 
-            </div>
+        </div>
             
     </div>
 
