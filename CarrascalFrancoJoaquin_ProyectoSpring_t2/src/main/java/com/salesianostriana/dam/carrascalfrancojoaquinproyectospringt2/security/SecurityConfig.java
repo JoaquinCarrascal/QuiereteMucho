@@ -56,7 +56,7 @@ public class SecurityConfig {
     	http.authorizeHttpRequests(
 				(authz) -> authz
 						.requestMatchers("/css/**", "/js/**", "/h2-console/**" , "/img/**" , "/fonts/**" 
-								, "/home" , "/" , "/login", "/regform/**" , "/addClient/submit" , "/error" ).permitAll()
+								, "/home" , "/home/**" , "/" , "/login", "/regform/**" , "/addClient/submit" , "/error" ).permitAll()
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.requestMatchers("/userMenu/**").hasRole("USER")
 						.requestMatchers("/loggedUser/**").authenticated()
