@@ -31,13 +31,13 @@
 
 	<div class="wrapper container-fluid row min-vh-100 pe-0 me-0">
 		
-		<aside th:replace="~{fragments/adminMenuAside::adminMenuAside}"></aside>
+        <aside th:replace="~{fragments/adminMenuAside::adminMenuAside}"></aside>
 
-		<article class="col-12 col-md-6 col-xl-8">
+		<article class="col-12 col-md-8 col-xl-10">
 
 			<table class="table container-fluid table-striped">
 		
-                <legend class="text-center mt-2">Las citas más próximas</legend>
+                <legend class="text-center mt-2">Listado de citas</legend>
                 
                 <thead>
                     <tr class="row justify-content-center">
@@ -50,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="row justify-content-center" th:each="appointment : ${nearAppointmentList}">
+                    <tr class="row justify-content-center" th:each="appointment : ${AppointmentList}">
                         <td class="col-2 text-center">Pedido: #<span th:text="${appointment.id}"></span></td>
                         <td class="col-2 text-center" th:text="${#temporals.format(appointment.appointmentDate)}">Fecha</td>
                         <td class="col-2 text-center" th:text="${(appointment.paid) ? 'Pagado' : 'No pagado'}">Pagado</td>
@@ -62,19 +62,8 @@
                 </tbody>
             </table>
 
-			<div class="container-fluid row justify-content-center my-2">
-
-				<a href="/admin/appointmentList/" th:href="@{/admin/appointmentList/}" class="col-3 col-md-2 col-lg-1"><button class="btn btn-success" type="button">Mostrar más</button></a>
-		
-			</div>
-
 		</article>
-		<aside class="col-12 col-md-3 col-xl-2 shadow pe-0">
-
-			<h5 class="mt-1 p-2 border-3 border border-warning rounded-pill text-center"><i class="bi bi-arrow-down-right-square"></i> Estadísticas del negocio <i class="bi bi-arrow-up-left-square"></i></h5>
-			
-
-		</aside>
+		
 	</div>
 
 </body>

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Appointment;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.AppointmentLine;
@@ -24,6 +25,12 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 	public List <Appointment> findReportsByUserId(Long id){
 		
 		return appointmentRepo.findAppointmentByClientId(id);
+		
+	}
+	
+	public List<AppointmentLine> findAllApLineByAppointId(Long appointId){
+		
+		return appointmentRepo.findAllApLineByAppointId(appointId);
 		
 	}
 	
@@ -161,6 +168,12 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 	public List<AppointmentLine> apLinesOnSelfAppoint(Appointment appoint){
 		
 		return appoint.getAppointmentLList();
+		
+	}
+	
+	public List<Appointment> top10ClosestAppoints(){
+		
+		return appointmentRepo.closeDateAppointList(LocalDate.now(), 10);
 		
 	}
 	
