@@ -39,4 +39,13 @@ public interface AppointmentRepository extends JpaRepository<Appointment , Long>
 	@Query("SELECT SUM(a.fullPrice) FROM Appointment a WHERE a.appointmentDate >= :todaysDate")
 	Double estimatedEarningsFromDay(@Param("todaysDate") LocalDate date);
 	
+	@Query("SELECT SUM(al.subTotal) FROM Appointment a JOIN AppointmentLine al ON a.id = al.appointment.id WHERE al.product.productType = 'PELUQUERIA' AND a.appointmentDate < :todaysDate")
+	Double earningsPerHairdressing(@Param("todaysDate") LocalDate date);
+	
+	@Query("SELECT SUM(al.subTotal) FROM Appointment a JOIN AppointmentLine al ON a.id = al.appointment.id WHERE al.product.productType = 'ESTETICA' AND a.appointmentDate < :todaysDate")
+	Double earningsPerAesthetics(@Param("todaysDate") LocalDate date);
+	
+	@Query("SELECT SUM(a.fullPrice) FROM Appointment a WHERE YEAR(a.appointmentDate) = YEAR(:todaysDate)")
+	Double estimatedEarningsFromCurrentYear(@Param("todaysDate") LocalDate date);
+	
 }

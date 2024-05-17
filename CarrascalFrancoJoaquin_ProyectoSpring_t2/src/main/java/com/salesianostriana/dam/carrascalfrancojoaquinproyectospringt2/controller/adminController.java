@@ -25,6 +25,9 @@ public class adminController {
 		model.addAttribute("alertContext" , aserv.showAlert());
 		model.addAttribute("nearAppointmentList" , appointServ.top10ClosestAppoints());
 		model.addAttribute("estimatedEarnings" , appointServ.estimatedEarningsFromDay());
+		model.addAttribute("hairdresser" , appointServ.earningsPerHairdressing());
+		model.addAttribute("aesthetics" , appointServ.earningsPerAesthetics());
+		model.addAttribute("thisYearEarnings" , appointServ.estimatedEarningsFromCurrentYear());
 		
 		return "adminTemplates/adminProfile";
 	}

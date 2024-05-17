@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Appointment;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.AppointmentLine;
@@ -179,6 +178,24 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 	public Double estimatedEarningsFromDay() {
 		
 		return appointmentRepo.estimatedEarningsFromDay(LocalDate.now());
+		
+	}
+	
+	public Double earningsPerHairdressing() {
+		
+		return appointmentRepo.earningsPerHairdressing(LocalDate.now());
+		
+	}
+	
+	public Double earningsPerAesthetics() {
+		
+		return appointmentRepo.earningsPerAesthetics(LocalDate.now());
+		
+	}
+	
+	public Double estimatedEarningsFromCurrentYear() {
+		
+		return appointmentRepo.estimatedEarningsFromCurrentYear(LocalDate.now());
 		
 	}
 	
