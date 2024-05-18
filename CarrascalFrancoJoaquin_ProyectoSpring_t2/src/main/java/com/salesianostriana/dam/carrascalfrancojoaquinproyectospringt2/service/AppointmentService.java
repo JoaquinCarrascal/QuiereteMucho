@@ -221,4 +221,10 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 	}
 	
+	public boolean isOwner (Long appointId , UserEntity loggedUser) {
+		
+		return (appointmentRepo.findById(appointId).get().getClient().getId() == loggedUser.getId()) ? true : false;
+		
+	}
+	
 }

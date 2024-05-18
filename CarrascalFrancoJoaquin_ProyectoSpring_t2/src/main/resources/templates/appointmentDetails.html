@@ -22,7 +22,7 @@
 
 <!--Menú de navegación-->
 
-<header th:replace="~{fragments/adminHeader::header}"></header>
+<header th:replace="~{fragments/header::header}"></header>
 
 <!--Fin Menú de navegación-->
 
@@ -59,10 +59,15 @@
         </tfoot>
     </table>
 
-	
-    <div class="container-fluid row justify-content-center my-2">
+	<div class="container-fluid row justify-content-center my-2" sec:authorize="hasRole('ROLE_USER')">
 
-        <a href="/admin/" th:href="@{/admin/}" class="col-3 col-md-2 col-lg-1"><button class="btn btn-danger" type="button">Atrás</button></a>
+        <a href="/userMenu/myAppointments/" th:href="@{/userMenu/myAppointments/}" class="col-3 col-md-2 col-lg-1"><button class="btn btn-danger" type="button">Atrás</button></a>
+
+    </div>
+
+    <div class="container-fluid row justify-content-center my-2" sec:authorize="hasRole('ROLE_ADMIN')">
+
+        <a href="/admin/appointmentList/" th:href="@{/admin/appointmentList/}" class="col-3 col-md-2 col-lg-1"><button class="btn btn-danger" type="button">Atrás</button></a>
 
     </div>
 
