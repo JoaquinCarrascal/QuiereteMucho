@@ -123,6 +123,30 @@ public class AppointmentController {
 		
 	}
 	
+	@GetMapping("/userMenu/myAppointments/delete/{id}")
+	public String deleteSelfAppointments(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id) {
+		
+		if(appointServ.deleteSelfAppointments(loggedUser, id)) {
+			
+			return "redirect:/userMenu/myAppointments/";
+			
+		}else {
+			
+			return "redirect:/userMenu/myAppointments/?error=true";
+			
+		}
+		
+	}
+	
+	@GetMapping("/admin/appointmentList/delete/{id}")
+	public String deleteAppointmentsAdmin(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id) {
+		
+		appointServ.deleteSelfAppointments(loggedUser, id);
+		
+		return "redirect:/admin/appointmentList/";
+		
+	}
+	
 	@GetMapping("/admin/appointmentDetails/{id}")
 	public String appointmentDetails(Model model, @PathVariable("id") Long appointId) {
 		

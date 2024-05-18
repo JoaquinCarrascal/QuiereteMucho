@@ -43,8 +43,8 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 	public boolean isProductPresentInApLine(Appointment appoint , Long idProduct) {
 		
 		return appoint.getAppointmentLList()
-					  .stream()
-					  .anyMatch(x -> x.getProduct().getId() == idProduct);
+					.stream()
+					.anyMatch(x -> x.getProduct().getId() == idProduct);
 		
 	}
 	
@@ -157,6 +157,22 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 	}
 	
+	public boolean deleteSelfAppointments(UserEntity loggedUser , Long appointId) {
+		
+		if((appointmentRepo.findById(appointId).get().getClient().getId() == loggedUser.getId()) || loggedUser.isAdmin()) {
+			
+			appointmentRepo.deleteById(appointId);
+			
+			return true;
+			
+		}else {
+			
+			return false;
+			
+		}
+		
+	}
+	
 	public boolean apLinePresent(Appointment appoint) {
 		
 		return (appoint.getAppointmentLList().isEmpty()) ? false : true;
@@ -196,6 +212,12 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 	public Double estimatedEarningsFromCurrentYear() {
 		
 		return appointmentRepo.estimatedEarningsFromCurrentYear(LocalDate.now());
+		
+	}
+	
+	public List<Appointment> findAppointmentByClientId(Long id){
+		
+		return appointmentRepo.findAppointmentByClientId(id);
 		
 	}
 	

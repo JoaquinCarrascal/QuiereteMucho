@@ -31,7 +31,7 @@
 
 	<div class="wrapper container-fluid row min-vh-100">
 		
-        <header th:replace="~{fragments/clientMenuAside::clientMenuAside}"></header>
+        <aside th:replace="~{fragments/clientMenuAside::clientMenuAside}"></aside>
 
 		<article class="col-12 col-md-8 col-xxl-10">
 
@@ -46,6 +46,15 @@
             </div>
 
             <!--nombre Pedido:#appointmentClientId , fecha , precio , pagado , -->
+
+            <div class="container" th:if="${param.error}">
+                <div class="row justify-content-center mt-4">
+                    <div class="alert alert-danger alert-dismissible fade show col-12 col-md-8" role="alert">
+                        ¡Vaya! Parece que esa cita no está a tu nombre.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
             
             <table class="table container-fluid table-striped">
 		
@@ -54,9 +63,9 @@
                 <thead>
                     <tr class="row justify-content-center">
                         <th class="col-2 text-center">Título</th>
-                        <th class="col-2 text-center">Fecha</th>
+                        <th class="col-3 text-center">Fecha</th>
                         <th class="col-2 text-center">Pagado</th>
-                        <th class="col-2 text-center">Precio</th>
+                        <th class="col-3 text-center">Precio</th>
                         <th class="col-1 text-center">Editar</th>
                         <th class="col-1 text-center">Borrar</th>
                     </tr>
@@ -64,9 +73,9 @@
                 <tbody>
                     <tr class="row justify-content-center" th:each="appointment : ${appointmentSelfList}">
                         <td class="col-2 text-center">Pedido: #<span th:text="${appointment.id}"></span></td>
-                        <td class="col-2 text-center" th:text="${#temporals.format(appointment.appointmentDate)}">Fecha</td>
+                        <td class="col-3 text-center" th:text="${#temporals.format(appointment.appointmentDate)}">Fecha</td>
                         <td class="col-2 text-center" th:text="${(appointment.paid) ? 'Pagado' : 'No pagado'}">Pagado</td>
-                        <td class="col-2 text-center" th:text="${#numbers.formatDecimal(appointment.fullPrice,0,2)}">Precio</td>
+                        <td class="col-3 text-center" th:text="${#numbers.formatDecimal(appointment.fullPrice,0,2)}">Precio</td>
                         <td class="col-1 text-center"><a th:href="@{/userMenu/myAppointments/edit/}"><button class="btn btn-primary p-1"><i class="bi bi-pencil-square"></i></button></a></td>
                         <td class="col-1 text-center"><button class="btn btn-danger p-1" data-bs-toggle="modal" data-bs-target="#delete-modal" th:attr="data-bs-target='#delete-modal'+${appointment.id}"><i class="bi bi-trash3"></i></button></td>
 
