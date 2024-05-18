@@ -26,6 +26,9 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 	@Autowired
 	private PasswordEncoder passEncoder;
 	
+	@Autowired
+	private AppointmentService appointServ;
+	
 	public UserEntity findByAuthName(String name) {
 		
 		return userrepo.findFirstByUsername(name).get();
@@ -116,7 +119,7 @@ public class UserEntityService extends BaseServiceImpl<UserEntity, Long , UserEn
 	
 	public boolean processClientDeletingByAdmin(Long id) {
 		
-		if(repserv.findReportsByUserId(id).isEmpty()) {
+		if(repserv.findReportsByUserId(id).isEmpty() && appointServ.findAppointmentByClientId(id).isEmpty()) {
 			
 			deleteById(id);
 			

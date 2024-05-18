@@ -79,7 +79,7 @@ public class UserEntityController {
 		model.addAttribute("legend" , "Formulario de edición");
 		model.addAttribute("adminEditing" , true);
 		model.addAttribute("visibility" , "hidden");
-		model.addAttribute("pass" , "password");
+		model.addAttribute("pass" , "hidden");
 		model.addAttribute("clientRegForm" , ueservice.findById(id).get());
 		model.addAttribute("alertContext" , as1.showAlert());
 		
