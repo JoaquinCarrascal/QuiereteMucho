@@ -24,7 +24,7 @@ public class ReportController {
 	
 	private final AlertService aserv;
 	
-	@GetMapping("/reportForm")
+	@GetMapping("/reportForm/")
 	public String showReportForm(Model model) {
 		
 		model.addAttribute("alertContext" , aserv.showAlert());
@@ -41,9 +41,16 @@ public class ReportController {
 	@PostMapping("/addReport/submit")
 	public String submitReport(@ModelAttribute("reportBlank") Report reportForm , @AuthenticationPrincipal UserEntity loggedUser) {
 		
-		repservice.processAddingReport( reportForm , loggedUser);
-		
-		return "redirect:/home";
+		if(repservice.processAddingReport( reportForm , loggedUser)) {
+			
+			return "redirect:/home";
+			
+		}
+		else {
+			
+			return "redirect:/reportForm/?error=true";
+			
+		}
 		
 	}
 	

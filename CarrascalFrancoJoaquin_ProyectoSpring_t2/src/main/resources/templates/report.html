@@ -30,7 +30,14 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-
+    <div class="container" th:if="${param.error}">
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger alert-dismissible fade show col-12 col-md-8" role="alert">
+                No se pueden hacer reclamaciones en base a hechos que no han ocurrido aún.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
 
     <form method="POST" th:action="${reportBlank.id != null} ? @{/admin/replyReport/submit} : @{/addReport/submit}" th:object="${reportBlank}">
 

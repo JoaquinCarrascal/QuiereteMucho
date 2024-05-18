@@ -68,7 +68,10 @@ public class SecurityConfig {
 			.logout((logoutz) -> logoutz
 					.logoutUrl("/logout")
 					.logoutSuccessUrl("/home")
-					.permitAll());
+					.permitAll())
+			.exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedPage("/error/**"));
+    	
+    	
 		
 		// Añadimos esto para poder seguir accediendo a la consola de H2
 		// con Spring Security habilitado.

@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +62,22 @@ public class ReportService extends BaseServiceImpl<Report , Long , ReportReposit
 		
 	}
 	
-	public void processAddingReport(Report reportForm , UserEntity loggedUser) {
+	public boolean processAddingReport(Report reportForm , UserEntity loggedUser) {
 		
+		if(reportForm.getReportDate().isBefore(LocalDate.now())) {
+			
 		reportForm.setClient(loggedUser);
 		
 		save(reportForm);
+		
+			return true;
+			
+		}
+		else {
+			
+			return false;
+			
+		}
 		
 	}
 	
