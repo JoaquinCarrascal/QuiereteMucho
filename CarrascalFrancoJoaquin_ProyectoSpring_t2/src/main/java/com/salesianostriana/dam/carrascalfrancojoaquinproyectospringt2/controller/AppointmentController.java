@@ -155,7 +155,25 @@ public class AppointmentController {
 		model.addAttribute("apLineDetails" , appointServ.findAllApLineByAppointId(appointId));
 		model.addAttribute("appointFullPrice" , appointServ.findById(appointId).get().getFullPrice());
 		
-		return "adminTemplates/appointmentDetails";
+		return "appointmentDetails";
+		
+	}
+	
+	@GetMapping("/userMenu/appointmentDetails/{id}")
+	public String appointmentDetails(Model model, @PathVariable("id") Long appointId , @AuthenticationPrincipal UserEntity loggedUser) {
+		
+		if(appointServ.isOwner(appointId, loggedUser)) {
+		
+			model.addAttribute("alertContext" , aserv.showAlert());
+			model.addAttribute("idAppointment" , appointId);
+			model.addAttribute("apLineDetails" , appointServ.findAllApLineByAppointId(appointId));
+			model.addAttribute("appointFullPrice" , appointServ.findById(appointId).get().getFullPrice());
+			
+			return "appointmentDetails";
+			
+		}
+		
+		return "redirect:/userMenu/myAppointments/?error=true";
 		
 	}
 	
