@@ -38,12 +38,28 @@ public class MainController {
 	}
 	
 	@GetMapping("/home/services/search")
-    public String buscarMerchPorNombre(Model model, @RequestParam("search") String search) {
+    public String searchServices(Model model, @RequestParam("search") String search) {
 		
 		model.addAttribute("alertContext" , aserv.showAlert());
         model.addAttribute("productList", prodserv.findByNameOrDesc(search));
         
         return "productsList";
+    }
+	
+	@GetMapping("/home/aboutUs")
+    public String aboutUsArticle(Model model) {
+		
+		model.addAttribute("alertContext" , aserv.showAlert());
+        
+        return "aboutUs";
+    }
+	
+	@GetMapping("/home/advertisement")
+    public String advertisementArticle(Model model) {
+		
+		model.addAttribute("alertContext" , aserv.showAlert());
+        
+        return "advertisement";
     }
 	
 }
