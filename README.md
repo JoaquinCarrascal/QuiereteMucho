@@ -128,3 +128,19 @@ Desde arriba hasta abajo:
     + Ganancias en estética hasta hoy: éste dato recoge las ganancias en el campo de *ESTETICA* hasta el día de hoy.
 
     + Ganancias del año actual: éste dato va referido a la suma de todas las citas del año en que se encuentra el usuario, ya sean citas que han ocurrido o que están por ocurrir, por eso se denota *conseguidas + previstas*.
+
+## Plan de pruebas en la carpeta de documentación del proyecto.
+
+### Hasta aquí queda mi proyecto, muchas gracias por su atención.
+
+Mi agradecimiento a los profesores que tanto me han ayudado con el proyecto, respondiendo un sinfín de preguntas y ayudándome a solventar errores, una vez mas: 
+
+**¡Muchas gracias!**
+
+También pedir disculpas por la extensión del documento pero quería explicar más detalladamente qué incluye éste programa, y además acogerme al cuento popular:
+
+*- ¡Capitán, el barco zozobra!*
+
+*+ Pues más vale que zozobre, que no que 'zofalte'*
+
+Por tanto he decidido que éste documento más bien *zozobre* en el sentido figurado de la palabra que *'zofalte'*.
