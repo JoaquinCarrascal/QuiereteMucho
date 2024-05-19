@@ -84,3 +84,46 @@ Con este rol además de las anteriores se nos desbloquean las siguientes funcion
     En el carrito también se encuentra la opción de pagar que por falta de tiempo no he terminado de rematar todo lo bien que me hubiera gustado en la primera versión y en éste caso sólamente se permite escoger una fecha que sea posterior a hoy. En un principio yo tenía pensado un sistema mucho más complejo en el que se gestionaría también la hora y la disponibilidad de las trabajadoras pero no ha sido posible debido al limitado tiempo. Por tanto y en resumidas cuentas el ciclo de vida del carrito termina pulsando el botón de pagar poniendo una fecha válida, es ese momento se actualiza el atributo de *pagado* y aparece como pagada en el menú user.
 
     Quiero remarcar que el carrito que he diseñado / programado, está hecho únicamente con la base de la estructura y funcionamiento lógico que se planteó en clase pero el cómo funciona internamente está ideado por mi, con esto quiero decir que no va a ser perfecto, pero gestiona básicamente todo lo que yo quería y funciona que es lo más importante así que espero que sea suficiente, al menos para la primera versión del programa.
+
+## Como administrador:
+
+Debido a la naturaleza la página y el negocio real, el cual está basado en el binomio de sus dos trabajadoras, y por consiguiente sólamente ellas *y otro administrador creado de prueba* tendrán acceso a las opciones de admin, se ha retirado la opción de CREAR un administrador.
+
+Dicho lo cual, procedo a explicar de qué funcionalidades goza un administrador en la página (Además de las anteriormente nombradas):
+
+Las funcionalidades del admin se centran casi exclusivamente en su menú de gestión, dividiendo el menú vista principal en 3 columnas, ésta es la primera de ellas, **empezando por la izquierda**:
+
+![Columna izquierda del menú admin](https://i.imgur.com/jBJVR98.png)
+
+Desde arriba hasta abajo:
+
++ El logo es personalizado para cada admin , recabado el dato del username logueado, ademas éste primer apartado sirve como ruta a la pantalla principal de admin.
+
++ Gestión de alertas: se permite crear, modificar , borrar y activar alertas en la página de forma global, existe una comprobación que determina si la alerta que estás tratando de borrar está activa en el momento y pide que actives otra para poder eliminarla.
+
++ Gestión de servicios: listado de los servicios y la posibilidad de crear, modificar o borrar los servicios , comprobando que el servicio no se encuentre añadido en una línea de venta, en cuyo caso no permitirá su borrado.
+
++ Gestión de reclamaciones: listado de las reclamaciones de la página con la posibilidad de contestarlas, en cuyo caso desaparecen de la lista y queda la respuesta visible en el menu del cliente, y de borrarlas.
+
++ Gestion de usuarios: posibilidad de editar el perfil del usuario exceptuando su campo *password* y *username* ,  borrar un cliente, si esque no tiene ventas ni reclamaciones asociadas y crear un cliente nuevo.
+
++ Listado de citas: listado general de las citas de la página con posibilidad de ver detalles y borrarlas.
+
+
+**Pasando a la columna central o cuerpo del menú**
+![Columna central del menú admin](https://i.imgur.com/laBO5RD.png)
+
++ El cuerpo del menu del administrador tiene como funcionalidad la de transmitir una visual, simple y con posibilidad de ver detalles sobre las citas que estan más próximas al día de hoy, ésto mismo se consigue por medio de una consulta a la base de datos dando como parámetro el dia actual, y si nos fijamos en la imagen, las ordena desde arriba hasta abajo en función de cuán cerca estan del día actual siendo la primera la mas cercana y la última la mas alejada, ésta consulta está también limitada a 10 resultados, es decir sólamente mostrará las 10 más cercanas en esta primera vista.
+
+**Pasando a la columna lateral derecha**
+![Columna derecha del menú admin](https://i.imgur.com/sVUoiNL.png)
+
++ Ésta parte nos brinda una vista dinámica en ralación a los datos de facturación de la empresa, dichos datos estan recogidos mediante consultas a la base de datos por tanto son dinámicos (si se crea o se borra una cita, cambian) además para no tener problemas de formateo y de la misma forma que todos los campos de texto que se muestran en la página están formateados con el formateo a dos decimales de Thymeleaf, desde arriba hacia abajo podremos ver:
+
+    + Ganancias futuras aproximadas: éste dato viene referido a las ganancias que espera tener la empresa a razón de las citas que se han creado y que tienen como fecha, una posterior a la del día de hoy, se recalca *aproximadas* ya que esto no es un dato verídico, las citas pueden cambiar , y pueden ser borradas o creadas nuevas.
+
+    + Ganancias en peluquería hasta hoy: éste dato recoge las ganancias en el campo de *PELUQUERIA* hasta el día de hoy.
+
+    + Ganancias en estética hasta hoy: éste dato recoge las ganancias en el campo de *ESTETICA* hasta el día de hoy.
+
+    + Ganancias del año actual: éste dato va referido a la suma de todas las citas del año en que se encuentra el usuario, ya sean citas que han ocurrido o que están por ocurrir, por eso se denota *conseguidas + previstas*.
