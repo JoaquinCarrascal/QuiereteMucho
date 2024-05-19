@@ -110,9 +110,17 @@ public class ReportController {
 	@GetMapping("/userMenu/myReports/delete/{id}")
 	public String deleteSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id) {
 		
-		repservice.processDeletingSelfReports( loggedUser, id);
+		if(repservice.processDeletingSelfReports( loggedUser, id)) {
 		
 		return "redirect:/userMenu/myReports/";
+		
+		}
+		else {
+			
+			return "redirect:/userMenu/myReports/?errorDelete=true"; 
+			
+		}
+		
 		
 	}
 	
