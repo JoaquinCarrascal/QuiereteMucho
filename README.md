@@ -2,6 +2,9 @@
 
 ![Logo del negocio](https://i.imgur.com/zZp6k66.png)
 
+#### Nota:
+Dentro del proyecto en forma de documento PDF se encuentra una pequeña guía para facilitar la corrección en relación con el apartado de LMSGI, para que sirva como mapa de puntos de interés.
+
 ## Descripción del sistema (de manera breve)
 
 Éste documento va relacionado al sistema de gestión WEB de una
