@@ -48,4 +48,12 @@ public interface AppointmentRepository extends JpaRepository<Appointment , Long>
 	@Query("SELECT SUM(a.fullPrice) FROM Appointment a WHERE YEAR(a.appointmentDate) = YEAR(:todaysDate)")
 	Double estimatedEarningsFromCurrentYear(@Param("todaysDate") LocalDate date);
 	
+	@Query("""
+			SELECT CASE WHEN COUNT(a) > 0 THEN TRUE ELSE FALSE END
+			FROM Appointment a
+			WHERE a.client.id = :userId
+			AND a.id = :appointId
+			""")
+	boolean isAppointOwner(@Param("userId") Long userId , @Param("appointId") Long appointId);
+	
 }
