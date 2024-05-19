@@ -33,6 +33,7 @@ Cada rol podrá hacer lo del anterior más lo determinado en el suyo.
     + Ademas en dicha vista se encuentra una selección de los productos mas vendidos, que se actualizan dinámicamente por medio de una consulta a BBDD recogiendo los productos más presentes en ventas (abiertas o cerradas)
 
 + Consultar los servicios de la web por medio del botón mostrar más en el inicio o el botón de Servicios en el menú de navegación donde aparecerán deshabilitados hasta que se inicie sesión y con el botón de contratar cambiado.
+    + Dentro del apartado servicios se encuentra una barra de busqueda para filtrar por nombre y descripción.
 
 + Consultar el mapa de la peluquería que se encuentra en el footer, el mapa es una foto con vista de pájaro que cuando es activado con un click despliega un modal de BS5 que muestra un mapa interactivo implementado con un iframe de Google Maps.
 
