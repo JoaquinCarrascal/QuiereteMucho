@@ -77,22 +77,22 @@
 
                 <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
                     <p>Ganancias futuras aproximadas:</p>
-                    <p class="fs-4"><span class="text-success fs-4" th:text="${estimatedEarnings}"></span>€</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${#numbers.formatDecimal(estimatedEarnings,0,2)}"></span>€</p>
                 </li>
                 
                 <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
-                    <p>Ganancias en peluquería:</p>
-                    <p class="fs-4"><span class="text-success fs-4" th:text="${hairdresser}"></span>€</p>
+                    <p>Ganancias en peluquería hasta hoy:</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${#numbers.formatDecimal(hairdresser,0,2)}"></span>€</p>
                 </li>
 
                 <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
-                    <p>Ganancias en estética:</p>
-                    <p class="fs-4"><span class="text-success fs-4" th:text="${aesthetics}"></span>€</p>
+                    <p>Ganancias en estética hasta hoy:</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${#numbers.formatDecimal(aesthetics,0,2)}"></span>€</p>
                 </li>
 
                 <li class="list-group-item text-center fs-5 border rounded-2 shadow my-2">
-                    <p>Ganancias del año actual:</p>
-                    <p class="fs-4"><span class="text-success fs-4" th:text="${thisYearEarnings}"></span>€</p>
+                    <p>Ganancias del año actual (conseguidas + previstas):</p>
+                    <p class="fs-4"><span class="text-success fs-4" th:text="${#numbers.formatDecimal(thisYearEarnings,0,2)}"></span>€</p>
                 </li>
 
             </ul>

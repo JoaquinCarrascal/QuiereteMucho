@@ -29,6 +29,8 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
+    <a th:href="@{/admin/}" class="d-block mx-auto mt-3"><button class="btn btn-success m-2">Volver al inicio</button></a>
+
     <form method="POST" th:action="${alertBlank.id != 0} ? @{/admin/editAlert/submit} : @{/admin/addAlert/submit}" th:object="${alertBlank}">
 
         <legend class="text-center mt-2"><span th:text="${legend}"></span></legend>

@@ -28,6 +28,8 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
+	<a th:href="@{/admin/}" class="d-block mx-auto mt-3"><button class="btn btn-success m-2">Volver al inicio</button></a>
+
 	<form method="POST" th:action="${productRegForm.id != 0} ? @{/admin/editProduct/submit} : @{/admin/addProduct/submit}" th:object="${productRegForm}" class="my-auto mx-auto w-75 py-4">
 	
 	        <legend class="text-center mb-3 fw-lighter">Dar de alta un servicio</legend>
@@ -62,14 +64,14 @@
 	
 	                <div class="my-1 col-6 col-lg-3">
 	                    <label for="avg-duration-field-reg" class="form-label">Duración</label>
-	                    <input type="text" class="form-control p-2" id="avg-duration-field-reg" placeholder="Duración promedio del servicio"
-	                        name="avg-duration-reg" th:field="*{avgDuration}">
+	                    <input type="number" class="form-control p-2" id="avg-duration-field-reg" placeholder="Duración promedio del servicio"
+	                        name="avg-duration-reg" step="0.5" th:field="*{avgDuration}">
 	                </div>
 	
 	                <div class="my-1 col-6 col-lg-3">
 	                    <label for="base-price-field-reg" class="form-label">Precio base</label>
-	                    <input type="text" class="form-control p-2" id="base-price-field-reg" placeholder="Precio base del servicio"
-	                        name="base-price-reg" th:field="*{basePrice}">
+	                    <input type="number" class="form-control p-2" id="base-price-field-reg" placeholder="Precio base del servicio"
+	                        name="base-price-reg" step="any" th:field="*{basePrice}">
 	                </div>
 	
 	            </div>

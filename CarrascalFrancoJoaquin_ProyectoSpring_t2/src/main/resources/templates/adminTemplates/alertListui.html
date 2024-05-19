@@ -28,8 +28,9 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
-	<a th:href="@{/admin/alertForm}" class="d-block mx-auto mt-3"><button
-			class="btn btn-success m-2">Agregar alerta</button></a>
+	<a th:href="@{/admin/}" class="d-block mx-auto mt-3"><button class="btn btn-success m-2">Volver al inicio</button></a>
+
+	<a th:href="@{/admin/alertForm}" class="d-block mx-auto mt-3"><button class="btn btn-success m-2">Agregar alerta</button></a>
 
 	<div class="container" th:if="${param.error}">
 		<div class="row justify-content-center">

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.AppointmentLine;
 import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product , Long>{
@@ -17,5 +19,7 @@ public interface ProductRepository extends JpaRepository<Product , Long>{
 	
 	List<Product> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String name, String description);
 	
+	@Query("SELECT al FROM AppointmentLine al WHERE al.product.id = :id")
+	List<AppointmentLine> erasableProd(@Param("id") Long prodId);
 	
 }

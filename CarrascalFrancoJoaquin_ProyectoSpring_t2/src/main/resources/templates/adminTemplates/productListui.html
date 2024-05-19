@@ -29,8 +29,19 @@
 
 <body class=" m-0 border-0 min-vh-100 d-flex flex-column">
 
+    <a th:href="@{/admin/}" class="d-block mx-auto mt-3"><button class="btn btn-success m-2">Volver al inicio</button></a>
+
 	<a href="/admin/prodForm" th:href="@{/admin/prodForm}" class="d-block mx-auto mt-3"><button
 			class="btn btn-success m-2">Agregar servicio</button></a>
+
+    <div class="container" th:if="${param.error}">
+        <div class="row justify-content-center">
+            <div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert">
+                Lo sentimos, este producto se encuentra vinculado a alguna cita y no se puede borrar, hasta que dicha cita no se elimine.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
 
         <div class="container-fluid" id="products">
 
@@ -47,7 +58,7 @@
                         </p>
                         <div class="d-flex flex-column mt-auto mb-0 container">
                             <div class="row">
-                                <p class="text-end">PVP: <span th:text="${product.basePrice}">precio</span>€</p>
+                                <p class="text-end">PVP: <span th:text="${#numbers.formatDecimal(product.basePrice,0,2)}">precio</span>€</p>
                             </div>
                             <div class="row justify-content-">
                                 <a class="col-6 p-1 px-3" th:href="@{/admin/editProduct/{id}(id=${product.id})}"><button class="btn btn-primary d-block mx-auto"><i class="bi bi-pencil-square"></i></button></a>

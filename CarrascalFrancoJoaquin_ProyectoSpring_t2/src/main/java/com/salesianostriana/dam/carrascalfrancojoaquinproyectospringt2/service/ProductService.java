@@ -47,5 +47,35 @@ public class ProductService
         }
         return result;
     }
+	
+	public boolean erasableProd(Long prodId) {
+		
+		return (prodRepo.erasableProd(prodId).isEmpty()) ? true : false;
+		
+	}
+	
+	public boolean processDeletingProduct(Long prodId) {
+		
+		if(erasableProd(prodId)) {
+			
+			prodRepo.deleteById(prodId);
+			
+			return true;
+			
+		}
+		else {
+			
+			return false;
+			
+		}
+		
+		
+	}
+	
+	public void processAddingProd(Product p) {
+		
+		prodRepo.save(p);
+		
+	}
 
 }

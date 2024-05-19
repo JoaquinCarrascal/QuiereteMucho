@@ -34,7 +34,7 @@ public class ProductController {
 		return "adminTemplates/productReg";
 	}
 	
-	@GetMapping("/prodList")
+	@GetMapping("/prodList/")
 	public String showProductList(Model model) {
 		
 		model.addAttribute("productList" , pservice.findAll());
@@ -47,7 +47,7 @@ public class ProductController {
 	@PostMapping("/addProduct/submit")
 	public String submitProd(@ModelAttribute("productRegForm") Product p1) {
 		
-		pservice.save(p1);
+		pservice.processAddingProd(p1);
 		
 		return "redirect:/admin/prodForm";
 		
@@ -57,9 +57,17 @@ public class ProductController {
 	@GetMapping("/deleteProduct/{id}")
 	public String deleteProduct(@PathVariable("id") Long id) {
 		
-		pservice.deleteById(id);
+		if(pservice.processDeletingProduct(id)) {
 		
-		return "redirect:/admin/prodList";
+			return "redirect:/admin/prodList/";
+		
+		}
+		else {
+			
+			return "redirect:/admin/prodList/?error=true";
+			
+		}
+		
 	}
 	
 	@GetMapping("/editProduct/{id}")
@@ -74,9 +82,9 @@ public class ProductController {
 	@PostMapping("/editProduct/submit")
 	public String submitEditedProduct(@ModelAttribute("productRegForm") Product p) {
 		
-		pservice.save(p);
+		pservice.processAddingProd(p);
 		
-		return "redirect:/admin/prodList";
+		return "redirect:/admin/prodList/";
 		
 	}
 	

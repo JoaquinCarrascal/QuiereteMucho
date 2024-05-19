@@ -104,7 +104,7 @@ public class AppointmentController {
 			
 		}
 		
-		return "redirect:/home";
+		return "redirect:/home/services";
 		
 	}
 	
