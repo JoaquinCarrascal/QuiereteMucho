@@ -157,7 +157,7 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 		
 	}
 	
-	public boolean deleteSelfAppointments(UserEntity loggedUser , Long appointId) {
+	/*public boolean deleteSelfAppointments(UserEntity loggedUser , Long appointId) {
 		
 		if((appointmentRepo.findById(appointId).get().getClient().getId() == loggedUser.getId()) || loggedUser.isAdmin()) {
 			
@@ -166,6 +166,29 @@ public class AppointmentService extends BaseServiceImpl<Appointment , Long , App
 			return true;
 			
 		}else {
+			
+			return false;
+			
+		}
+		
+	}*/
+	
+	public boolean deleteSelfAppointments(UserEntity loggedUser , Long appointId) {
+		
+		if(appointmentRepo.isAppointOwner(loggedUser.getId(), appointId)) {
+			
+			appointmentRepo.deleteById(appointId);
+			
+			return true;
+			
+		}if(loggedUser.isAdmin()) {
+		
+			appointmentRepo.deleteById(appointId);
+			
+			return true;
+			
+		}
+		else {
 			
 			return false;
 			
