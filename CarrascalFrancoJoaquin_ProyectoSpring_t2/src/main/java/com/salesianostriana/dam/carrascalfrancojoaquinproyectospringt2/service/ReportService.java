@@ -48,7 +48,7 @@ public class ReportService extends BaseServiceImpl<Report , Long , ReportReposit
 	}
 	
 	//true = lo puede borrar , false = no lo puede borrar
-	public boolean erasableReport(Long reportId , Long clientId) { 
+	/*public boolean erasableReport(Long reportId , Long clientId) { 
 		
 		return (reprepo.findById(reportId).get().getClient().getId() == clientId) ? true : false;
 		
@@ -58,6 +58,29 @@ public class ReportService extends BaseServiceImpl<Report , Long , ReportReposit
 		
 		if(erasableReport(id, loggedUser.getId())) {
 			deleteById(id);
+		}
+		
+	}*/
+	
+	public boolean processDeletingSelfReports( UserEntity loggedUser,  Long reportId) {
+		
+	if(reprepo.isReportOwner(loggedUser.getId(), reportId)) {
+			
+			reprepo.deleteById(reportId);
+			
+			return true;
+			
+		}if(loggedUser.isAdmin()) {
+		
+			reprepo.deleteById(reportId);
+			
+			return true;
+			
+		}
+		else {
+			
+			return false;
+			
 		}
 		
 	}
