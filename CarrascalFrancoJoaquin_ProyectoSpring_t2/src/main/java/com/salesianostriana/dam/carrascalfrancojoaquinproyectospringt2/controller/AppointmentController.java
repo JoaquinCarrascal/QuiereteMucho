@@ -162,7 +162,7 @@ public class AppointmentController {
 	@GetMapping("/userMenu/appointmentDetails/{id}")
 	public String appointmentDetails(Model model, @PathVariable("id") Long appointId , @AuthenticationPrincipal UserEntity loggedUser) {
 		
-		if(appointServ.isOwner(appointId, loggedUser)) {
+		if(appointServ.isAppointOwner(loggedUser , appointId)) {
 		
 			model.addAttribute("alertContext" , aserv.showAlert());
 			model.addAttribute("idAppointment" , appointId);
