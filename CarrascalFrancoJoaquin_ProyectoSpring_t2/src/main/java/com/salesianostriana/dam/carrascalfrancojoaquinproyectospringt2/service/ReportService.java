@@ -77,6 +77,32 @@ public class ReportService extends BaseServiceImpl<Report , Long , ReportReposit
 		
 	}*/
 	
+	public boolean accessEditingSelfReports (UserEntity loggedUser,  Long reportId) {
+		
+		if(reprepo.isReportOwner(loggedUser.getId(), reportId)) {
+			
+			return true;
+			
+		}if(loggedUser.isAdmin()) {
+		
+			
+			return true;
+			
+		}
+		else {
+			
+			return false;
+			
+		}
+		
+	}
+	
+	public void processEditingSelfReports(Report r) {
+		
+		reprepo.save(r);
+		
+	}
+	
 	public boolean processDeletingSelfReports( UserEntity loggedUser,  Long reportId) {
 		
 	if(reprepo.isReportOwner(loggedUser.getId(), reportId)) {

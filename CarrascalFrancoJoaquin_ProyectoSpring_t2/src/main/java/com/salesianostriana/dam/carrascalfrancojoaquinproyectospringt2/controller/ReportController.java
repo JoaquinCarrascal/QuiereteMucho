@@ -126,12 +126,12 @@ public class ReportController {
 	
 	//redirecciona a otro doc html de edicion de reporte porque está maquetado con el menu del usuario también.
 	@GetMapping("/userMenu/myReports/EditSelfReport/{id}")
-	public String editSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long id , Model model) {
+	public String editSelfReports(@AuthenticationPrincipal UserEntity loggedUser, @PathVariable("id") Long reportId , Model model) {
 		
-		if(repservice.isReportOwner(loggedUser, id)) {
+		if(repservice.accessEditingSelfReports(loggedUser, reportId)) {
 			
 			model.addAttribute("alertContext" , aserv.showAlert());
-			model.addAttribute("reportEdit" , repservice.findById(id).get());
+			model.addAttribute("reportEdit" , repservice.findById(reportId).get());
 			
 			return "selfReportEdit";
 			
@@ -146,7 +146,7 @@ public class ReportController {
 	@PostMapping("/userMenu/myReports/EditSelfReport/submit")
 	public String submitEditedSelfReport(@ModelAttribute("reportEdit") Report r1) {
 		
-		repservice.save(r1);
+		repservice.processEditingSelfReports(r1);
 		
 		return "redirect:/userMenu/myReports/";
 		
