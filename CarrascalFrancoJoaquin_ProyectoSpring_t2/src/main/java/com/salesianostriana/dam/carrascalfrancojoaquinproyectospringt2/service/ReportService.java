@@ -32,9 +32,24 @@ public class ReportService extends BaseServiceImpl<Report , Long , ReportReposit
 	}
 	
 	//devuelve true si la reclamacion es del usuario recibido por argumentos
-	public boolean isReportOwner(UserEntity loggedUser , Long reportId) {
+	/*public boolean isReportOwner(UserEntity loggedUser , Long reportId) {
 		
 		if(reprepo.findById(reportId).get().getClient().getId() == loggedUser.getId()) {
+			
+			return true;
+			
+		}
+		else {
+			
+			return false;
+			
+		}
+		
+	}*/
+	
+	public boolean isReportOwner(UserEntity loggedUser , Long reportId) {
+		
+		if(reprepo.isReportOwner(loggedUser.getId(), reportId)) {
 			
 			return true;
 			
