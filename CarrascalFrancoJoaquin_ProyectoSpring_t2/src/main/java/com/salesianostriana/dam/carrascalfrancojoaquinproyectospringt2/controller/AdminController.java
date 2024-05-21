@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
-public class adminController {
+public class AdminController {
 	
 	private final AlertService aserv;
 	

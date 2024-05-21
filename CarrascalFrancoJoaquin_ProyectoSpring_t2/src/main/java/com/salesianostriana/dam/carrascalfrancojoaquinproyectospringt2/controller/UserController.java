@@ -14,7 +14,7 @@ import com.salesianostriana.dam.carrascalfrancojoaquinproyectospringt2.service.U
 
 @Controller
 @RequestMapping("/userMenu")
-public class userController {
+public class UserController {
 	
 	@Autowired
 	private UserEntityService ueservice;
