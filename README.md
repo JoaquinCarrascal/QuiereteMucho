@@ -31,6 +31,27 @@ pre-cargado para hacer un test, posibilidad de contestar reportes a los clientes
 expresar sus quejas por medio de un formulario y éste será contestado (o borrado) por un administrador de
 la página.
 
+# Arranque del sistema
+El directorio que contiene el código fuente del proyecto es: "CarrascalFrancoJoaquin_ProyectoSpring_t2"
+
+Éste proyecto está desarrollado usando el framework Spring Boot en su versión 4, con la versión de JDK 17, para la construcción del proyecto (importar dependencias etc...) se ha usado Maven, adicionalmente y para facilitar el desarrollo, se ha usado la librería de Lombok, la cual sumado a todo lo mencionado anteriormente , es necesaria para el correcto funcionamiento del proyecto.
+
+Aconsejo, una vez importado el proyecto en el IDE de spring tool suite, seguir los siguientes pasos:
+
+    + Click derecho sobre el proyecto y pulsar el botón de refresh.
+
+    + Click derecho sobre el proyecto, run as -> maven clean.
+
+    + Click derecho sobre el proyecto, run as -> maven install.
+
+    + Checkear que no haya ningún proyecto ejecutándose
+
+    + Click derecho sobre el proyecto, run as -> Spring boot app.
+
+Después de éstos pasos, entrar en la dirección localhost:9000 (que es el puerto en el que está)
+Adicionalmente y bajo la premisa de ser un proyecto meramente educativo y no una aplicación real, la ruta de la consola de la base de datos está desbloqueada /h2-console/** para todos los usuarios para que sea más sencillo probar el proyecto y cómo se realizan las operaciones CRUD con usuarios no administradores, entiendo como limitar ésta característica pero quería explicar el porqué de éste hecho.
+    
+
 # ¿Qué se podrá hacer en la web? 
 Cada rol podrá hacer lo del anterior más lo determinado en el suyo.
 
