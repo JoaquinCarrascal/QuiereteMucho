@@ -65,13 +65,13 @@
 	                <div class="my-1 col-6 col-lg-3">
 	                    <label for="avg-duration-field-reg" class="form-label">Duración</label>
 	                    <input type="number" class="form-control p-2" id="avg-duration-field-reg" placeholder="Duración promedio del servicio"
-	                        name="avg-duration-reg" step="0.5" th:field="*{avgDuration}">
+	                        name="avg-duration-reg" step="0.5" th:field="*{avgDuration}" min="1">
 	                </div>
 	
 	                <div class="my-1 col-6 col-lg-3">
 	                    <label for="base-price-field-reg" class="form-label">Precio base</label>
 	                    <input type="number" class="form-control p-2" id="base-price-field-reg" placeholder="Precio base del servicio"
-	                        name="base-price-reg" step="any" th:field="*{basePrice}">
+	                        name="base-price-reg" step="any" th:field="*{basePrice}" min="1">
 	                </div>
 	
 	            </div>

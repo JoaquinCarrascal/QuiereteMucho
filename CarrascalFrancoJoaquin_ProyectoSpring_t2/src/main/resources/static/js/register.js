@@ -43,7 +43,7 @@ form.addEventListener("submit", function (event) {
 
     const phoneNumber = phoneNumberInput.value.replace(/[\s-]/g, "");
 
-    if (phoneNumber.length < 9 || !/^[67]/.test(phoneNumber)) {
+    if (phoneNumber.length < 9) {
 
         alertTelf.classList.remove('d-none');
 
